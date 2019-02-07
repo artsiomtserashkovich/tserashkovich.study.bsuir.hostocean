@@ -1,0 +1,20 @@
+sudo: required
+
+branches:
+  only:
+  - master
+  - develop
+  - /^feature|environment/
+
+services:
+  - docker
+
+env:
+  global:
+    - INTEGRATION-TEST-IMAGE=host-ocean/integration-test
+
+before_script:
+  - docker build -t "INTEGRATION-TEST-IMAGE" ./src/HostOcean/HostOcean.Tests/HostOcean.IntegrationTests
+
+script:
+  - docker run "INTEGRATION-TEST-IMAGE"
