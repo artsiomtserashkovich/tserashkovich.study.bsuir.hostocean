@@ -11,7 +11,7 @@ COPY /HostOcean .
 WORKDIR /src/HostOcean.Api
 RUN dotnet build 
 
-FROM base AS testrunner
+FROM build AS testrunner
 WORKDIR /src/HostOcean.Tests/HostOcean.IntegrationTests/
 
 ENTRYPOINT ["dotnet", "test", "--logger:trx"]
