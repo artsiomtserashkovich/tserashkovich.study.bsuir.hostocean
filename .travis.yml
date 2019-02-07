@@ -14,7 +14,7 @@ env:
     - INTEGRATION-TEST-IMAGE=host-ocean/integration-test
 
 before_script:
-  - docker build -t "INTEGRATION-TEST-IMAGE" ./src/HostOcean/HostOcean.Tests/HostOcean.IntegrationTests
+  - docker build -t "$INTEGRATION-TEST-IMAGE" ./src/HostOcean/HostOcean.Tests/HostOcean.IntegrationTests
 
 script:
-  - docker run "INTEGRATION-TEST-IMAGE"
+  - docker run "$INTEGRATION-TEST-IMAGE"
