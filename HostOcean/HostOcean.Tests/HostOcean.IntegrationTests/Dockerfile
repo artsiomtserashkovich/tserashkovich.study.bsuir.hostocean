@@ -1,12 +1,12 @@
 FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
 
-COPY ../*.sln .
-COPY ../HostOcean.Tests/HostOcean.IntegrationTests/*.csproj ./HostOcean.Tests/HostOcean.IntegrationTests/
-COPY ../HostOcean.Api/*.csproj ./HostOcean.Api/
+COPY ../../*.sln .
+COPY ../../HostOcean.Tests/HostOcean.IntegrationTests/*.csproj ./HostOcean.Tests/HostOcean.IntegrationTests/
+COPY ../../HostOcean.Api/*.csproj ./HostOcean.Api/
 RUN dotnet restore
 
-COPY ../ .
+COPY ../../ .
 
 WORKDIR /src/HostOcean.Api
 RUN dotnet build 
