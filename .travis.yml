@@ -5,6 +5,7 @@ branches:
   only:
   - master
   - develop
+  - /^(feature.*|environment.*|master|develop)/
 
 services:
   - docker
