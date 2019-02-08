@@ -21,7 +21,7 @@ before_script:
 
 script:
   - docker run host-ocean/integration-test
-  - sonar-scanner
+  - sonar-scanner -X
 
 cache:
   directories:
