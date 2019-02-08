@@ -14,7 +14,7 @@ addons:
   sonarcloud:
     organization: "artemtereshkovich-github"
     token:
-      secure: SONAR_TOKEN
+      secure: ${SONAR_TOKEN}
 
 before_script:
   - docker build -t host-ocean/integration-test -f ./HostOcean/HostOcean.Tests/HostOcean.IntegrationTests/Dockerfile .
