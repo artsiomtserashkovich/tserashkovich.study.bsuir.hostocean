@@ -1,10 +1,10 @@
+dist: trusty
 sudo: required
 
 branches:
   only:
   - master
   - develop
-  - /^feature|environment/
 
 services:
   - docker
