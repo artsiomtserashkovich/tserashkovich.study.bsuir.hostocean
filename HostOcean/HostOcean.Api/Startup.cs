@@ -1,30 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace HostOcean.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
         {
             Configuration = configuration;
+            _hostingEnvironment = hostingEnvironment;
         }
 
-        public IConfiguration Configuration { get; }
-        
+        private readonly IHostingEnvironment _hostingEnvironment;
+
+        private IConfiguration Configuration { get; }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            if (_hostingEnvironment.IsDevelopment())
+            {
+                services.AddSwaggerGen(swagGen =>
+                {
+                    swagGen.SwaggerDoc(
+                        Configuration["Swagger:Info:Version"], 
+                        new Info
+                        {
+                            Title = Configuration["Swagger:Info:Title"],
+                            Version = Configuration["Swagger:Info:Version"]
+                        });
+                });
+            }
         }
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -32,6 +44,14 @@ namespace HostOcean.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(swaggerConfiguration =>
+                {
+                    swaggerConfiguration.SwaggerEndpoint(
+                        Configuration["Swagger:SwaggerPath"], 
+                        Configuration["Swagger:ApplicationName"]
+                    );
+                });
             }
             else
             {
