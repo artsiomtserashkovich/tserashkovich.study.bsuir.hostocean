@@ -9,5 +9,11 @@ namespace HostOcean.IntegrationTests
         {
             Assert.True(true);
         }
+
+        [Fact]
+        public void Test_fail()
+        {
+            Assert.True(false);
+        }
     }
 }
