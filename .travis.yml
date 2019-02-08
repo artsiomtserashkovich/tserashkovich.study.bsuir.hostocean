@@ -1,0 +1,16 @@
+sudo: required
+
+branches:
+  only:
+  - master
+  - develop
+  - /^feature|environment/
+
+services:
+  - docker
+
+before_script:
+  - docker build -t host-ocean/integration-test -f ./HostOcean/HostOcean.Tests/HostOcean.IntegrationTests/Dockerfile .
+
+script:
+  - docker run host-ocean/integration-test
