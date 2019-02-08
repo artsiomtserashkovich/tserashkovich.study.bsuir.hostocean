@@ -44,14 +44,6 @@ namespace HostOcean.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(swaggerConfiguration =>
-                {
-                    swaggerConfiguration.SwaggerEndpoint(
-                        Configuration["Swagger:SwaggerPath"], 
-                        Configuration["Swagger:ApplicationName"]
-                    );
-                });
             }
             else
             {
@@ -60,6 +52,18 @@ namespace HostOcean.Api
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            if (env.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI(swaggerConfiguration =>
+                {
+                    swaggerConfiguration.SwaggerEndpoint(
+                        Configuration["Swagger:SwaggerPath"],
+                        Configuration["Swagger:ApplicationName"]
+                    );
+                });
+            }
         }
     }
 }
