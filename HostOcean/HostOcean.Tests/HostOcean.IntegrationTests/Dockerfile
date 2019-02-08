@@ -14,4 +14,4 @@ RUN dotnet build
 FROM build AS testrunner
 WORKDIR /src/HostOcean.Tests/HostOcean.IntegrationTests/
 
-ENTRYPOINT ["dotnet", "test", "--logger:trx"]
+ENTRYPOINT ["dotnet", "test","-v n"]
