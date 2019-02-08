@@ -5,7 +5,6 @@ branches:
   only:
   - master
   - develop
-  - /^(feature.*|environment.*|master|develop)/
 
 services:
   - docker
@@ -21,7 +20,6 @@ before_script:
 
 script:
   - docker run host-ocean/integration-test
-  - sonar-scanner
 
 cache:
   directories:
