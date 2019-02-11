@@ -6,6 +6,12 @@ branches:
   - master
   - develop
 
+addons:
+  sonarcloud:
+    organization: "artemtereshkovich-github"
+    token:
+      secure: ${SONAR_TOKEN}
+
 services:
   - docker
 
@@ -14,3 +20,8 @@ before_script:
 
 script:
   - docker run host-ocean/integration-test
+  - sonar-scanner
+
+cache:
+  directories:
+    - '$HOME/.sonar/cache'
