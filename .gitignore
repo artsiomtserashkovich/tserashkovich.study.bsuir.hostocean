@@ -636,3 +636,4 @@ healthchecksdb
 # BeatPulse healthcheck temp database
 
 # End of https://www.gitignore.io/api/csharp,aspnetcore,visualstudio
+/HostOcean/HostOcean.Api/Controllers/TestBsuirController.cs
