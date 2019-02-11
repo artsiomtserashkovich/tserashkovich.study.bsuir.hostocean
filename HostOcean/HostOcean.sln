@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HostOcean.Api", "HostOcean.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HostOcean.IntegrationTests", "HostOcean.Tests\HostOcean.IntegrationTests\HostOcean.IntegrationTests.csproj", "{8A7911E4-EFC7-498A-8274-28D3B8395465}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HostOcean.UnitTests", "HostOcean.UnitTests\HostOcean.UnitTests.csproj", "{2848419E-3E8D-4474-BE33-18D3FA2FF823}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HostOcean.UnitTests", "HostOcean.Tests\HostOcean.UnitTests\HostOcean.UnitTests.csproj", "{B62BA22F-2FC2-49F8-B1A2-ECF56BA942E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{8A7911E4-EFC7-498A-8274-28D3B8395465}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A7911E4-EFC7-498A-8274-28D3B8395465}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A7911E4-EFC7-498A-8274-28D3B8395465}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2848419E-3E8D-4474-BE33-18D3FA2FF823}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2848419E-3E8D-4474-BE33-18D3FA2FF823}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2848419E-3E8D-4474-BE33-18D3FA2FF823}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2848419E-3E8D-4474-BE33-18D3FA2FF823}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B62BA22F-2FC2-49F8-B1A2-ECF56BA942E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B62BA22F-2FC2-49F8-B1A2-ECF56BA942E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B62BA22F-2FC2-49F8-B1A2-ECF56BA942E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B62BA22F-2FC2-49F8-B1A2-ECF56BA942E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
