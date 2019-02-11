@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace HostOcean.Api.Infrastructure.GroupService
+namespace HostOcean.Api.Infrastructure.BsuirGroupService
 {
     public class IISHttpClient
     {

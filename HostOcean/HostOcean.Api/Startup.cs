@@ -1,5 +1,5 @@
 ﻿using System;
-using HostOcean.Api.Infrastructure.GroupService;
+using HostOcean.Api.Infrastructure.BsuirGroupService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;

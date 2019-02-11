@@ -1,4 +1,4 @@
-﻿namespace HostOcean.Api.Infrastructure.GroupService
+﻿namespace HostOcean.Api.Infrastructure.BsuirGroupService
 {
     public static class IISv1ApiUriBuilder
     {

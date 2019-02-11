@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace HostOcean.Api.Infrastructure.GroupService
+namespace HostOcean.Api.Infrastructure.BsuirGroupService
 {
     public class IISGroup
     {
