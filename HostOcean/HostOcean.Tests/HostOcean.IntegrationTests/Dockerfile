@@ -5,8 +5,8 @@ COPY /HostOcean/*.sln .
 COPY /HostOcean/HostOcean.Tests/HostOcean.IntegrationTests/*.csproj ./HostOcean.Tests/HostOcean.IntegrationTests/
 COPY /HostOcean/HostOcean.Api/*.csproj ./HostOcean.Api/
 
-RUN dotnet restore ./HostOcean/HostOcean.Tests/HostOcean.IntegrationTests/HostOcean.IntegrationTests.csproj
-RUN dotnet restore ./HostOcean/HostOcean.Api/HostOcean.Api.csproj
+RUN dotnet restore ./HostOcean.Tests/HostOcean.IntegrationTests/HostOcean.IntegrationTests.csproj
+RUN dotnet restore ./HostOcean.Api/HostOcean.Api.csproj
 
 COPY /HostOcean .
 
