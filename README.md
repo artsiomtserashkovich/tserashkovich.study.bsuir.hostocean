@@ -1,4 +1,14 @@
-# HostOcean
-[![Build Status](https://travis-ci.com/ArtemTereshkovich/HostOcean.svg?branch=develop)](https://travis-ci.com/ArtemTereshkovich/HostOcean)
+# Welcome to the HoSTOcean project!
 
-Web Site to host your wonderful picture in one place.
+### H - Hold
+### o - of
+### S - Student
+### T - Timetable
+## Ocean
+
+HoSTOcean - is web-site helper which provide uncontested queue of Laborotary Works!
+
+
+
+
+
