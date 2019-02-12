@@ -6,6 +6,8 @@ EXPOSE 443
 FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
 COPY ["HostOcean.Api/HostOcean.Api.csproj", "HostOcean.Api/"]
+COPY ["HostOcean.Persistence/HostOcean.Persistence.csproj", "HostOcean.Persistence/"]
+COPY ["HostOcean.Domain/HostOcean.Domain.csproj", "HostOcean.Domain/"]
 RUN dotnet restore "HostOcean.Api/HostOcean.Api.csproj"
 COPY . .
 WORKDIR "/src/HostOcean.Api"
