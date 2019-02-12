@@ -9,18 +9,17 @@ namespace HostOcean.Api.Infrastructure.GroupScheduleService
 {
     public class GoogleCalendarV3Client : IGoogleCalendarClient
     {
-        private readonly GoogleCalendarApiConfiguration _googleCalendarApiConfiguration;
         private readonly BaseClientService.Initializer _initializer;
 
         public GoogleCalendarV3Client(
             IOptions<GoogleCalendarApiConfiguration> googleCalendarApiConfigurationOptions)
         {
-            _googleCalendarApiConfiguration = googleCalendarApiConfigurationOptions.Value;
+            var googleCalendarApiConfiguration = googleCalendarApiConfigurationOptions.Value;
 
             _initializer = new BaseClientService.Initializer
             {
-                ApplicationName = _googleCalendarApiConfiguration.ApplicationName,
-                ApiKey = _googleCalendarApiConfiguration.ApiKey
+                ApplicationName = googleCalendarApiConfiguration.ApplicationName,
+                ApiKey = googleCalendarApiConfiguration.ApiKey
             };
         }
 
@@ -34,7 +33,7 @@ namespace HostOcean.Api.Infrastructure.GroupScheduleService
                 request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
                 request.TimeMin = startDateTime;
                 request.TimeMax = endDateTime;
-                request.Q = _googleCalendarApiConfiguration.LaboratoryWorkEventKey;
+                request.Q = GroupEventType.LaboratoryWork;
                 request.ShowDeleted = false;
                 request.TimeZone = TimeZoneInfo.Utc.Id;
                 request.SingleEvents = true;
