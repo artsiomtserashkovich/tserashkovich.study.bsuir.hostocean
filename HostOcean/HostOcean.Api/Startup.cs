@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using HostOcean.Data;
+using HostOcean.Data.Seed;
+using HostOcean.Domain.Entities;
+using HostOcean.Persistence.Interfaces;
+using HostOcean.Persistence.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace HostOcean.Api
 {
@@ -21,14 +21,26 @@ namespace HostOcean.Api
         }
 
         public IConfiguration Configuration { get; }
-        
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            var connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<HostOceanDbContext>(options => options.UseSqlServer(connection, b => b.MigrationsAssembly("HostOcean.Persistence")));
+
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<HostOceanDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
-        
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            HostOceanDbInitializer.Initialize(app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
