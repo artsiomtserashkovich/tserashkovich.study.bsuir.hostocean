@@ -1,5 +1,7 @@
 ﻿using System;
 using HostOcean.Api.Infrastructure.BsuirGroupService;
+using HostOcean.Api.Infrastructure.GroupScheduleService;
+using HostOcean.Api.StartupSettings.StartupExtensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace HostOcean.Api
+namespace HostOcean.Api.StartupSettings
 {
     public class Startup
     {
@@ -23,7 +25,8 @@ namespace HostOcean.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             if (_hostingEnvironment.IsDevelopment())
             {
@@ -43,6 +46,8 @@ namespace HostOcean.Api
             {
                 configureClient.BaseAddress = new Uri(Configuration["IISBsuirClient:UriBaseAddress"]);
             });
+            
+            services.AddGoogleCalendarClient<IGoogleCalendarClient,GoogleCalendarV3Client,GoogleCalendarApiConfiguration>(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
