@@ -29,7 +29,7 @@ before_script:
   - docker-compose -f ./HostOcean/docker-compose.test.yml build
 
 script:
-  - docker-compose -f ./HostOCean/docker-compose.test.yml up
+  - docker-compose -f HostOCean/docker-compose.test.yml up
   - sonar-scanner
 
 cache:
