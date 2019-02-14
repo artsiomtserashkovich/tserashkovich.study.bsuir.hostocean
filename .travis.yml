@@ -6,11 +6,32 @@ branches:
   - master
   - develop
 
+env:
+  DOCKER_COMPOSE_VERSION: 1.23.2  
+
+addons:
+  sonarcloud:
+    organization: "artemtereshkovich-github"
+    token:
+      secure: ${SONAR_TOKEN}
+
 services:
   - docker
+  
+before_install:
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  - docker-compose -v
+  - docker -v
 
 before_script:
-  - docker build -t host-ocean/integration-test -f ./HostOcean/HostOcean.Tests/HostOcean.IntegrationTests/Dockerfile .
+  - docker-compose -f ./HostOcean/docker-compose.test.yml build
 
 script:
-  - docker run host-ocean/integration-test
+  - docker-compose -f ./HostOCean/docker-compose.test.yml up
+  - sonar-scanner
+
+cache:
+  directories:
+    - '$HOME/.sonar/cache'
