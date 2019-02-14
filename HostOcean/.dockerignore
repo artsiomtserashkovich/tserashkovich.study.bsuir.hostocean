@@ -1,8 +1,16 @@
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
-[Bb]in/
-[Oo]bj/
-node_modules/
-dist/
+[Bb]in
+[Oo]bj
+node_modules
+dist
+
+.vs
+
+bin
+obj
+
+appsetings.json
+appsetings.Development.json
 
 # mstest test results
 TestResults
@@ -16,9 +24,9 @@ TestResults
 *.sln.docstates
 
 # Build results
-[Dd]ebug/
-[Rr]elease/
-x64/
+[Dd]ebug
+[Rr]elease
+x64
 *_i.c
 *_p.c
 *.ilk
@@ -113,6 +121,6 @@ UpgradeLog*.XML
 src/Rapporteringsregisteret.Web/assets/less/*.css
 
 MetricResults/
-*.sln.ide/
+*.sln.ide
 
-_configs/
+_configs

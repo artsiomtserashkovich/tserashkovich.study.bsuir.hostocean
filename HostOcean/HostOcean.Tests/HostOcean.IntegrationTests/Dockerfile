@@ -1,17 +1,20 @@
 FROM microsoft/dotnet:2.2-sdk AS build
-WORKDIR /src
 
-COPY /HostOcean/*.sln .
-COPY /HostOcean/HostOcean.Tests/HostOcean.IntegrationTests/*.csproj ./HostOcean.Tests/HostOcean.IntegrationTests/
-COPY /HostOcean/HostOcean.Api/*.csproj ./HostOcean.Api/
-RUN dotnet restore
+WORKDIR /
+COPY /HostOcean.Api/HostOcean.Api.csproj /src/HostOcean.Api/
+COPY /HostOcean.Persistence/HostOcean.Persistence.csproj /src/HostOcean.Persistence/
+COPY /HostOcean.Domain/HostOcean.Domain.csproj /src/HostOcean.Domain/
 
-COPY /HostOcean .
+RUN dotnet restore /src/HostOcean.Api/HostOcean.Api.csproj
 
-WORKDIR /src/HostOcean.Api
-RUN dotnet build 
+COPY . /src
+RUN dotnet build /src/HostOcean.Api/HostOcean.Api.csproj -c Release
 
-FROM build AS testrunner
+#Restore test
+COPY /HostOcean.Tests/HostOcean.IntegrationTests/HostOcean.IntegrationTests.csproj /src/HostOcean.Tests/HostOcean.IntegrationTests/
+
+RUN dotnet restore /src//HostOcean.Tests/HostOcean.IntegrationTests/HostOcean.IntegrationTests.csproj
+
 WORKDIR /src/HostOcean.Tests/HostOcean.IntegrationTests/
 
 ENTRYPOINT ["dotnet", "test"]
