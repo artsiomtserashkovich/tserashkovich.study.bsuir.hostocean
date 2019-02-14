@@ -41,7 +41,7 @@ namespace HostOcean.Api
 
             services.AddHttpClient<IISHttpClient>(configureClient =>
             {
-                configureClient.BaseAddress = new Uri("https://journal.bsuir.by");
+                configureClient.BaseAddress = new Uri(Configuration["IISBsuirClient:UriBaseAddress"]);
             });
         }
 
