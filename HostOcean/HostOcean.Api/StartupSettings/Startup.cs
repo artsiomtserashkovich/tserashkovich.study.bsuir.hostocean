@@ -1,7 +1,7 @@
 ﻿using System;
-using HostOcean.Api.Infrastructure.BsuirGroupService;
-using HostOcean.Api.Infrastructure.GroupScheduleService;
 using HostOcean.Api.StartupSettings.StartupExtensions;
+using HostOcean.Infrastructure.BsuirGroupService;
+using HostOcean.Infrastructure.GroupScheduleService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;

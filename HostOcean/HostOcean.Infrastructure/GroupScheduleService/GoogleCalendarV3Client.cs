@@ -5,7 +5,7 @@ using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
 using Microsoft.Extensions.Options;
 
-namespace HostOcean.Api.Infrastructure.GroupScheduleService
+namespace HostOcean.Infrastructure.GroupScheduleService
 {
     public class GoogleCalendarV3Client : IGoogleCalendarClient
     {
