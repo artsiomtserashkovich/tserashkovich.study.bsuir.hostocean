@@ -34,4 +34,4 @@ script:
 
 cache:
   directories:
-    - '$HOME/.sonar/cach
+    - '$HOME/.sonar/cache'
