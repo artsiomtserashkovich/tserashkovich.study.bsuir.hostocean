@@ -1,4 +1,5 @@
 ﻿using System;
+using HostOcean.Api.Infrastructure.BsuirGroupService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -37,18 +38,19 @@ namespace HostOcean.Api
                         });
                 });
             }
+
+            services.AddHttpClient<IISHttpClient>(configureClient =>
+            {
+                configureClient.BaseAddress = new Uri(Configuration["IISBsuirClient:UriBaseAddress"]);
+            });
         }
-        
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
             else
-            {
                 app.UseHsts();
-            }
 
             app.UseHttpsRedirection();
             app.UseMvc();
