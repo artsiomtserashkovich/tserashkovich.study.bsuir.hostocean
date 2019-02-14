@@ -4,17 +4,18 @@ EXPOSE 80
 EXPOSE 443
 
 FROM microsoft/dotnet:2.2-sdk AS build
-WORKDIR /src
-COPY ["HostOcean.Api/HostOcean.Api.csproj", "HostOcean.Api/"]
-COPY ["HostOcean.Persistence/HostOcean.Persistence.csproj", "HostOcean.Persistence/"]
-COPY ["HostOcean.Domain/HostOcean.Domain.csproj", "HostOcean.Domain/"]
-RUN dotnet restore "HostOcean.Api/HostOcean.Api.csproj"
-COPY . .
-WORKDIR "/src/HostOcean.Api"
-RUN dotnet build "HostOcean.Api.csproj" -c Release -o /app
+WORKDIR /
+COPY /HostOcean.Api/HostOcean.Api.csproj /src/HostOcean.Api/
+COPY /HostOcean.Persistence/HostOcean.Persistence.csproj /src/HostOcean.Persistence/
+COPY /HostOcean.Domain/HostOcean.Domain.csproj /src/HostOcean.Domain/
+
+RUN dotnet restore /src/HostOcean.Api/HostOcean.Api.csproj
+
+COPY . /src
+RUN dotnet build /src/HostOcean.Api/HostOcean.Api.csproj -c Release
 
 FROM build AS publish
-RUN dotnet publish "HostOcean.Api.csproj" -c Release -o /app
+RUN dotnet publish /src/HostOcean.Api/HostOcean.Api.csproj -c Release -o /app
 
 FROM base AS final
 WORKDIR /app

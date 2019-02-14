@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  hostocean.api:
+    image: hostocean.api:latest
+    build:
+      context: .
+      dockerfile: HostOcean.Api/Dockerfile
+    depends_on:
+      - data.sql
+
+  data.sql:
+    image: microsoft/mssql-server-linux:latest
