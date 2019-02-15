@@ -19,3 +19,5 @@ services:
     environment:
       - SA_PASSWORD=hstn650502!
       - ACCEPT_EULA=Y
+    ports:
+      - "5433:1433"
