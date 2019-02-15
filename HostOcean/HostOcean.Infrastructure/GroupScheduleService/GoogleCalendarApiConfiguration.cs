@@ -1,4 +1,4 @@
-﻿namespace HostOcean.Api.Infrastructure.GroupScheduleService
+﻿namespace HostOcean.Infrastructure.GroupScheduleService
 {
     public class GoogleCalendarApiConfiguration
     {

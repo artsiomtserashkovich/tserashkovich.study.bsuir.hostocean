@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Google.Apis.Calendar.v3.Data;
 
-namespace HostOcean.Api.Infrastructure.GroupScheduleService
+namespace HostOcean.Infrastructure.GroupScheduleService
 {
     public interface IGoogleCalendarClient
     {

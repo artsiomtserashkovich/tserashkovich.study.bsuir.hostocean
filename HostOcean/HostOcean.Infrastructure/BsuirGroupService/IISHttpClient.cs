@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using HostOcean.Api.Infrastructure.BsuirGroupService;
 using Newtonsoft.Json;
 
-namespace HostOcean.Api.Infrastructure.BsuirGroupService
+namespace HostOcean.Infrastructure.BsuirGroupService
 {
     public class IISHttpClient
     {
