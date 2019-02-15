@@ -26,6 +26,8 @@ before_install:
   - docker -v
 
 before_script:
+  - ls
+  - cd ~
   - docker-compose -f /HostOCean/docker-compose.test.yml build --no-cache
 
 script:
