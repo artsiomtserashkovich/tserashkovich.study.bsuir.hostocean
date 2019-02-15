@@ -1,6 +1,6 @@
-﻿using HostOcean.Data;
-using HostOcean.Data.Seed;
+﻿using HostOcean.Api.Extensions;
 using HostOcean.Domain.Entities;
+using HostOcean.Persistence;
 using HostOcean.Persistence.Interfaces;
 using HostOcean.Persistence.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -39,7 +39,7 @@ namespace HostOcean.Api
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            HostOceanDbInitializer.Initialize(app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider);
+            app.SeedDatabase();
 
             if (env.IsDevelopment())
             {

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace HostOcean.Data.Migrations
+namespace HostOcean.Persistence.Migrations
 {
     public partial class Initial : Migration
     {

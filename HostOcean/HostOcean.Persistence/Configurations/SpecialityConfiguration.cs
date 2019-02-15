@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace HostOcean.Data.Configurations
+namespace HostOcean.Persistence.Configurations
 {
     class SpecialityConfiguration : IEntityTypeConfiguration<Speciality>
     {

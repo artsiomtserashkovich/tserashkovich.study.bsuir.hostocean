@@ -1,5 +1,4 @@
-﻿using HostOcean.Data;
-using HostOcean.Domain.Entities;
+﻿using HostOcean.Domain.Entities;
 using HostOcean.Persistence.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using System;

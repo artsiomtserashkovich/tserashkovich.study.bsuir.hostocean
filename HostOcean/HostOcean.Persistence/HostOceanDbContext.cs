@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace HostOcean.Data
+namespace HostOcean.Persistence
 {
     public class HostOceanDbContext : IdentityDbContext<User>
     {
