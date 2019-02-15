@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using HostOcean.Api.Infrastructure.BsuirGroupService;
 using Newtonsoft.Json;
 
 namespace HostOcean.Infrastructure.BsuirGroupService
@@ -17,7 +16,7 @@ namespace HostOcean.Infrastructure.BsuirGroupService
 
         public async Task<IReadOnlyCollection<IISGroup>> GetGroups()
         {
-            var uri = IISv1ApiUriBuilder.GetGroups;
+            var uri = IISv1ApiUriBuilder.GetGroupsUri;
             var response = await _httpClient.GetStringAsync(uri);
             
             return JsonConvert.DeserializeObject<IReadOnlyCollection<IISGroup>>(response);
