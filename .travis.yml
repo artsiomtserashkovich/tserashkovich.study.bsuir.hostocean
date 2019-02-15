@@ -25,7 +25,11 @@ before_install:
   - docker-compose -v
   - docker -v
 
+before_script:
+  - docker-compose -f HostOCean/docker-compose.test.yml build --no-cache
+
 script:
+  - ls
   - docker-compose -f HostOCean/docker-compose.test.yml up
   - sonar-scanner
 

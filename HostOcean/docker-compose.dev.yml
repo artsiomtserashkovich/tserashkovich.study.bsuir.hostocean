@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  hostocean.api:
+    restart: on-failure
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - ConnectionStrings__MSSQLDatabaseConnectionString=Server=data.sql;Database=HostOceanDB;User=sa;Password=hstn650502!   
+    ports:
+      - 80:80
+
+  data.sql:
+    environment:
+      - SA_PASSWORD=hstn650502!
+      - ACCEPT_EULA=Y  
