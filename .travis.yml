@@ -26,11 +26,10 @@ before_install:
   - docker -v
 
 before_script:
-  - docker-compose -f /HostOcean/docker-compose.test.yml build --no-cache
+  - docker-compose -f HostOcean/docker-compose.test.yml build --no-cache
 
 script:
-  - ls
-  - docker-compose -f /HostOcean/docker-compose.test.yml up
+  - docker-compose -f HostOcean/docker-compose.test.yml up
   - sonar-scanner
 
 cache:
