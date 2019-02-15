@@ -1,5 +1,6 @@
-
-
+#appsettings files
+appsettings.json
+appsettings.Development.json
 
 # Created by https://www.gitignore.io/api/csharp,aspnetcore,visualstudio
 # Edit at https://www.gitignore.io/?templates=csharp,aspnetcore,visualstudio
@@ -636,3 +637,4 @@ healthchecksdb
 # BeatPulse healthcheck temp database
 
 # End of https://www.gitignore.io/api/csharp,aspnetcore,visualstudio
+/HostOcean/HostOcean.Api/Controllers/TestBsuirController.cs
