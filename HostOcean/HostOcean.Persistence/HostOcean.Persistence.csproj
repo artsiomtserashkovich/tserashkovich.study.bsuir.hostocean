@@ -14,8 +14,4 @@
     <ProjectReference Include="..\HostOcean.Domain\HostOcean.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    
-  </ItemGroup>
-
 </Project>

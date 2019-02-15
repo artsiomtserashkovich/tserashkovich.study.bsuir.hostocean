@@ -10,9 +10,6 @@ namespace HostOcean.Persistence.Interfaces
         HostOceanDbContext ApplicationDataBaseContext { get; }
         UserManager<User> UserManager { get; }
         SignInManager<User> SignInManager { get; }
-        IRepository<University> Universities { get; }
-        IRepository<Faculty> Faculties { get; }
-        IRepository<Speciality> Specialities { get; }
         IRepository<Group> Groups { get; }
         IRepository<Labwork> Labworks { get; }
         IRepository<Queue> Queues { get; }

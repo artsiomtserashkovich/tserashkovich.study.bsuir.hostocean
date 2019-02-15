@@ -9,8 +9,8 @@ namespace HostOcean.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Group> builder)
         {
             builder
-                .HasOne(f => f.Speciality)
-                .WithMany(p => p.Groups)
+                .HasMany(f => f.Users)
+                .WithOne(p => p.Group)
                 .IsRequired();
 
             builder

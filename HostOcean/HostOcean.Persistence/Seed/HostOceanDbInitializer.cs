@@ -9,9 +9,6 @@ namespace HostOcean.Persistence.Seed
 {
     public class HostOceanDbInitializer
     {
-        private readonly List<University> Universities = new List<University>();
-        private readonly List<Faculty> Faculties = new List<Faculty>();
-        private readonly List<Speciality> Specialities = new List<Speciality>();
         private readonly List<Group> Groups = new List<Group>();
         private readonly List<User> Users = new List<User>();
         private readonly List<Labwork> Labworks = new List<Labwork>();
@@ -27,9 +24,6 @@ namespace HostOcean.Persistence.Seed
 
         public void Seed(HostOceanDbContext context)
         {
-            SeedUniversities(context);
-            SeedFaculties(context);
-            SeedSpecialities(context);
             SeedGroups(context);
             SeedLabworks(context);
             SeedUsers(context);
@@ -39,73 +33,15 @@ namespace HostOcean.Persistence.Seed
             context.SaveChanges();
         }
 
-        public void SeedUniversities(HostOceanDbContext context)
-        {
-            if (!context.Universities.Any())
-            {
-                var universities = new[]
-                {
-                    new University()
-                };
-
-                Universities.AddRange(universities);
-
-                context.Universities.AddRange(universities);
-            }
-        }
-
-        public void SeedFaculties(HostOceanDbContext context)
-        {
-            if (!context.Faculties.Any())
-            {
-                var university = Universities.First();
-
-                var faculties = new[]
-                {
-                    new Faculty()
-                    {
-                        Name = "FKSIS",
-                        University = university
-                    }
-                };
-
-                Faculties.AddRange(faculties);
-                context.Faculties.AddRange(faculties);
-            }
-        }
-
-        public void SeedSpecialities(HostOceanDbContext context)
-        {
-            if (!context.Specialities.Any())
-            {
-                var faculty = Faculties.First();
-
-                var specialities = new[]
-                {
-                    new Speciality()
-                    {
-                        Name = "VMSIS",
-                        Faculty = faculty
-                    }
-                };
-
-                Specialities.AddRange(specialities);
-                context.Specialities.AddRange(specialities);
-            }
-        }
-
         public void SeedGroups(HostOceanDbContext context)
         {
             if (!context.Groups.Any())
             {
-                var speciality = Specialities.First();
-
                 var groups = new[]
                 {
                     new Group()
                     {
                         Name = "650505",
-                        Speciality = speciality
                     }
                 };
 

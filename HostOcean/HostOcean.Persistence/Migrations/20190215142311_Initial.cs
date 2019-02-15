@@ -23,16 +23,15 @@ namespace HostOcean.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Universities",
+                name: "Groups",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    PhotoUrl = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Universities", x => x.Id);
+                    table.PrimaryKey("PK_Groups", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -52,63 +51,6 @@ namespace HostOcean.Persistence.Migrations
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Faculties",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    UniversityId = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Faculties", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Faculties_Universities_UniversityId",
-                        column: x => x.UniversityId,
-                        principalTable: "Universities",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Specialities",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    FacultyId = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Specialities", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Specialities_Faculties_FacultyId",
-                        column: x => x.FacultyId,
-                        principalTable: "Faculties",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Groups",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    SpecialityId = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Groups", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Groups_Specialities_SpecialityId",
-                        column: x => x.SpecialityId,
-                        principalTable: "Specialities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -340,16 +282,6 @@ namespace HostOcean.Persistence.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Faculties_UniversityId",
-                table: "Faculties",
-                column: "UniversityId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Groups_SpecialityId",
-                table: "Groups",
-                column: "SpecialityId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Labworks_GroupId",
                 table: "Labworks",
                 column: "GroupId");
@@ -377,11 +309,6 @@ namespace HostOcean.Persistence.Migrations
                 table: "Queues",
                 column: "LabworkId",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Specialities_FacultyId",
-                table: "Specialities",
-                column: "FacultyId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -418,15 +345,6 @@ namespace HostOcean.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Groups");
-
-            migrationBuilder.DropTable(
-                name: "Specialities");
-
-            migrationBuilder.DropTable(
-                name: "Faculties");
-
-            migrationBuilder.DropTable(
-                name: "Universities");
         }
     }
 }
