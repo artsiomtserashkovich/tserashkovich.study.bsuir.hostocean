@@ -1,5 +1,4 @@
 ﻿using System;
-using HostOcean.Api.Extensions;
 using HostOcean.Api.StartupSettings.StartupExtensions;
 using HostOcean.Domain.Entities;
 using HostOcean.Infrastructure.BsuirGroupService;
@@ -69,12 +68,16 @@ namespace HostOcean.Api.StartupSettings
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.SeedDatabase();
+            app.InitializeDatabase();
 
             if (env.IsDevelopment())
+            {
                 app.UseDeveloperExceptionPage();
+            }
             else
+            {
                 app.UseHsts();
+            }
 
             app.UseHttpsRedirection();
             app.UseMvc();

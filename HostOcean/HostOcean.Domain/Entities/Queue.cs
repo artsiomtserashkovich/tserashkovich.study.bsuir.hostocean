@@ -5,10 +5,17 @@ namespace HostOcean.Domain.Entities
 {
     public class Queue : Entity
     {
-        public string LabworkId { get; set; }
-        public Labwork Labwork { get; set; }
-        public List<Place> Places { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public DateTime? RegistradionStartedAt { get; set; }
+        public Queue()
+        {
+            UserQueues = new HashSet<UserQueue>();
+        }
+
+        public LaboratoryWork LaboratoryWork { get; set; }
+        public DateTime? CreatedOn { get; set; }
+        public DateTime RegistrationStart { get; set; }
+
+        public string LaboratoryWorkId { get; set; }
+        
+        public ICollection<UserQueue> UserQueues { get; private set; }
     }
 }

@@ -5,19 +5,24 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HostOcean.Persistence.Configurations
 {
-    class UserConfiguration : IEntityTypeConfiguration<User>
+    class LaboratoryWorkConfiguration : IEntityTypeConfiguration<LaboratoryWork>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<LaboratoryWork> builder)
         {
             builder
+                .HasKey(x => x.Id);
+
+            builder
                 .HasOne(f => f.Group)
-                .WithMany(p => p.Users)
+                .WithMany(p => p.LaboratoryWorks)
                 .HasForeignKey(x => x.GroupId)
                 .IsRequired();
 
             builder
-                .HasMany(f => f.UserQueues)
-                .WithOne(p => p.User);
+                .HasOne(f => f.Queue)
+                .WithOne(p => p.LaboratoryWork)
+                .HasForeignKey<Queue>(x => x.LaboratoryWorkId)
+                .IsRequired();
 
             builder
                 .Property(x => x.SubGroup)

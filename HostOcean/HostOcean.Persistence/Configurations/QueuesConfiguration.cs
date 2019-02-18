@@ -10,16 +10,14 @@ namespace HostOcean.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Queue> builder)
         {
             builder
-                .HasOne(f => f.Labwork)
-                .WithMany()
-                .IsRequired();
+                .HasKey(x => x.Id);
 
             builder
-                .HasIndex(f => f.LabworkId)
-                .IsUnique();
+                .HasOne(f => f.LaboratoryWork)
+                .WithOne(p => p.Queue);
 
             builder
-                .HasMany(f => f.Places)
+                .HasMany(f => f.UserQueues)
                 .WithOne(p => p.Queue);
         }
     }
