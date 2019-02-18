@@ -22,14 +22,13 @@ namespace HostOcean.Persistence.Configurations
             builder
                 .HasOne(f => f.Queue)
                 .WithMany(p => p.UserQueues)
-                .HasForeignKey(_ => _.QueueId)
+                .HasForeignKey(x => x.QueueId)
                 .IsRequired();
 
             builder
                 .HasOne(f => f.User)
                 .WithMany(p => p.UserQueues)
-                .HasForeignKey(_ => _.UserId)
-                .IsRequired();
+                .HasForeignKey(x => x.UserId);
         }
     }
 }

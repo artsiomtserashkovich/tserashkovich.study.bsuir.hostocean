@@ -1,9 +1,8 @@
 ﻿namespace HostOcean.Domain.Entities
 {
-    public enum SubGroup
+    public enum UserSubGroup
     {
-        Common = 0,
         First = 1,
-        Second = 2,
+        Second = 2
     }
 }

@@ -15,18 +15,17 @@ namespace HostOcean.Persistence.Configurations
             builder
                 .HasOne(f => f.Group)
                 .WithMany(p => p.LaboratoryWorks)
-                .HasForeignKey(x => x.GroupId)
                 .IsRequired();
 
             builder
                 .HasOne(f => f.Queue)
                 .WithOne(p => p.LaboratoryWork)
-                .HasForeignKey<Queue>(x => x.LaboratoryWorkId)
+                .HasForeignKey<Queue>("FK_Laboratory_Work")
                 .IsRequired();
 
             builder
-                .Property(x => x.SubGroup)
-                .HasConversion(new EnumToNumberConverter<SubGroup, short>());
+                .Property(x => x.LaboratorySubGroup)
+                .HasConversion(new EnumToNumberConverter<LaboratorySubGroup, short>());
         }
     }
 }

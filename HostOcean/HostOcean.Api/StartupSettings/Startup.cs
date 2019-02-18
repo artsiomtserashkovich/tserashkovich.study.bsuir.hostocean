@@ -35,7 +35,8 @@ namespace HostOcean.Api.StartupSettings
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             var connection = Configuration.GetConnectionString("MSSQLDatabaseConnectionString");
-            services.AddDbContext<HostOceanDbContext>(options => options.UseSqlServer(connection, b => b.MigrationsAssembly("HostOcean.Persistence")));
+            services.AddDbContext<HostOceanDbContext>(options =>
+                options.UseSqlServer(connection, b => b.MigrationsAssembly("HostOcean.Persistence")));
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<HostOceanDbContext>()

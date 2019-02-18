@@ -12,7 +12,6 @@ namespace HostOcean.Persistence.Configurations
             builder
                 .HasOne(f => f.Group)
                 .WithMany(p => p.Users)
-                .HasForeignKey(x => x.GroupId)
                 .IsRequired();
 
             builder
@@ -20,8 +19,8 @@ namespace HostOcean.Persistence.Configurations
                 .WithOne(p => p.User);
 
             builder
-                .Property(x => x.SubGroup)
-                .HasConversion(new EnumToNumberConverter<SubGroup, short>());
+                .Property(x => x.UserSubGroup)
+                .HasConversion(new EnumToNumberConverter<UserSubGroup, short>());
         }
     }
 }

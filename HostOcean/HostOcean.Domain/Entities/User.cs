@@ -15,11 +15,9 @@ namespace HostOcean.Domain.Entities
             UserQueues = new HashSet<UserQueue>();
         }
 
-        public SubGroup SubGroup { get; set; }
+        public UserSubGroup UserSubGroup { get; set; }
         public Group Group { get; set; }
-
-        public string GroupId { get; set; }
-
+        
         public ICollection<UserQueue> UserQueues { get; private set; }
     }
 }

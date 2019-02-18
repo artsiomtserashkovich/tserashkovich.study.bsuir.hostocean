@@ -13,8 +13,6 @@ namespace HostOcean.Domain.Entities
         public LaboratoryWork LaboratoryWork { get; set; }
         public DateTime? CreatedOn { get; set; }
         public DateTime RegistrationStart { get; set; }
-
-        public string LaboratoryWorkId { get; set; }
         
         public ICollection<UserQueue> UserQueues { get; private set; }
     }
