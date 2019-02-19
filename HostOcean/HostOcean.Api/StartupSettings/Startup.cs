@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Reflection;
 using HostOcean.Api.Extensions;
 using HostOcean.Api.StartupSettings.StartupExtensions;
+using HostOcean.Application.Ping.Query;
 using HostOcean.Domain.Entities;
 using HostOcean.Infrastructure.BsuirGroupService;
 using HostOcean.Infrastructure.GroupScheduleService;
 using HostOcean.Persistence;
 using HostOcean.Persistence.Interfaces;
 using HostOcean.Persistence.Repositories;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -44,18 +47,15 @@ namespace HostOcean.Api.StartupSettings
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddMediatR(Assembly.GetAssembly(typeof(PingQuery)));
 
             if (_hostingEnvironment.IsDevelopment())
             {
                 services.AddSwaggerGen(swagGen =>
                 {
                     swagGen.SwaggerDoc(
-                        Configuration["Swagger:Info:Version"], 
-                        new Info
-                        {
-                            Title = Configuration["Swagger:Info:Title"],
-                            Version = Configuration["Swagger:Info:Version"]
-                        });
+                        Configuration["Swagger:Info:Version"],
+                        Configuration.Get<Info>());
                 });
             }
 

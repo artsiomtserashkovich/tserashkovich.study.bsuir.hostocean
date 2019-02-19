@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace HostOcean.Persistence.Seed
 {
@@ -17,8 +19,8 @@ namespace HostOcean.Persistence.Seed
         public static void Initialize(IServiceProvider serviceProvider)
         {
             var context = serviceProvider.GetRequiredService<HostOceanDbContext>();
+            
             context.Database.Migrate();
-
             new HostOceanDbInitializer().Seed(context);
         }
 

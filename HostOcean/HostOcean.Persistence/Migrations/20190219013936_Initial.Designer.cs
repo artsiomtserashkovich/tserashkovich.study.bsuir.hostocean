@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HostOcean.Persistence.Migrations
 {
     [DbContext(typeof(HostOceanDbContext))]
-    [Migration("20190215142311_Initial")]
+    [Migration("20190219013936_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
