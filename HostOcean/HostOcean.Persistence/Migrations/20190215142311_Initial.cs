@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+// ReSharper disable RedundantArgumentDefaultValue
 
 namespace HostOcean.Persistence.Migrations
 {

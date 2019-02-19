@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Reflection;
+using AutoMapper;
 using HostOcean.Api.Extensions;
 using HostOcean.Api.StartupSettings.StartupExtensions;
+using HostOcean.Application.Infrastructure.AutoMapper;
 using HostOcean.Domain.Entities;
 using HostOcean.Infrastructure.BsuirGroupService;
 using HostOcean.Infrastructure.GroupScheduleService;
@@ -44,6 +47,8 @@ namespace HostOcean.Api.StartupSettings
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddAutoMapper(Assembly.GetAssembly(typeof(InfrastructureProfile)));
 
             if (_hostingEnvironment.IsDevelopment())
             {
