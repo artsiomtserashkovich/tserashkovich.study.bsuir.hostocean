@@ -5,7 +5,7 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>714f6688-8ce4-4866-9f48-302107ec6532</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://192.168.99.100:{ServicePort}/api/values</DockerServiceUrl>
+    <DockerServiceUrl>{Scheme}://192.168.99.100:{ServicePort}/api/ping</DockerServiceUrl>
     <DockerServiceName>hostocean.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
