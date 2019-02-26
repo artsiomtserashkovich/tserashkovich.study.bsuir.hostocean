@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using HostOcean.Infrastructure.BsuirGroupService;
 using HostOcean.Domain.Entities;
+using HostOcean.Infrastructure.BsuirGroupService;
 
-namespace HostOcean.Application.Infrastructure.AutoMapper
+namespace HostOcean.Application.MapperProfiles
 {
     public class InfrastructureProfile : Profile
     {

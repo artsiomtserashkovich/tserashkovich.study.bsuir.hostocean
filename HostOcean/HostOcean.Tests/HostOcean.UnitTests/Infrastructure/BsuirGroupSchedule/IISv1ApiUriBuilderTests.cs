@@ -3,6 +3,7 @@ using AutoFixture;
 using FluentAssertions;
 using HostOcean.Infrastructure.BsuirGroupService;
 using Xunit;
+// ReSharper disable ExpressionIsAlwaysNull
 
 namespace HostOcean.UnitTests.Infrastructure.BsuirGroupSchedule
 {

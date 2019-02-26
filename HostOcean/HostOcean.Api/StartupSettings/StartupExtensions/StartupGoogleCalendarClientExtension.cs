@@ -5,7 +5,7 @@ namespace HostOcean.Api.StartupSettings.StartupExtensions
 {
     public static class StartupGoogleCalendarClientExtension
     {
-        public static void AddGoogleCalendarClient<TInterface, TImplementation, TConfiguration>
+        public static IServiceCollection AddGoogleCalendarClient<TInterface, TImplementation, TConfiguration>
             (this IServiceCollection services, IConfiguration Configuration) 
             where TImplementation : class, TInterface where TInterface : class where TConfiguration : class
         {
@@ -13,6 +13,8 @@ namespace HostOcean.Api.StartupSettings.StartupExtensions
                 Configuration.GetSection(typeof(TConfiguration).Name));
 
             services.AddTransient<TInterface, TImplementation>();
+
+            return services;
         } 
     }
 }
