@@ -16,7 +16,7 @@ namespace HostOcean.Infrastructure.BsuirGroupService
 
         public async Task<IReadOnlyCollection<IISGroup>> GetGroups()
         {
-            var uri = IISv1ApiUriBuilder.GetGroups;
+            var uri = IISv1ApiUriBuilder.GetGroupsUri;
             var response = await _httpClient.GetStringAsync(uri);
             
             return JsonConvert.DeserializeObject<IReadOnlyCollection<IISGroup>>(response);

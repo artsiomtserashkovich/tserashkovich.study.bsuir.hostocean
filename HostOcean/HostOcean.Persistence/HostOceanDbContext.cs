@@ -11,8 +11,8 @@ namespace HostOcean.Persistence
         }
 
         public DbSet<Group> Groups { get; set; }
-        public DbSet<Labwork> Labworks { get; set; }
-        public DbSet<Place> Places { get; set; }
+        public DbSet<LaboratoryWork> LaboratoryWorks { get; set; }
+        public DbSet<UserQueue> UserQueues { get; set; }
         public DbSet<Queue> Queues { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

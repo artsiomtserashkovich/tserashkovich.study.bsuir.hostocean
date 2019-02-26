@@ -4,12 +4,14 @@ using AutoMapper;
 using HostOcean.Api.Extensions;
 using HostOcean.Api.StartupSettings.StartupExtensions;
 using HostOcean.Application.Infrastructure.AutoMapper;
+using HostOcean.Application.Ping.Query;
 using HostOcean.Domain.Entities;
 using HostOcean.Infrastructure.BsuirGroupService;
 using HostOcean.Infrastructure.GroupScheduleService;
 using HostOcean.Persistence;
 using HostOcean.Persistence.Interfaces;
 using HostOcean.Persistence.Repositories;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -39,7 +41,8 @@ namespace HostOcean.Api.StartupSettings
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             var connection = Configuration.GetConnectionString("MSSQLDatabaseConnectionString");
-            services.AddDbContext<HostOceanDbContext>(options => options.UseSqlServer(connection, b => b.MigrationsAssembly("HostOcean.Persistence")));
+            services.AddDbContext<HostOceanDbContext>(options =>
+                options.UseSqlServer(connection, b => b.MigrationsAssembly("HostOcean.Persistence")));
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<HostOceanDbContext>()
@@ -47,6 +50,7 @@ namespace HostOcean.Api.StartupSettings
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddMediatR(Assembly.GetAssembly(typeof(PingQuery)));
 
             services.AddAutoMapper(Assembly.GetAssembly(typeof(InfrastructureProfile)));
 
@@ -55,12 +59,8 @@ namespace HostOcean.Api.StartupSettings
                 services.AddSwaggerGen(swagGen =>
                 {
                     swagGen.SwaggerDoc(
-                        Configuration["Swagger:Info:Version"], 
-                        new Info
-                        {
-                            Title = Configuration["Swagger:Info:Title"],
-                            Version = Configuration["Swagger:Info:Version"]
-                        });
+                        Configuration["Swagger:Info:Version"],
+                        Configuration.Get<Info>());
                 });
             }
 
@@ -74,12 +74,16 @@ namespace HostOcean.Api.StartupSettings
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.SeedDatabase();
+            app.InitializeDatabase();
 
             if (env.IsDevelopment())
+            {
                 app.UseDeveloperExceptionPage();
+            }
             else
+            {
                 app.UseHsts();
+            }
 
             app.UseHttpsRedirection();
             app.UseMvc();

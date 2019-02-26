@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace HostOcean.Persistence.Seed
 {
@@ -11,14 +13,14 @@ namespace HostOcean.Persistence.Seed
     {
         private readonly List<Group> Groups = new List<Group>();
         private readonly List<User> Users = new List<User>();
-        private readonly List<Labwork> Labworks = new List<Labwork>();
+        private readonly List<LaboratoryWork> LaboratoryWorks = new List<LaboratoryWork>();
         private readonly List<Queue> Queues = new List<Queue>();
 
         public static void Initialize(IServiceProvider serviceProvider)
         {
             var context = serviceProvider.GetRequiredService<HostOceanDbContext>();
+            
             context.Database.Migrate();
-
             new HostOceanDbInitializer().Seed(context);
         }
 
@@ -52,21 +54,21 @@ namespace HostOcean.Persistence.Seed
 
         public void SeedLabworks(HostOceanDbContext context)
         {
-            if (!context.Labworks.Any())
+            if (!context.LaboratoryWorks.Any())
             {
                 var group = Groups.First();
 
                 var labworks = new[]
                 {
-                    new Labwork()
+                    new LaboratoryWork()
                     {
-                        Name = "admin",
+                        Title = "admin",
                         Group = group
                     }
                 };
 
-                Labworks.AddRange(labworks);
-                context.Labworks.AddRange(labworks);
+                LaboratoryWorks.AddRange(labworks);
+                context.LaboratoryWorks.AddRange(labworks);
             }
         }
 
@@ -94,13 +96,13 @@ namespace HostOcean.Persistence.Seed
         {
             if (!context.Queues.Any())
             {
-                var labwork = Labworks.First();
+                var labwork = LaboratoryWorks.First();
 
                 var queues = new[]
                 {
                     new Queue()
                     {
-                        Labwork = labwork
+                        LaboratoryWork = labwork
                     }
                 };
 
@@ -111,14 +113,14 @@ namespace HostOcean.Persistence.Seed
 
         public void SeedPlaces(HostOceanDbContext context)
         {
-            if (!context.Places.Any())
+            if (!context.UserQueues.Any())
             {
                 var queue = Queues.First();
                 var user = Users.First();
 
                 var places = new[]
                 {
-                    new Place()
+                    new UserQueue()
                     {
                         Order = 1,
                         Queue = queue,
@@ -126,7 +128,7 @@ namespace HostOcean.Persistence.Seed
                     }
                 };
 
-                context.Places.AddRange(places);
+                context.UserQueues.AddRange(places);
             }
         }
     }

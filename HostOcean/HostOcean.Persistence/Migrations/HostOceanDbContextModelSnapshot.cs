@@ -33,47 +33,27 @@ namespace HostOcean.Persistence.Migrations
                     b.ToTable("Groups");
                 });
 
-            modelBuilder.Entity("HostOcean.Domain.Entities.Labwork", b =>
+            modelBuilder.Entity("HostOcean.Domain.Entities.LaboratoryWork", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Description");
+
                     b.Property<string>("GroupId")
                         .IsRequired();
 
-                    b.Property<string>("Name");
+                    b.Property<short>("LaboratorySubGroup");
+
+                    b.Property<DateTime>("StartDate");
+
+                    b.Property<string>("Title");
 
                     b.HasKey("Id");
 
                     b.HasIndex("GroupId");
 
-                    b.ToTable("Labworks");
-                });
-
-            modelBuilder.Entity("HostOcean.Domain.Entities.Place", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<short>("Order");
-
-                    b.Property<string>("QueueId")
-                        .IsRequired();
-
-                    b.Property<string>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.HasIndex("QueueId", "Order")
-                        .IsUnique();
-
-                    b.HasIndex("QueueId", "UserId")
-                        .IsUnique()
-                        .HasFilter("[QueueId] IS NOT NULL AND [UserId] IS NOT NULL");
-
-                    b.ToTable("Places");
+                    b.ToTable("LaboratoryWorks");
                 });
 
             modelBuilder.Entity("HostOcean.Domain.Entities.Queue", b =>
@@ -81,16 +61,16 @@ namespace HostOcean.Persistence.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<DateTime?>("CreatedOn");
 
-                    b.Property<string>("LabworkId")
+                    b.Property<string>("FK_Laboratory_Work")
                         .IsRequired();
 
-                    b.Property<DateTime?>("RegistradionStartedAt");
+                    b.Property<DateTime>("RegistrationStart");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LabworkId")
+                    b.HasIndex("FK_Laboratory_Work")
                         .IsUnique();
 
                     b.ToTable("Queues");
@@ -137,6 +117,8 @@ namespace HostOcean.Persistence.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
 
+                    b.Property<short>("UserSubGroup");
+
                     b.HasKey("Id");
 
                     b.HasIndex("GroupId");
@@ -150,6 +132,32 @@ namespace HostOcean.Persistence.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("HostOcean.Domain.Entities.UserQueue", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<short>("Order");
+
+                    b.Property<string>("QueueId")
+                        .IsRequired();
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("QueueId", "Order")
+                        .IsUnique();
+
+                    b.HasIndex("QueueId", "UserId")
+                        .IsUnique()
+                        .HasFilter("[QueueId] IS NOT NULL AND [UserId] IS NOT NULL");
+
+                    b.ToTable("UserQueues");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -262,31 +270,19 @@ namespace HostOcean.Persistence.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("HostOcean.Domain.Entities.Labwork", b =>
+            modelBuilder.Entity("HostOcean.Domain.Entities.LaboratoryWork", b =>
                 {
                     b.HasOne("HostOcean.Domain.Entities.Group", "Group")
-                        .WithMany("Labworks")
+                        .WithMany("LaboratoryWorks")
                         .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("HostOcean.Domain.Entities.Place", b =>
-                {
-                    b.HasOne("HostOcean.Domain.Entities.Queue", "Queue")
-                        .WithMany("Places")
-                        .HasForeignKey("QueueId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("HostOcean.Domain.Entities.User", "User")
-                        .WithMany("Places")
-                        .HasForeignKey("UserId");
-                });
-
             modelBuilder.Entity("HostOcean.Domain.Entities.Queue", b =>
                 {
-                    b.HasOne("HostOcean.Domain.Entities.Labwork", "Labwork")
-                        .WithMany()
-                        .HasForeignKey("LabworkId")
+                    b.HasOne("HostOcean.Domain.Entities.LaboratoryWork", "LaboratoryWork")
+                        .WithOne("Queue")
+                        .HasForeignKey("HostOcean.Domain.Entities.Queue", "FK_Laboratory_Work")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -296,6 +292,18 @@ namespace HostOcean.Persistence.Migrations
                         .WithMany("Users")
                         .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HostOcean.Domain.Entities.UserQueue", b =>
+                {
+                    b.HasOne("HostOcean.Domain.Entities.Queue", "Queue")
+                        .WithMany("UserQueues")
+                        .HasForeignKey("QueueId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("HostOcean.Domain.Entities.User", "User")
+                        .WithMany("UserQueues")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

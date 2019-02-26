@@ -6,7 +6,7 @@ COPY /HostOcean.Api/HostOcean.Api.csproj /src/HostOcean.Api/
 COPY /HostOcean.Infrastructure/HostOcean.Infrastructure.csproj /src/HostOcean.Infrastructure/
 COPY /HostOcean.Persistence/HostOcean.Persistence.csproj /src/HostOcean.Persistence/
 COPY /HostOcean.Domain/HostOcean.Domain.csproj /src/HostOcean.Domain/
-COPY /HostOcean.Application/HostOcean.Application.csproj /src/HostOcean.Application	
+COPY /HostOcean.Application/HostOcean.Application.csproj /src/HostOcean.Application/
 
 RUN dotnet restore /src/HostOcean.Api/HostOcean.Api.csproj
 
