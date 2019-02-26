@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using HostOcean.Application.Ping.Model;
-using HostOcean.Application.Ping.Query;
+using HostOcean.Application.Ping.Query.Ping;
+using HostOcean.Application.Ping.Query.PingGreeting;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

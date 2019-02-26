@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using HostOcean.Application.Ping.Query;
+using HostOcean.Application.Ping.Query.Ping;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
