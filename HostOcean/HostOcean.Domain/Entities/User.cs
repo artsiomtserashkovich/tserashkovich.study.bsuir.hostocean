@@ -5,7 +5,7 @@ namespace HostOcean.Domain.Entities
 {
     public class User : IdentityUser
     {
-        public User() : base()
+        public User()
         {
             UserQueues = new HashSet<UserQueue>();
         }

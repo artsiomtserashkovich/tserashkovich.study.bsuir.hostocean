@@ -36,7 +36,7 @@ namespace HostOcean.Infrastructure.GroupScheduleService
                 request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
                 request.TimeMin = startDateTime;
                 request.TimeMax = endDateTime;
-                request.Q = GroupEventType.LaboratoryWork;
+                request.Q = GroupEventTypeConstant.LaboratoryWork;
                 request.ShowDeleted = false;
                 request.TimeZone = TimeZoneInfo.Utc.Id;
                 request.SingleEvents = true;

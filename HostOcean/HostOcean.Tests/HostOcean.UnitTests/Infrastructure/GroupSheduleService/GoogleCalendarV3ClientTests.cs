@@ -6,6 +6,7 @@ using HostOcean.Infrastructure.GroupScheduleService;
 using Microsoft.Extensions.Options;
 using Moq;
 using Xunit;
+// ReSharper disable PrivateFieldCanBeConvertedToLocalVariable
 
 namespace HostOcean.UnitTests.Infrastructure.GroupSheduleService
 {

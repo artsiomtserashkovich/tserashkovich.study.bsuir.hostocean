@@ -22,6 +22,13 @@ services:
       - ASPNETCORE_HTTPS_PORT=44324
       - ConnectionStrings__MSSQLDatabaseConnectionString=Server=data.sql;Database=HostOceanDB;User=sa;Password=hstn650502!
 
+  hostocean.api.image:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_HTTPS_PORT=44324
+      - ConnectionStrings__MSSQLDatabaseConnectionString=Server=data.sql;Database=HostOceanDB;User=sa;Password=hstn650502!
+
   data.sql:
     environment:
       - SA_PASSWORD=hstn650502!
