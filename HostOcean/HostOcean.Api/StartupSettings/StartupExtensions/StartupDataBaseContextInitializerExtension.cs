@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace HostOcean.Api.Extensions
+namespace HostOcean.Api.StartupSettings.StartupExtensions
 {
-    public static class AppBuilderExtensions
+    public static class StartupDataBaseContextInitializerExtension
     {
-        public static void SeedDatabase(this IApplicationBuilder app)
+        public static void InitializeDatabase(this IApplicationBuilder app)
         {
             HostOceanDbInitializer.Initialize(app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider);
         }

@@ -9,12 +9,14 @@ namespace HostOcean.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Group> builder)
         {
             builder
-                .HasMany(f => f.Users)
-                .WithOne(p => p.Group)
-                .IsRequired();
+                .HasKey(x => x.Id);
 
             builder
-                .HasMany(f => f.Labworks)
+                .HasMany(f => f.Users)
+                .WithOne(p => p.Group);
+
+            builder
+                .HasMany(f => f.LaboratoryWorks)
                 .WithOne(p => p.Group);
         }
     }

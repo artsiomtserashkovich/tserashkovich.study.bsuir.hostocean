@@ -12,9 +12,9 @@ namespace HostOcean.Persistence.Repositories
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             IRepository<Group> groups,
-            IRepository<Labwork> labworks,
+            IRepository<LaboratoryWork> laboratoryWorks,
             IRepository<Queue> queues,
-            IRepository<Place> places
+            IRepository<UserQueue> userQueues
         )
         {
             ApplicationDataBaseContext = applicationDataBaseContext;
@@ -22,22 +22,22 @@ namespace HostOcean.Persistence.Repositories
             SignInManager = signInManager;
 
             Groups = groups;
-            Labworks = labworks;
+            LaboratoryWorks = laboratoryWorks;
             Queues = queues;
-            Places = places;
+            UserQueues = userQueues;
         }
 
         public HostOceanDbContext ApplicationDataBaseContext { get; }
         public UserManager<User> UserManager { get; private set; }
         public SignInManager<User> SignInManager { get; private set; }
         public IRepository<Group> Groups { get; private set; }
-        public IRepository<Labwork> Labworks { get; private set; }
+        public IRepository<LaboratoryWork> LaboratoryWorks { get; private set; }
         public IRepository<Queue> Queues { get; private set; }
-        public IRepository<Place> Places { get; private set; }
+        public IRepository<UserQueue> UserQueues { get; private set; }
 
         public async Task SaveAsync() => await ApplicationDataBaseContext.SaveChangesAsync();
 
-        private bool _disposed = false;
+        private bool _disposed;
 
         protected virtual void Dispose(bool disposing)
         {

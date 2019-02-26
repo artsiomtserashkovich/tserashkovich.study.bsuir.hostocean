@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace HostOcean.Persistence.Configurations
 {
-    class PlaceConfiguration : IEntityTypeConfiguration<Place>
+    class UserQueueConfiguration : IEntityTypeConfiguration<UserQueue>
     {
-        public void Configure(EntityTypeBuilder<Place> builder)
+        public void Configure(EntityTypeBuilder<UserQueue> builder)
         {
             builder
-                .HasKey(f => new { f.Id });
+                .HasKey(x => x.Id);
 
             builder
                 .HasIndex(f => new { f.QueueId, f.Order })
@@ -21,14 +21,14 @@ namespace HostOcean.Persistence.Configurations
 
             builder
                 .HasOne(f => f.Queue)
-                .WithMany(p => p.Places)
-                .HasForeignKey(_ => _.QueueId)
+                .WithMany(p => p.UserQueues)
+                .HasForeignKey(x => x.QueueId)
                 .IsRequired();
 
             builder
                 .HasOne(f => f.User)
-                .WithMany(p => p.Places)
-                .HasForeignKey(_ => _.UserId);
+                .WithMany(p => p.UserQueues)
+                .HasForeignKey(x => x.UserId);
         }
     }
 }
