@@ -1,7 +1,6 @@
 version: '3.4'
 
 services:
-
   hostocean.api.integrationtests:
     image: hostocean.api.integrationtests:latest
     build:

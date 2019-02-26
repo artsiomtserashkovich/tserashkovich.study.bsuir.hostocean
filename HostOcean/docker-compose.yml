@@ -1,21 +1,11 @@
 version: '3.4'
 
-services:
-  
+services:  
   hostocean.api:
     image: hostocean.api:latest
     build:
       context: .
       dockerfile: HostOcean.Api/Dockerfile
-    depends_on:
-      - data.sql
-      - hostocean.api.image
-
-  hostocean.api.image:
-    image: hostocean.api.image:latest
-    build:
-      context: .
-      dockerfile: HostOcean.Api/Dockerfile.build
     depends_on:
       - data.sql
 
