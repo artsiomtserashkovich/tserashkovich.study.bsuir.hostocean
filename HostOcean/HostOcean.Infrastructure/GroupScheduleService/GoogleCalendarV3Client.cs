@@ -26,6 +26,9 @@ namespace HostOcean.Infrastructure.GroupScheduleService
         public async Task<Events> GetLaboratoryWorkEvents(string calendarId, DateTime startDateTime,
             DateTime endDateTime)
         {
+            if(startDateTime > endDateTime)
+                throw new ArgumentException(nameof(endDateTime));
+
             using (var service = new CalendarService(_initializer))
             {
                 var request = service.Events.List(calendarId);
