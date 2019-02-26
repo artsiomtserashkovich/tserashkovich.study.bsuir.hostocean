@@ -39,7 +39,8 @@ namespace HostOcean.Api.StartupSettings
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             var connection = Configuration.GetConnectionString("MSSQLDatabaseConnectionString");
-            services.AddDbContext<HostOceanDbContext>(options => options.UseSqlServer(connection, b => b.MigrationsAssembly("HostOcean.Persistence")));
+            services.AddDbContext<HostOceanDbContext>(options =>
+                options.UseSqlServer(connection, b => b.MigrationsAssembly("HostOcean.Persistence")));
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<HostOceanDbContext>()
@@ -69,12 +70,16 @@ namespace HostOcean.Api.StartupSettings
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.SeedDatabase();
+            app.InitializeDatabase();
 
             if (env.IsDevelopment())
+            {
                 app.UseDeveloperExceptionPage();
+            }
             else
+            {
                 app.UseHsts();
+            }
 
             app.UseHttpsRedirection();
             app.UseMvc();
