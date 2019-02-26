@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using AutoMapper;
-using HostOcean.Api.Extensions;
 using HostOcean.Api.StartupSettings.StartupExtensions;
 using HostOcean.Application.Infrastructure.AutoMapper;
 using HostOcean.Application.Ping.Query;
