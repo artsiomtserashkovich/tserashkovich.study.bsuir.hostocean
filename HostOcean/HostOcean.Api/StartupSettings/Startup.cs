@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using HostOcean.Api.Extensions;
 using HostOcean.Api.StartupSettings.StartupExtensions;
 using HostOcean.Application.Ping.Query;
 using HostOcean.Domain.Entities;
