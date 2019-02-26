@@ -1,11 +1,10 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-// ReSharper disable RedundantArgumentDefaultValue
 
 namespace HostOcean.Persistence.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -75,7 +74,6 @@ namespace HostOcean.Persistence.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    UserSubGroup = table.Column<short>(nullable: false),
                     GroupId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -90,21 +88,18 @@ namespace HostOcean.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "LaboratoryWorks",
+                name: "Labworks",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    StartDate = table.Column<DateTime>(nullable: false),
-                    LaboratorySubGroup = table.Column<short>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
                     GroupId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LaboratoryWorks", x => x.Id);
+                    table.PrimaryKey("PK_Labworks", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_LaboratoryWorks_Groups_GroupId",
+                        name: "FK_Labworks_Groups_GroupId",
                         column: x => x.GroupId,
                         principalTable: "Groups",
                         principalColumn: "Id",
@@ -201,23 +196,23 @@ namespace HostOcean.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    FK_Laboratory_Work = table.Column<string>(nullable: false),
-                    CreatedOn = table.Column<DateTime>(nullable: true),
-                    RegistrationStart = table.Column<DateTime>(nullable: false)
+                    LabworkId = table.Column<string>(nullable: false),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    RegistradionStartedAt = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Queues", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Queues_LaboratoryWorks_FK_Laboratory_Work",
-                        column: x => x.FK_Laboratory_Work,
-                        principalTable: "LaboratoryWorks",
+                        name: "FK_Queues_Labworks_LabworkId",
+                        column: x => x.LabworkId,
+                        principalTable: "Labworks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserQueues",
+                name: "Places",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -227,15 +222,15 @@ namespace HostOcean.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserQueues", x => x.Id);
+                    table.PrimaryKey("PK_Places", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserQueues_Queues_QueueId",
+                        name: "FK_Places_Queues_QueueId",
                         column: x => x.QueueId,
                         principalTable: "Queues",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserQueues_AspNetUsers_UserId",
+                        name: "FK_Places_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -287,33 +282,33 @@ namespace HostOcean.Persistence.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LaboratoryWorks_GroupId",
-                table: "LaboratoryWorks",
+                name: "IX_Labworks_GroupId",
+                table: "Labworks",
                 column: "GroupId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Queues_FK_Laboratory_Work",
-                table: "Queues",
-                column: "FK_Laboratory_Work",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserQueues_UserId",
-                table: "UserQueues",
+                name: "IX_Places_UserId",
+                table: "Places",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserQueues_QueueId_Order",
-                table: "UserQueues",
+                name: "IX_Places_QueueId_Order",
+                table: "Places",
                 columns: new[] { "QueueId", "Order" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserQueues_QueueId_UserId",
-                table: "UserQueues",
+                name: "IX_Places_QueueId_UserId",
+                table: "Places",
                 columns: new[] { "QueueId", "UserId" },
                 unique: true,
                 filter: "[QueueId] IS NOT NULL AND [UserId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Queues_LabworkId",
+                table: "Queues",
+                column: "LabworkId",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -334,7 +329,7 @@ namespace HostOcean.Persistence.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "UserQueues");
+                name: "Places");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -346,7 +341,7 @@ namespace HostOcean.Persistence.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "LaboratoryWorks");
+                name: "Labworks");
 
             migrationBuilder.DropTable(
                 name: "Groups");

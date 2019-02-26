@@ -16,6 +16,8 @@ services:
     build:
       context: .
       dockerfile: HostOcean.Api/Dockerfile.build
+    depends_on:
+      - data.sql
 
   data.sql:
     image: microsoft/mssql-server-linux:latest

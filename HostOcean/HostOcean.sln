@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HostOcean.Domain", "HostOce
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HostOcean.Persistence", "HostOcean.Persistence\HostOcean.Persistence.csproj", "{2EDBA42A-9876-4AF6-AF8D-EC1439B5EE11}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HostOcean.Application", "HostOcean.Application\HostOcean.Application.csproj", "{07F36BCB-F14F-480A-91FC-8B19C3D4BBB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{2EDBA42A-9876-4AF6-AF8D-EC1439B5EE11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EDBA42A-9876-4AF6-AF8D-EC1439B5EE11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EDBA42A-9876-4AF6-AF8D-EC1439B5EE11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07F36BCB-F14F-480A-91FC-8B19C3D4BBB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07F36BCB-F14F-480A-91FC-8B19C3D4BBB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07F36BCB-F14F-480A-91FC-8B19C3D4BBB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07F36BCB-F14F-480A-91FC-8B19C3D4BBB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
