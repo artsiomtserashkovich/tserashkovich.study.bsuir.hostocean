@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace HostOcean.Persistence.Seed
@@ -17,11 +18,17 @@ namespace HostOcean.Persistence.Seed
         public static void Initialize(IServiceProvider serviceProvider)
         {
             var context = serviceProvider.GetRequiredService<HostOceanDbContext>();
-            
-            context.Database.Migrate();
-            new HostOceanDbInitializer().Seed(context);
+            try
+            {
+                context.Database.Migrate();
+                new HostOceanDbInitializer().Seed(context);
+            }
+            catch (SqlException sqlException) when (sqlException.Number == 1801)
+            {
+                //Ignored. Reason: Database already exist.
+            }
         }
-
+        
         public void Seed(HostOceanDbContext context)
         {
             SeedGroups(context);
