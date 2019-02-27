@@ -30,6 +30,7 @@ namespace HostOcean.Api
                 .RegisterSwaggerGen(HostingEnvironment,Configuration)
                 .RegisterMediatoR()
                 .RegisterAutoMapper()
+                .RegisterJwtAuthentication(Configuration)
                 .RegisterHttpClients(Configuration)
                 .AddGoogleCalendarClient<IGoogleCalendarClient, GoogleCalendarV3Client, GoogleCalendarApiConfiguration>
                     (Configuration);
