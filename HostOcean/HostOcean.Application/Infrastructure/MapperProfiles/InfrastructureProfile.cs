@@ -2,7 +2,7 @@
 using HostOcean.Domain.Entities;
 using HostOcean.Infrastructure.BsuirGroupService;
 
-namespace HostOcean.Application.MapperProfiles
+namespace HostOcean.Application.Infrastructure.MapperProfiles
 {
     public class InfrastructureProfile : Profile
     {

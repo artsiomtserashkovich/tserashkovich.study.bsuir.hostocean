@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using MicroElements.Swashbuckle.FluentValidation;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
@@ -16,6 +17,8 @@ namespace HostOcean.Api.StartupSettings.StartupExtensions
                     swagGen.SwaggerDoc(
                         Configuration["Swagger:Info:Version"],
                         Configuration.Get<Info>());
+                    swagGen.SchemaFilter<FluentValidationRules>();
+                    swagGen.OperationFilter<FluentValidationOperationFilter>();
                 });
             }
 

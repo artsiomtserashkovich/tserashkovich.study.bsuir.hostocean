@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using HostOcean.Application.Ping.Model;
 using MediatR;
 
-namespace HostOcean.Application.Ping.Query
+namespace HostOcean.Application.Ping.Query.PingGreeting
 {
     class PingGreetingQueryHandler : IRequestHandler<PingGreetingQuery,Pong>
     {

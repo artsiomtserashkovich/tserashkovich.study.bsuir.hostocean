@@ -1,7 +1,7 @@
 ﻿using HostOcean.Application.Ping.Model;
 using MediatR;
 
-namespace HostOcean.Application.Ping.Query
+namespace HostOcean.Application.Ping.Query.PingGreeting
 {
     public class PingGreetingQuery : IRequest<Pong>
     {

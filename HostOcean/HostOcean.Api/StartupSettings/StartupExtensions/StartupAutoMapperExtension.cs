@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using AutoMapper;
-using HostOcean.Application.MapperProfiles;
+using HostOcean.Application.Infrastructure.MapperProfiles;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HostOcean.Api.StartupSettings.StartupExtensions
