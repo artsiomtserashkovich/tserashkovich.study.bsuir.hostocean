@@ -18,9 +18,9 @@ namespace HostOcean.Application.Tokens.Queries
     public class GenerateJwtTokenQueryHandler : IRequestHandler<GenerateJwtTokenQuery, Token>
     {
         private readonly IConfiguration _configuration;
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<Domain.Entities.User> _userManager;
 
-        public GenerateJwtTokenQueryHandler(IConfiguration configuration, UserManager<User> userManager)
+        public GenerateJwtTokenQueryHandler(IConfiguration configuration, UserManager<Domain.Entities.User> userManager)
         {
             _configuration = configuration;
             _userManager = userManager;
