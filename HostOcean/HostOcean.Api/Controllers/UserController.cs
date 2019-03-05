@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using HostOcean.Application.User.Create;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace HostOcean.Api.Controllers
 {
@@ -20,13 +17,18 @@ namespace HostOcean.Api.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
         public async Task<IActionResult> Create([FromBody]CreateUserCommand command)
         {
-            await Mediator.Send(command);
+            var result = await Mediator.Send(command);
 
-            return NoContent();
+            if (!result.IsSucceeded)
+            {
+                return BadRequest(result.Error);
+            }
+
+            return Ok();
         }
     }
 }

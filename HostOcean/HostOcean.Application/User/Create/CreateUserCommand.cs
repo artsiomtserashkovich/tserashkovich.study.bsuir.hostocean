@@ -1,18 +1,20 @@
-﻿using MediatR;
+﻿using HostOcean.Infrastructure;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace HostOcean.Application.User.Create
 {
-    public class CreateUserCommand : IRequest
+    public class CreateUserCommand : IRequest<ServiceResult>
     {
         public string UserName { get; set; }
         public string GroupId { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
 
-        public class Handler : IRequestHandler<CreateUserCommand, Unit>
+        public class Handler : IRequestHandler<CreateUserCommand, ServiceResult>
         {
             private readonly UserManager<Domain.Entities.User> _userManager;
             private readonly IMediator _mediator;
@@ -23,7 +25,7 @@ namespace HostOcean.Application.User.Create
                 _mediator = mediator;
             }
 
-            public async Task<Unit> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+            public async Task<ServiceResult> Handle(CreateUserCommand request, CancellationToken cancellationToken)
             {
                 var entity = new Domain.Entities.User
                 {
@@ -32,19 +34,26 @@ namespace HostOcean.Application.User.Create
                     GroupId = request.GroupId
                 };
 
-                var creationResult = await _userManager.CreateAsync(entity);
-
-                if (creationResult.Succeeded)
+                try
                 {
+                    var user = await _userManager.FindByNameAsync(entity.UserName);
+                    if (user != null)
+                    {
+                        return new ServiceResult("User already exists");
+                    }
+
+                    var creationResult = await _userManager.CreateAsync(entity);
+
+                    if (!creationResult.Succeeded) new ServiceResult(creationResult);
+
                     var result = await _userManager.AddPasswordAsync(entity, request.Password);
 
-                    if (result.Succeeded)
-                    {
-                        await _mediator.Publish(new UserCreated());
-                    }
+                    return new ServiceResult(result);
                 }
-
-                return Unit.Value;
+                catch (Exception ex)
+                {
+                    return new ServiceResult(ex);
+                }
             }
         }
     }
