@@ -9,6 +9,7 @@ namespace HostOcean.Application.User.Create
             RuleFor(x => x.UserName).NotEmpty();
             RuleFor(x => x.Email).EmailAddress();
             RuleFor(x => x.GroupId).NotEmpty();
+            RuleFor(x => x.Password).MinimumLength(6);
         }
     }
 }
