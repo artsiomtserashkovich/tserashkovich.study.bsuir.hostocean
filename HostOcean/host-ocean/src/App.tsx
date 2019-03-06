@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
 import { NavBar } from './components/navbar';
-import { MainRoute } from './view/MainRoute';
 import { BrowserRouter } from 'react-router-dom';
+import * as React from 'react';
+import { MainModule } from './View/MainModule';
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
         <div>
           <NavBar />
-          <MainRoute />
+          <MainModule />
         </div>        
       </BrowserRouter>
     );

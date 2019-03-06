@@ -1,6 +1,5 @@
-import React from "react";
-import withStyles, { WithStyles } from "@material-ui/core/styles"
-import { Typography } from "@material-ui/core";
+import { WithStyles, Typography, withStyles } from '@material-ui/core';
+import * as React from 'react';
 
 const styles ={
     root: {
@@ -8,7 +7,7 @@ const styles ={
       },
 };
 
-interface Props extends WithStyles{
+interface Props extends WithStyles<typeof styles>{
 
 }
 
@@ -22,4 +21,4 @@ class MainPageView extends React.Component<Props> {
     }
 }
 
-export const MainPage = (MainPageView)
+export const MainPage = withStyles(styles)(MainPageView)
