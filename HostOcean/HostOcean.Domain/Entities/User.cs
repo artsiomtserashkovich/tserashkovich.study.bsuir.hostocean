@@ -16,6 +16,7 @@ namespace HostOcean.Domain.Entities
         }
 
         public UserSubGroup UserSubGroup { get; set; }
+        public string GroupId { get; set; }
         public Group Group { get; set; }
         
         public ICollection<UserQueue> UserQueues { get; private set; }

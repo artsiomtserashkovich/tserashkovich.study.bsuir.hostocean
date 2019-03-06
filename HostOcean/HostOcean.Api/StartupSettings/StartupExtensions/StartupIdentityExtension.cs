@@ -12,6 +12,15 @@ namespace HostOcean.Api.StartupSettings.StartupExtensions
                 .AddEntityFrameworkStores<TContext>()
                 .AddDefaultTokenProviders();
 
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+            });
+
             return services;
         }
     }
