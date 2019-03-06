@@ -1,7 +1,6 @@
 import { Switch, Route, withRouter, RouteComponentProps } from "react-router";
 import { MainRoutes } from './MainRoutes';
 import * as React from 'react';
-import urljoin from "url-join"
 
 interface Props extends RouteComponentProps{
 }
@@ -12,12 +11,13 @@ class MainModuleContainer extends React.Component<Props> {
         return(
             <Switch>
                 {
-                    MainRoutes.map((item) =>
+                    MainRoutes.map((item,index) =>
                     (
                         <Route
-                            path={ urljoin(match.url,item.path) }
+                            path={ `${match.url}/${item.path}` }
                             component={item.component}
                             exact={item.exact}
+                            key={index}
                         />
                     ))
                 }

@@ -5,7 +5,7 @@ class QueueListContainer extends React.Component{
     public render(){
         return(
             <Typography align={"left"} variant={"h2"} >
-                Its Main Page
+                Its Queue List
             </Typography>
         );
     }

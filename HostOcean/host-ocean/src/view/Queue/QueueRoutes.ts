@@ -1,5 +1,6 @@
 import { QueueList } from "./QueueList/QueueList";
 import { QueueChoose } from './QueueChoose/QueueChoose';
+import { IRoute } from '../../typings';
 
 export const QueueRoutes: IRoute[] = [
     {

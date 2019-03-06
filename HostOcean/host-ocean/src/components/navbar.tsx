@@ -1,11 +1,11 @@
 import React from "react";
 import { withStyles, WithStyles} from "@material-ui/core/styles/index"
 import { createStyles,
-    Theme, Toolbar, IconButton, Typography,
+    Toolbar, IconButton, Typography,
     Button, AppBar } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 
-const styles = (theme: Theme) => createStyles({
+const styles = createStyles({
     root: {
       flexGrow: 1,
     },

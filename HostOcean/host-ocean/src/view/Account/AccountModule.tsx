@@ -1,7 +1,6 @@
 import { withRouter, RouteComponentProps, Switch, Route } from 'react-router';
 import { AccountRoutes } from './AccountRoutes';
 import * as React from 'react';
-import urljoin from 'url-join';
 
 interface Props extends RouteComponentProps{
 }
@@ -15,7 +14,7 @@ class AccountModuleContainer extends React.Component<Props> {
                     AccountRoutes.map((item) =>
                     (
                         <Route
-                            path={ urljoin(match.url,item.path) }
+                            path={ `${match.url}/${item.path}` }
                             component={item.component}
                             exact={item.exact}
                         />

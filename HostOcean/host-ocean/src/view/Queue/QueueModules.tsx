@@ -1,5 +1,4 @@
 import { RouteComponentProps, withRouter, Switch, Route } from 'react-router';
-import urljoin from 'url-join';
 import * as React from 'react';
 import { QueueRoutes } from './QueueRoutes';
 
@@ -15,7 +14,7 @@ class QueueModuleContainer extends React.Component<Props> {
                     QueueRoutes.map((item) =>
                     (
                         <Route
-                            path={ urljoin(match.url,item.path) }
+                            path={ `${match.url}/${item.path}` }
                             component={item.component}
                             exact={item.exact}
                         />
