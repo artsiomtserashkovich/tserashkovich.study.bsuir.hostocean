@@ -1,4 +1,4 @@
-import { NavBar } from './components/navbar';
+import { NavBar } from './Components/navbar';
 import { BrowserRouter } from 'react-router-dom';
 import * as React from 'react';
 import { MainModule } from './View/MainModule';

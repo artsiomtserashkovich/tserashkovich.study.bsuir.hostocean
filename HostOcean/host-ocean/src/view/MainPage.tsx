@@ -1,5 +1,7 @@
 import { WithStyles, Typography, withStyles } from '@material-ui/core';
 import * as React from 'react';
+import { accountStab } from '../Core/AccountStab';
+import { AboutAccountView } from '../Components/MainPage/AboutAccountView';
 
 const styles ={
     root: {
@@ -13,10 +15,14 @@ interface Props extends WithStyles<typeof styles>{
 
 class MainPageView extends React.Component<Props> {
     public render(){
+        const accountAbout = accountStab;
         return(
-            <Typography align={"left"} variant={"h2"} >
-                Its Main Page
-            </Typography>
+            <div>                
+               <Typography  align={"left"} variant={"h4"} >
+                    Лабораторные работы <br/>на завтра
+                </Typography>
+                <AboutAccountView account={accountAbout} /> 
+            </div>
         );
     }
 }
