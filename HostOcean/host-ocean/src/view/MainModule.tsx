@@ -2,28 +2,30 @@ import { Switch, Route, withRouter, RouteComponentProps } from "react-router";
 import { MainRoutes } from './MainRoutes';
 import * as React from 'react';
 
-interface Props extends RouteComponentProps{
+interface Props extends RouteComponentProps {
 }
 
 class MainModuleContainer extends React.Component<Props> {
     public render() {
         const { match } = this.props;
-        return(
+        return (
             <Switch>
                 {
-                    MainRoutes.map((item,index) =>
-                    (
-                        <Route
-                            path={ `${match.url}/${item.path}` }
+                    MainRoutes.map((item, index) => {
+                        console.log(item, match)
+                        return (<Route
+                            path={`${match.url}${item.path}`}
                             component={item.component}
                             exact={item.exact}
                             key={index}
-                        />
-                    ))
+                        />)
+
+                    })
                 }
+
             </Switch>
         );
     }
 };
 
-export const MainModule =  withRouter(MainModuleContainer);
+export const MainModule = withRouter(MainModuleContainer);
