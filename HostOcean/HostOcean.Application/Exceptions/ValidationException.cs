@@ -31,6 +31,21 @@ namespace HostOcean.Application.Exceptions
             }
         }
 
+        public ValidationException(string property, string[] failures)
+        {
+            if(!string.IsNullOrEmpty(property) && failures!= null && failures.Length != 0 && !string.IsNullOrEmpty(failures[0]))
+                Failures.Add(property,failures);
+        }
+
+        public ValidationException(IDictionary<string, string[]> failures)
+            :this()
+        {
+            if (failures == null) return;
+
+            foreach (var fail in failures)
+                Failures.Add(fail);
+        }
+
         public IDictionary<string, string[]> Failures { get; }
     }
 }

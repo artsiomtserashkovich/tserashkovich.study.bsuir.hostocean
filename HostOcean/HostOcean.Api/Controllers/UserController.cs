@@ -21,13 +21,7 @@ namespace HostOcean.Api.Controllers
         [ProducesDefaultResponseType]
         public async Task<IActionResult> Create([FromBody]CreateUserCommand command)
         {
-            var result = await Mediator.Send(command);
-
-            if (!result.IsSucceeded)
-            {
-                return BadRequest(result.Error);
-            }
-
+            await Mediator.Send(command);
             return Ok();
         }
     }
