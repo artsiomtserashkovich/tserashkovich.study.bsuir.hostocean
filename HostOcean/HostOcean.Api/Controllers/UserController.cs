@@ -27,6 +27,7 @@ namespace HostOcean.Api.Controllers
             return Ok();
         }
 
+        [HttpPost("signin")]
         public async Task<JwtToken> SignIn([FromBody] SignInJwtTokenQuery signInJwtTokenQuery)
         {
             return await Mediator.Send(signInJwtTokenQuery);
