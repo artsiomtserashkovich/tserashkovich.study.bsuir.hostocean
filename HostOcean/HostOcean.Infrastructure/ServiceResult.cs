@@ -44,5 +44,31 @@ namespace HostOcean.Infrastructure
     public class ServiceResult<T> : ServiceResult
     {
         public T Result { get; set; }
+
+        public ServiceResult(T result)
+        {
+            Result = result;
+            IsSucceeded = true;
+        }
+
+        public ServiceResult() : base()
+        {
+        }
+
+        public ServiceResult(Exception exception) :base(exception)
+        {
+        }
+
+        public ServiceResult(List<string> errors) : base(errors)
+        {
+        }
+
+        public ServiceResult(string error) : base(error)
+        {
+        }
+
+        public ServiceResult(IdentityResult result) : base(result)
+        {
+        }
     }
 }
