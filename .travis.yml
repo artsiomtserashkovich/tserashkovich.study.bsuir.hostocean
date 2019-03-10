@@ -1,0 +1,37 @@
+dist: trusty
+sudo: required
+
+branches:
+  only:
+  - master
+  - develop
+
+env:
+  DOCKER_COMPOSE_VERSION: 1.20.1  
+
+addons:
+  sonarcloud:
+    organization: "artemtereshkovich-github"
+    token:
+      secure: ${SONAR_TOKEN}
+
+services:
+  - docker
+  
+before_install:
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  - docker-compose -v
+  - docker -v
+
+before_script:
+  - docker-compose -f HostOcean/docker-compose.test.yml build --no-cache
+
+script:
+  - docker-compose -f HostOcean/docker-compose.test.yml up
+  - sonar-scanner
+
+cache:
+  directories:
+    - '$HOME/.sonar/cache'

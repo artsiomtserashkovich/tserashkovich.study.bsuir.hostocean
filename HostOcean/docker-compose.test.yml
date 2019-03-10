@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  hostocean.api.integrationtests:
+    image: hostocean.api.integrationtests:latest
+    build:
+      context: .
+      dockerfile: HostOcean.Tests/HostOcean.IntegrationTests/Dockerfile
+    depends_on:
+      - hostocean.api.image
+      - hostocean.api.unitests
+  
+  hostocean.api.unitests:
+    image: hostocean.api.unitests:latest
+    build:
+      context: .
+      dockerfile: HostOcean.Tests/HostOcean.UnitTests/Dockerfile
+    depends_on:
+      - hostocean.api.image
+
+  hostocean.api.image:
+    image: hostocean.api.image:latest
+    build:
+      context: .
+      dockerfile: HostOcean.Api/Dockerfile.build
