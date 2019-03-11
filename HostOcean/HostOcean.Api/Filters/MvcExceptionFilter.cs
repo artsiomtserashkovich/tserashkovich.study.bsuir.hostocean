@@ -18,7 +18,7 @@ namespace HostOcean.Api.Filters
         {
             var exception = context.Exception;
 
-            if (context.Exception is ValidationException validationException)
+            if (exception is ValidationException validationException)
             {
                 context.HttpContext.Response.ContentType = "application/json";
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
@@ -28,7 +28,7 @@ namespace HostOcean.Api.Filters
                 return;
             }
 
-            if (context.Exception is AuthorizationException authorizationException)
+            if (exception is AuthorizationException authorizationException)
             {
                 context.HttpContext.Response.ContentType = "application/json";
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
@@ -38,7 +38,7 @@ namespace HostOcean.Api.Filters
                 return;
             }
 
-            if (context.Exception is NotFoundException notFoundException)
+            if (exception is NotFoundException notFoundException)
             {
                 context.HttpContext.Response.ContentType = "application/json";
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
