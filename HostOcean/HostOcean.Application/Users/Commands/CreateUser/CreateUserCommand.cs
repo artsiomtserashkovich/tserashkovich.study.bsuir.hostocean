@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using HostOcean.Domain.Entities;
@@ -13,7 +13,7 @@ namespace HostOcean.Application.Users.Commands.CreateUser
         public string GroupId { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-
+        
         public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand>
         {
             private readonly UserManager<User> _userManager;
