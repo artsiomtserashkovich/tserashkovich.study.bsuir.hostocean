@@ -4,7 +4,9 @@ namespace HostOcean.Infrastructure.BsuirGroupService
 {
     public static class IISv1ApiUriBuilder
     {
-        public static string GetGroupsUri => "/api/v1/groups";
+        public static string GetGroupsUri => "/api/v1/group";
+
+        public static string GetLoginUri => "/api/v1/auth/login";
 
         public static string GetGroupScheduleByGroupNameUri(string groupName)
         {
