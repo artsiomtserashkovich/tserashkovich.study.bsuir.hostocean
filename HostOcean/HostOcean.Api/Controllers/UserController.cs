@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
-using HostOcean.Application.User.Create;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using HostOcean.Application.Users.Commands.CreateUser;
+using HostOcean.Application.Users.Models;
+using HostOcean.Application.Users.Queries;
 
 namespace HostOcean.Api.Controllers
 {
@@ -19,10 +21,16 @@ namespace HostOcean.Api.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> Create([FromBody]CreateUserCommand command)
-        {
+        public async Task<IActionResult> Create([FromBody] CreateUserCommand command)
+        { 
             await Mediator.Send(command);
             return Ok();
+        }
+
+        [HttpPost("signin")]
+        public async Task<JwtToken> SignIn([FromBody] SignInJwtTokenQuery signInJwtTokenQuery)
+        {
+            return await Mediator.Send(signInJwtTokenQuery);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace HostOcean.Application.User.Create
+namespace HostOcean.Application.Users.Commands.CreateUser
 {
     public class CreateUserValidator : AbstractValidator<CreateUserCommand>
     {
