@@ -25,6 +25,7 @@ namespace HostOcean.Api
             services
                 .RegisterMvc()
                 .ConfigureDataBase(Configuration)
+                .ConfigureCors()
                 .ConfigureIdentity<User, IdentityRole, HostOceanDbContext>()
                 .RegisterDependencies()
                 .RegisterSwaggerGen(HostingEnvironment,Configuration)
@@ -43,6 +44,7 @@ namespace HostOcean.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors("CorsPolicy");
             }
             else
             {
