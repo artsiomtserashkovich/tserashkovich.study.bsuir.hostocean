@@ -19,7 +19,7 @@ namespace HostOcean.Infrastructure.BsuirGroupService
         [JsonProperty("course", NullValueHandling = NullValueHandling.Include)]
         public int? YearOfEducation { get; set; }
 
-        [JsonProperty("calendarId",NullValueHandling = NullValueHandling.Include,Required = Required.Default)]
+        [JsonProperty("calendarId",NullValueHandling = NullValueHandling.Include,Required = Required.AllowNull)]
         public string CalendarId { get; set; }
     }
 }

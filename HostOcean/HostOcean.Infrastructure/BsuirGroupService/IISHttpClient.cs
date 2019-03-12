@@ -13,49 +13,18 @@ namespace HostOcean.Infrastructure.BsuirGroupService
     public class IISHttpClient
     {
         private readonly HttpClient _httpClient;
-        private readonly IConfiguration _configuration;
 
-        public IISHttpClient(HttpClient httpClient, IConfiguration configuration)
+        public IISHttpClient(HttpClient httpClient)
         {
             _httpClient = httpClient;
-            _configuration = configuration;
-        }
-
-        public async Task<string> GetAuthCookie()
-        {
-            var username = _configuration["IISBsuirClient:Auth:Username"];
-            var password = _configuration["IISBsuirClient:Auth:Password"];
-            var json = JsonConvert.SerializeObject(new { username, password });
-
-            var cookies = new CookieContainer();
-            var client = new HttpClient(new HttpClientHandler
-            {
-                CookieContainer = cookies
-            });
-
-            client.BaseAddress = new Uri(_configuration["IISBsuirClient:UriBaseAddress"]);
-            var uri = new Uri(client.BaseAddress + IISv1ApiUriBuilder.GetLoginUri);
-
-            await client.PostAsync(IISv1ApiUriBuilder.GetLoginUri, new StringContent(json, Encoding.UTF8, "application/json"));
-
-            var cookie = cookies.GetCookies(uri).Cast<Cookie>().FirstOrDefault();
-
-            return $"{cookie.Name}={cookie.Value}";
         }
 
         public async Task<IReadOnlyCollection<IISGroup>> GetGroups()
         {
-            var cookie = await GetAuthCookie();
+            var uri = IISv1ApiUriBuilder.GetGroupsUri;
+            var response = await _httpClient.GetStringAsync(uri);
 
-            var message = new HttpRequestMessage(HttpMethod.Get, IISv1ApiUriBuilder.GetGroupsUri);
-            message.Headers.Add("Cookie", cookie);
-
-            var response = await _httpClient.SendAsync(message);
-            response.EnsureSuccessStatusCode();
-
-            var stringResponse = response.Content.ReadAsStringAsync().Result;
-
-            return JsonConvert.DeserializeObject<IISGroupResponse>(stringResponse).Groups;
+            return JsonConvert.DeserializeObject<IReadOnlyCollection<IISGroup>>(response);
         }
     }
 }
