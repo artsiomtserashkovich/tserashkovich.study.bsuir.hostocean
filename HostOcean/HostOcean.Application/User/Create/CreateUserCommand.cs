@@ -34,8 +34,7 @@ namespace HostOcean.Application.User.Create
                     GroupId = request.GroupId
                 };
 
-                try
-                {
+                
                     var user = await _userManager.FindByNameAsync(entity.UserName);
                     if (user != null)
                     {
@@ -49,11 +48,6 @@ namespace HostOcean.Application.User.Create
                     var result = await _userManager.AddPasswordAsync(entity, request.Password);
 
                     return new ServiceResult(result);
-                }
-                catch (Exception ex)
-                {
-                    return new ServiceResult(ex);
-                }
             }
         }
     }
