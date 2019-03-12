@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using HostOcean.Application.Exceptions;
 using HostOcean.Application.Infrastructure.AppSettings;
 using HostOcean.Application.Users.Models;
 using HostOcean.Domain.Entities;
@@ -32,7 +33,7 @@ namespace HostOcean.Application.Users.Queries
             throw new NotImplementedException();
             var user = await _userManager.FindByNameAsync(request.Username);
 
-            if (user == null) throw new Exception($"User \"{request.Username}\" not found!");
+            if (user == null) throw new NotFoundException(nameof(User), request.Username);
 
             var roles = await _userManager.GetRolesAsync(user);
 

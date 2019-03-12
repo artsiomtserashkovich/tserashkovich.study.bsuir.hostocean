@@ -11,7 +11,7 @@ namespace HostOcean.Persistence.Repositories
     {
         protected readonly DbSet<TEntity> DbSet;
 
-        public Repository(DbContext dataBaseContext)
+        public Repository(HostOceanDbContext dataBaseContext)
         {
             DbSet = dataBaseContext.Set<TEntity>();
         }
@@ -25,8 +25,6 @@ namespace HostOcean.Persistence.Repositories
         public virtual TEntity Get(string id) => DbSet.Find(id);
 
         public virtual TEntity Get(int id) => DbSet.Find(id);
-
-        public virtual bool IsExist(dynamic id) => DbSet.Find(id) != null;
 
         public virtual IEnumerable<TEntity> All => DbSet.ToList();
 
