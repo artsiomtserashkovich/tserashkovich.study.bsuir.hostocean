@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HostOcean.Domain\HostOcean.Domain.csproj" />
+    <ProjectReference Include="..\HostOcean.Application\HostOcean.Application.csproj" />
     <ProjectReference Include="..\HostOcean.Infrastructure\HostOcean.Infrastructure.csproj" />
   </ItemGroup>
 

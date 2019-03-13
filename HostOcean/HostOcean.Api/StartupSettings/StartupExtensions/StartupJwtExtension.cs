@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using HostOcean.Application.Infrastructure.AppSettings;
+using HostOcean.Application.ApplicationSettings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

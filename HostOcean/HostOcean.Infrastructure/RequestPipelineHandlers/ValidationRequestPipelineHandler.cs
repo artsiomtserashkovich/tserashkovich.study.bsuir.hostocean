@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Linq;
 using FluentValidation;
 using MediatR;
 
-namespace HostOcean.Application.Infrastructure.RequestPipelineHandlers
+namespace HostOcean.Infrastructure.RequestPipelineHandlers
 {
     public class ValidationRequestPipelineHandler<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>

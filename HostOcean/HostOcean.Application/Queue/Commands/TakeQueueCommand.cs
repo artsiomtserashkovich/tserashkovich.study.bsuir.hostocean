@@ -1,8 +1,8 @@
 ﻿using HostOcean.Domain.Entities;
-using HostOcean.Persistence.Interfaces;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using HostOcean.Application.Interfaces.Persistance;
 
 namespace HostOcean.Application.Queue.Commands
 {

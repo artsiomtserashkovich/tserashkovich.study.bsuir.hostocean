@@ -1,8 +1,8 @@
 ﻿using HostOcean.Domain.Entities;
-using HostOcean.Persistence.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Threading.Tasks;
+using HostOcean.Application.Interfaces.Persistance;
 
 namespace HostOcean.Persistence.Repositories
 {

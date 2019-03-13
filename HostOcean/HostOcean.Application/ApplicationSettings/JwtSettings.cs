@@ -1,4 +1,4 @@
-﻿namespace HostOcean.Application.Infrastructure.AppSettings
+﻿namespace HostOcean.Application.ApplicationSettings
 {
     public class JwtSettings
     {
