@@ -6,7 +6,6 @@ namespace HostOcean.Persistence.Interfaces
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        bool IsExist(dynamic id);
         TEntity Get(string id);
         TEntity Get(int id);
         IEnumerable<TEntity> All { get; }
