@@ -1,7 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace HostOcean.Infrastructure.BsuirGroupService
 {
@@ -18,7 +23,7 @@ namespace HostOcean.Infrastructure.BsuirGroupService
         {
             var uri = IISv1ApiUriBuilder.GetGroupsUri;
             var response = await _httpClient.GetStringAsync(uri);
-            
+
             return JsonConvert.DeserializeObject<IReadOnlyCollection<IISGroup>>(response);
         }
     }

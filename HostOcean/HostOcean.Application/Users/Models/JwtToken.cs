@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace HostOcean.Application.Tokens.Models
+namespace HostOcean.Application.Users.Models
 {
-    public class Token
+    public class JwtToken
     {
         public string AccessToken { get; set; }
 
