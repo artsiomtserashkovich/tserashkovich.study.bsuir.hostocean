@@ -20,12 +20,7 @@ namespace HostOcean.Api.Controllers
         {
             var result = await Mediator.Send(new GetQueueQuery() { Id = id });
 
-            if (!result.IsSucceeded)
-            {
-                return BadRequest(result.Error);
-            }
-
-            return Ok(result.Result);
+            return Ok(result);
         }
     }
 }
