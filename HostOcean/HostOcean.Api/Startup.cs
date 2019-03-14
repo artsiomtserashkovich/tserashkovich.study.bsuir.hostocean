@@ -25,6 +25,7 @@ namespace HostOcean.Api
             services
                 .RegisterMvc()
                 .RegisterAutoMapper()
+                .AddOptions()
                 .ConfigureDataBase(Configuration)
                 .ConfigureCors()
                 .ConfigureIdentity<User, IdentityRole, HostOceanDbContext>()
