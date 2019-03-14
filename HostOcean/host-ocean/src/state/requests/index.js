@@ -1,7 +1,9 @@
 import accountRequests from './accountRequests'
+import groupRequests from './groupRequests'
 
 const API = {
-    ...accountRequests
+    ...accountRequests,
+    ...groupRequests
 }
 
 export default API
