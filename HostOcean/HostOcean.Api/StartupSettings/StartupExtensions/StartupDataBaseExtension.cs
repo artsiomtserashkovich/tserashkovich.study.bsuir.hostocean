@@ -17,8 +17,10 @@ namespace HostOcean.Api.StartupSettings.StartupExtensions
         public static IServiceCollection ConfigureDataBase(this IServiceCollection services,IConfiguration Configuration)
         {
             var connection = Configuration.GetConnectionString("MSSQLDatabaseConnectionString");
-            services.AddDbContext<HostOceanDbContext>(options =>
-                options.UseSqlServer(connection, b => b.MigrationsAssembly("HostOcean.Persistence")));
+            services.AddDbContext<HostOceanDbContext>(options => {                
+                options.UseLazyLoadingProxies();
+                options.UseSqlServer(connection, b => b.MigrationsAssembly("HostOcean.Persistence"));
+            });
 
             return services;
         }

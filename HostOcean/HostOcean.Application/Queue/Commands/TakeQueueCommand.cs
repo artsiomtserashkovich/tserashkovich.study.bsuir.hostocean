@@ -23,7 +23,7 @@ namespace HostOcean.Application.Queue.Commands
 
             public async Task<Unit> Handle(TakeQueueCommand request, CancellationToken cancellationToken)
             {
-                var entity = new UserQueue
+                var entity = new Domain.Entities.UserQueue
                 {
                     UserId = request.UserId,
                     QueueId = request.QueueId,

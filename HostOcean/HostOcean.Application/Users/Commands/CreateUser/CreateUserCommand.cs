@@ -19,11 +19,10 @@ namespace HostOcean.Application.Users.Commands.CreateUser
         
         public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand>
         {
-            private readonly UserManager<User> _userManager;
+            private readonly UserManager<Domain.Entities.User> _userManager;
             private readonly IUnitOfWork _unitOfWork;
-            private readonly IMediator _mediator;
 
-            public CreateUserCommandHandler(UserManager<User> userManager, IUnitOfWork unitOfWork)
+            public CreateUserCommandHandler(UserManager<Domain.Entities.User> userManager, IUnitOfWork unitOfWork)
             {
                 _userManager = userManager;
                 _unitOfWork = unitOfWork;
@@ -31,7 +30,7 @@ namespace HostOcean.Application.Users.Commands.CreateUser
 
             public async Task<Unit> Handle(CreateUserCommand request, CancellationToken cancellationToken)
             {
-                var entity = new User
+                var entity = new Domain.Entities.User
                 {
                     UserName = request.UserName,
                     Email = request.Email,
@@ -44,7 +43,6 @@ namespace HostOcean.Application.Users.Commands.CreateUser
                     var validationFailure = new ValidationFailure("Group", "Group doesn't exists");
                     throw new ValidationException(new[] { validationFailure });
                 }
-
 
                 var user = await _userManager.FindByNameAsync(entity.UserName);
                 if (user != null)
