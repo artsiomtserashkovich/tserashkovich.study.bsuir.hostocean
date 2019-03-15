@@ -1,10 +1,4 @@
-﻿using HostOcean.Application.Tokens.Models;
-using HostOcean.Domain.Entities;
-using MediatR;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -12,25 +6,34 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using HostOcean.Application.Exceptions;
+using HostOcean.Application.Infrastructure.AppSettings;
+using HostOcean.Application.Users.Models;
+using HostOcean.Domain.Entities;
+using MediatR;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
-namespace HostOcean.Application.Tokens.Queries
+namespace HostOcean.Application.Users.Queries
 {
-    public class GenerateJwtTokenQueryHandler : IRequestHandler<GenerateJwtTokenQuery, Token>
+    public class SignInJwtTokenQueryHandler : IRequestHandler<SignInJwtTokenQuery, JwtToken>
     {
-        private readonly IConfiguration _configuration;
+        private readonly JwtSettings _jwtSettings;
         private readonly UserManager<Domain.Entities.User> _userManager;
 
-        public GenerateJwtTokenQueryHandler(IConfiguration configuration, UserManager<Domain.Entities.User> userManager)
+        public SignInJwtTokenQueryHandler(IOptions<JwtSettings> jwtSettingsOptions, UserManager<Domain.Entities.User> userManager)
         {
-            _configuration = configuration;
+            _jwtSettings = jwtSettingsOptions.Value;
             _userManager = userManager;
         }
 
-        public async Task<Token> Handle(GenerateJwtTokenQuery request, CancellationToken cancellationToken)
+        public async Task<JwtToken> Handle(SignInJwtTokenQuery request, CancellationToken cancellationToken)
         {
+            throw new NotImplementedException();
             var user = await _userManager.FindByNameAsync(request.Username);
 
-            if (user == null) throw new Exception($"User \"{request.Username}\" not found!");
+            if (user == null) throw new NotFoundException(nameof(User), request.Username);
 
             var roles = await _userManager.GetRolesAsync(user);
 
@@ -43,16 +46,16 @@ namespace HostOcean.Application.Tokens.Queries
             };
 
             var token = new JwtSecurityToken(
-                _configuration["Jwt:Issuer"],
-                _configuration["Jwt:Audience"],
+                _jwtSettings.Issuer,
+                _jwtSettings.Audience,
                 claims,
-                expires: DateTime.Now.AddHours(double.Parse(_configuration["Jwt:Lifetime"])),
+                expires: DateTime.Now.AddHours(_jwtSettings.Lifetime),
                 signingCredentials: new SigningCredentials(
-                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"])),
+                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key)),
                     SecurityAlgorithms.HmacSha256)
             );
 
-            return new Token()
+            return new JwtToken
             {
                 AccessToken = new JwtSecurityTokenHandler().WriteToken(token),
                 Expires = token.ValidTo,

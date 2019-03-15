@@ -24,13 +24,13 @@ namespace HostOcean.Api
         public void ConfigureServices(IServiceCollection services) =>
             services
                 .RegisterMvc()
+                .RegisterAutoMapper()
                 .ConfigureDataBase(Configuration)
                 .ConfigureCors()
                 .ConfigureIdentity<User, IdentityRole, HostOceanDbContext>()
                 .RegisterDependencies()
                 .RegisterSwaggerGen(HostingEnvironment,Configuration)
                 .RegisterMediatoR()
-                .RegisterAutoMapper()
                 .RegisterJwtAuthentication(Configuration)
                 .RegisterHttpClients(Configuration)
                 .AddGoogleCalendarClient<IGoogleCalendarClient, GoogleCalendarV3Client, GoogleCalendarApiConfiguration>
