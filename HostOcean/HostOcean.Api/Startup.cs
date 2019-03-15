@@ -24,12 +24,14 @@ namespace HostOcean.Api
         public void ConfigureServices(IServiceCollection services) =>
             services
                 .RegisterMvc()
+                .RegisterAutoMapper()
+                .AddOptions()
                 .ConfigureDataBase(Configuration)
+                .ConfigureCors()
                 .ConfigureIdentity<User, IdentityRole, HostOceanDbContext>()
                 .RegisterDependencies()
                 .RegisterSwaggerGen(HostingEnvironment,Configuration)
                 .RegisterMediatoR()
-                .RegisterAutoMapper()
                 .RegisterJwtAuthentication(Configuration)
                 .RegisterHttpClients(Configuration)
                 .AddGoogleCalendarClient<IGoogleCalendarClient, GoogleCalendarV3Client, GoogleCalendarApiConfiguration>
@@ -43,6 +45,7 @@ namespace HostOcean.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCors("CorsPolicy");
             }
             else
             {

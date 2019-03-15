@@ -4,10 +4,10 @@
     {
         public short Order { get; set; }
 
-        public User User { get; set; }
+        public virtual User User { get; set; }
         public string UserId { get; set; }
 
-        public Queue Queue { get; set; }
+        public virtual Queue Queue { get; set; }
         public string QueueId { get; set; }
     }
 }

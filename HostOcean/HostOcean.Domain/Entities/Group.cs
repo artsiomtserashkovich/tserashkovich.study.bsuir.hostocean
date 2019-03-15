@@ -12,7 +12,7 @@ namespace HostOcean.Domain.Entities
 
         public string Name { get; set; }
 
-        public ICollection<User> Users { get; private set; }
-        public ICollection<LaboratoryWork> LaboratoryWorks { get; private set; }
+        public virtual ICollection<User> Users { get; private set; }
+        public virtual ICollection<LaboratoryWork> LaboratoryWorks { get; private set; }
     }
 }

@@ -8,7 +8,7 @@ namespace HostOcean.Domain.Entities
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
         public LaboratorySubGroup LaboratorySubGroup { get; set; }
-        public Group Group { get; set; }
-        public Queue Queue { get; set; }
+        public virtual Group Group { get; set; }
+        public virtual Queue Queue { get; set; }
     }
 }
