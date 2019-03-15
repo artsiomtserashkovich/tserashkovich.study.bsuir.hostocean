@@ -16,16 +16,16 @@ namespace HostOcean.Application.Users.Commands.CreateUser
         
         public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand>
         {
-            private readonly UserManager<User> _userManager;
+            private readonly UserManager<Domain.Entities.User> _userManager;
 
-            public CreateUserCommandHandler(UserManager<User> userManager)
+            public CreateUserCommandHandler(UserManager<Domain.Entities.User> userManager)
             {
                 _userManager = userManager;
             }
 
             public async Task<Unit> Handle(CreateUserCommand request, CancellationToken cancellationToken)
             {
-                var entity = new User
+                var entity = new Domain.Entities.User
                 {
                     UserName = request.UserName,
                     Email = request.Email,

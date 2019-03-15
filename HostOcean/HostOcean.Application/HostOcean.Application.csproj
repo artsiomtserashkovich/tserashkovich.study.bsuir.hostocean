@@ -18,4 +18,8 @@
     <ProjectReference Include="..\HostOcean.Persistence\HostOcean.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Queue\Commands\" />
+  </ItemGroup>
+
 </Project>
