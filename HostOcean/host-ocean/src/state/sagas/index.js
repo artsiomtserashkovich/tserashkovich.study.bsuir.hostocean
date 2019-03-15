@@ -1,6 +1,6 @@
 import { fork, all } from "redux-saga/effects";
 import watchRequest from "./watchRequest"
-import accountSaga from "./../../view/Account/sagas/index"
+import accountSaga from "./../../modules/account/sagas/index"
 
 function* rootSaga() {
     yield all([

@@ -5,9 +5,8 @@ import ApiMethods from '../requests'
 import ApiService from '../services/API'
 
 function* callAPI(action) {
-    const apiHostName = "https://localhost:5001/"
-    //TODO: add selector
-    const accessToken = null
+    const { apiHostName } = yield select(state => state.config)
+    const { accessToken } = yield select(state => state.session)
     const data = ApiMethods[_.camelCase(action.type)](action.payload)
     try {
         const response = yield call(ApiService, {

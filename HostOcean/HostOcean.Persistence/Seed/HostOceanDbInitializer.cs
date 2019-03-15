@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using HostOcean.Domain.Entities;
 using HostOcean.Infrastructure.BsuirGroupService;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -17,6 +18,7 @@ namespace HostOcean.Persistence.Seed
         private readonly List<LaboratoryWork> LaboratoryWorks = new List<LaboratoryWork>();
         private readonly List<Queue> Queues = new List<Queue>();
 
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IISHttpClient _iisClient;
         private readonly IMapper _mapper;
 
@@ -24,12 +26,13 @@ namespace HostOcean.Persistence.Seed
         {
             var context = serviceProvider.GetRequiredService<HostOceanDbContext>();
             var iisClient = serviceProvider.GetRequiredService<IISHttpClient>();
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var mapper = serviceProvider.GetRequiredService<IMapper>();
 
             try
             {
                 context.Database.Migrate();
-                new HostOceanDbInitializer(iisClient, mapper).Seed(context);
+                new HostOceanDbInitializer(roleManager, iisClient, mapper).Seed(context);
             }
             catch (SqlException sqlException) when (sqlException.Number == 1801)
             {
@@ -37,14 +40,16 @@ namespace HostOcean.Persistence.Seed
             }
         }
 
-        public HostOceanDbInitializer(IISHttpClient iisClient, IMapper mapper)
+        public HostOceanDbInitializer(RoleManager<IdentityRole> roleManager, IISHttpClient iisClient, IMapper mapper)
         {
+            _roleManager = roleManager;
             _iisClient = iisClient;
             _mapper = mapper;
         }
 
         public void Seed(HostOceanDbContext context)
         {
+            SeedRoles(context);
             SeedGroups(context);
             SeedLabworks(context);
             SeedUsers(context);
@@ -52,6 +57,15 @@ namespace HostOcean.Persistence.Seed
             SeedPlaces(context);
 
             context.SaveChanges();
+        }
+
+        public void SeedRoles(HostOceanDbContext context)
+        {
+            if (!context.Roles.Any())
+            {
+                _roleManager.CreateAsync(new IdentityRole("Admin")).Wait();
+                _roleManager.CreateAsync(new IdentityRole("User")).Wait();
+            }
         }
 
         public void SeedGroups(HostOceanDbContext context)
