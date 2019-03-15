@@ -1,9 +1,10 @@
 import { takeLatest, all, put } from 'redux-saga/effects'
-import * as actions from "../actions"
-import * as sessionActions from "../../../state/actions/sessionActions"
 import { updateSyncErrors } from 'redux-form'
 import { push } from 'connected-react-router'
 import * as _ from "lodash"
+
+import * as actions from "../actions"
+import * as sessionActions from "../../../state/actions/sessionActions"
 
 function* registerSuccess(action) {
     const token = action.response.data;
