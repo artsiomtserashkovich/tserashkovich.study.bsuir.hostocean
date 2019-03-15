@@ -1,6 +1,4 @@
-﻿using HostOcean.Domain.Entities;
-
-namespace HostOcean.Application.User.Models
+﻿namespace HostOcean.Application.Users.Models
 {
     public class UserModel
     {

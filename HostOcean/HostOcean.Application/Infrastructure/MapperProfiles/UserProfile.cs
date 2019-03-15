@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using HostOcean.Application.User.Models;
+using HostOcean.Application.Users.Models;
 
 namespace HostOcean.Application.Infrastructure.MapperProfiles
 {
