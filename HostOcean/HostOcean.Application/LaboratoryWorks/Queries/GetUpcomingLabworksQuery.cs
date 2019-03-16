@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
+using HostOcean.Application.Interfaces.Persistence;
 using HostOcean.Application.LaboratoryWorks.Models;
 using HostOcean.Domain.Entities;
-using HostOcean.Persistence.Interfaces;
 using MediatR;
 using System;
 using System.Collections.Generic;

@@ -1,8 +1,8 @@
-﻿using HostOcean.Application.Queue.Commands;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using HostOcean.Application.Queues.Commands;
 
 namespace HostOcean.Api.Controllers
 {

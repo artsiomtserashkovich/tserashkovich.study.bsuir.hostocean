@@ -3,8 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
 using FluentValidation.Results;
-using HostOcean.Domain.Entities;
-using HostOcean.Persistence.Interfaces;
+using HostOcean.Application.Interfaces.Persistence;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 

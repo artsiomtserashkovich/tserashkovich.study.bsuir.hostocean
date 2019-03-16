@@ -1,13 +1,15 @@
-﻿using HostOcean.Persistence.Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
+using HostOcean.Application.Interfaces.Persistence;
+using HostOcean.Domain.Entities;
 
 namespace HostOcean.Persistence.Repositories
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
     {
         protected readonly DbSet<TEntity> DbSet;
 
@@ -20,6 +22,8 @@ namespace HostOcean.Persistence.Repositories
 
         public virtual void AddRange(IEnumerable<TEntity> entities) => DbSet.AddRange(entities);
 
+        public void UpdateRange(IEnumerable<TEntity> entities) => DbSet.UpdateRange(entities);
+
         public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate) => DbSet.Where(predicate);
 
         public virtual TEntity Get(string id) => DbSet.Find(id);
@@ -29,6 +33,8 @@ namespace HostOcean.Persistence.Repositories
         public virtual IEnumerable<TEntity> All => DbSet.ToList();
 
         public virtual TEntity Remove(TEntity entity) => DbSet.Remove(entity).Entity;
+
+        public async Task<bool> IsExistByIdAsync(string id) => await DbSet.AnyAsync(x => x.Id == id);
 
         public virtual void RemoveRange(IEnumerable<TEntity> entities) => DbSet.RemoveRange(entities);
 

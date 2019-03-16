@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using HostOcean.Application.Infrastructure.AppSettings;
+using HostOcean.Application.ApplicationSettings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,17 +12,8 @@ namespace HostOcean.Api.StartupSettings.StartupExtensions
         public static IServiceCollection RegisterJwtAuthentication(this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
-
-            //TODO: fix ioptions
-            var jwtSettings = new JwtSettings()
-            {
-                Audience = configuration["JwtSettings:Audience"],
-                Issuer = configuration["JwtSettings:Issuer"],
-                Key = configuration["JwtSettings:Key"],
-                Lifetime = int.Parse(configuration["JwtSettings:Lifetime"])
-            };
-
+            services.Configure<JwtSettings>(configuration.GetSection(nameof(JwtSettings)));
+            var jwtSettings = configuration.GetSection(nameof(JwtSettings)).Get<JwtSettings>();
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

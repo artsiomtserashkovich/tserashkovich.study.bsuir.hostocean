@@ -1,4 +1,8 @@
-﻿using HostOcean.Api.StartupSettings.StartupExtensions;
+﻿using System.Collections.Generic;
+using Hangfire;
+using Hangfire.Dashboard;
+using HostOcean.Api.Filters;
+using HostOcean.Api.StartupSettings.StartupExtensions;
 using HostOcean.Domain.Entities;
 using HostOcean.Infrastructure.GroupScheduleService;
 using HostOcean.Persistence;
@@ -23,6 +27,7 @@ namespace HostOcean.Api
 
         public void ConfigureServices(IServiceCollection services) =>
             services
+                .RegisterHangfire(Configuration)
                 .RegisterMvc()
                 .RegisterAutoMapper()
                 .AddOptions()
@@ -40,7 +45,17 @@ namespace HostOcean.Api
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseHangfireServer();
+            app.UseHangfireDashboard(Configuration["HangfireSettings:HangfirePath"],new DashboardOptions()
+            {
+                Authorization = new List<IDashboardAuthorizationFilter>
+                {
+                    new HangfireNoAuthFilter(),
+                }
+            });
+
             app.InitializeDatabase();
+            app.InitializeHangfireSheduleCommands();
 
             if (env.IsDevelopment())
             {
