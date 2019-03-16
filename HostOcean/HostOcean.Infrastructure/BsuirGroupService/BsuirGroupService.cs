@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using HostOcean.Application.Interfaces.Infrastructure;
 using HostOcean.Domain.Entities;
 
 namespace HostOcean.Infrastructure.BsuirGroupService

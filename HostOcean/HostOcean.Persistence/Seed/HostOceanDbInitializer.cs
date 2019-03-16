@@ -17,19 +17,14 @@ namespace HostOcean.Persistence.Seed
         private readonly List<LaboratoryWork> LaboratoryWorks = new List<LaboratoryWork>();
         private readonly List<Queue> Queues = new List<Queue>();
 
-        private readonly IISHttpClient _iisClient;
-        private readonly IMapper _mapper;
-
         public static void Initialize(IServiceProvider serviceProvider)
         {
             var context = serviceProvider.GetRequiredService<HostOceanDbContext>();
-            var iisClient = serviceProvider.GetRequiredService<IISHttpClient>();
-            var mapper = serviceProvider.GetRequiredService<IMapper>();
 
             try
             {
                 context.Database.Migrate();
-                new HostOceanDbInitializer(iisClient, mapper).Seed(context);
+                //new HostOceanDbInitializer().Seed(context);
             }
             catch (SqlException sqlException) when (sqlException.Number == 1801)
             {
@@ -37,43 +32,19 @@ namespace HostOcean.Persistence.Seed
             }
         }
 
-        public HostOceanDbInitializer(IISHttpClient iisClient, IMapper mapper)
+        public HostOceanDbInitializer()
         {
-            _iisClient = iisClient;
-            _mapper = mapper;
         }
 
         public void Seed(HostOceanDbContext context)
         {
-            SeedGroups(context);
-            SeedLabworks(context);
-            SeedUsers(context);
-            SeedQueues(context);
-            SeedPlaces(context);
+//            SeedGroups(context);
+//            SeedLabworks(context);
+//            SeedUsers(context);
+//            SeedQueues(context);
+//            SeedPlaces(context);
 
-            context.SaveChanges();
-        }
-
-        public void SeedGroups(HostOceanDbContext context)
-        {
-            IReadOnlyCollection<IISGroup> groups;
-            try
-            {
-                groups = _iisClient.GetGroups().Result;
-            }
-            catch (Exception ex)
-            {
-                groups = new List<IISGroup>();
-            }
-
-            var mappedGroups = _mapper.Map<IReadOnlyCollection<IISGroup>, IEnumerable<Group>>(groups);
-
-            var newGroups = mappedGroups.Where(g => !context.Groups.Any(e => e.Name == g.Name)).ToList();
-            var updatedGroups = mappedGroups.Where(g => context.Groups.Any(e => e.Name == g.Name)).ToList();
-
-            Groups.AddRange(mappedGroups);
-            context.Groups.AddRange(newGroups);
-            context.Groups.UpdateRange(updatedGroups);
+//            context.SaveChanges();
         }
 
         public void SeedLabworks(HostOceanDbContext context)

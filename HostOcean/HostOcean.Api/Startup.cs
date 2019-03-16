@@ -53,6 +53,7 @@ namespace HostOcean.Api
             });
 
             app.InitializeDatabase();
+            app.InitializeHangfireSheduleCommands();
 
             if (env.IsDevelopment())
             {

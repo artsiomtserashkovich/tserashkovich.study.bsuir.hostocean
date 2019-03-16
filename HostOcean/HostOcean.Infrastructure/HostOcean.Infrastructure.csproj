@@ -6,7 +6,8 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
-    <PackageReference Include="Google.Apis.Calendar.v3" Version="1.38.0.1482" />
+    <PackageReference Include="Google.Apis.Calendar.v3" Version="1.38.0.1508" />
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.6.23" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="2.2.0" />
   </ItemGroup>

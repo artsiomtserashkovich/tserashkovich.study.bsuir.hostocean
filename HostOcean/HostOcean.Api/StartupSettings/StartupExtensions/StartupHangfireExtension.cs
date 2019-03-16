@@ -1,6 +1,10 @@
-﻿using System;
-using Hangfire;
+﻿using Hangfire;
 using HostOcean.Application.ApplicationSettings;
+using HostOcean.Application.Interfaces.Infrastructure;
+using HostOcean.Infrastructure.Hangfire;
+using HostOcean.Infrastructure.Hangfire.CommandExecutor;
+using HostOcean.Infrastructure.Hangfire.SheduleCommandInitializer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,13 +12,21 @@ namespace HostOcean.Api.StartupSettings.StartupExtensions
 {
     public static class StartupHangfireExtension
     {
-        public static IServiceCollection RegisterHangfire(this IServiceCollection services, IConfiguration Configuration)
+        public static void InitializeHangfireSheduleCommands(this IApplicationBuilder app)
         {
-            services.Configure<HangfireSettings>(conf => Configuration.Get<HangfireSettings>());
-            services.AddHangfire(configuration =>
+            var serviceProvider = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider;
+            serviceProvider.GetService<ISheduleCommandsInitializer>().InitializeSheduleCommands();
+        }
+        public static IServiceCollection RegisterHangfire(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddTransient<ISheduleCommandsInitializer, SheduleCommandsInitializer>();
+            services.AddTransient<ICommandsSheduler, CommandsScheduler>();
+            services.AddTransient<ICommandExecutor, MediatRCommandExecutor>();
+            services.Configure<HangfireSettings>(configuration.GetSection(nameof(HangfireSettings)));
+            services.AddHangfire(conf =>
                 {
-                    configuration.UseSqlServerStorage(
-                        Configuration.GetConnectionString("HangfireDatabaseConnectionString"));
+                    conf.UseSqlServerStorage(
+                        configuration.GetConnectionString("HangfireDatabaseConnectionString"));
                 }
             );
             return services;

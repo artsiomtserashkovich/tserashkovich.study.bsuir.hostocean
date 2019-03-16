@@ -12,7 +12,6 @@ namespace HostOcean.Application.Groups.Commands
 {
     public class CloneBsuirGroupsStorageCommand : IRequest
     {
-        public DateTime ExecutionDateTime { get; set; }
         public class CloneBsuirGroupsStorageCommandHandler : IRequestHandler<CloneBsuirGroupsStorageCommand>
         {
             private readonly IBsuirGroupService _bsuirGroupService;

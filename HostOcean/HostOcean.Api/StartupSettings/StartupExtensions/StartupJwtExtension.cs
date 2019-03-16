@@ -12,9 +12,8 @@ namespace HostOcean.Api.StartupSettings.StartupExtensions
         public static IServiceCollection RegisterJwtAuthentication(this IServiceCollection services,
             IConfiguration configuration)
         {
-            var jwtSettings = configuration.Get<JwtSettings>();
-            services.Configure<JwtSettings>(conf => configuration.Get<JwtSettings>());
-
+            services.Configure<JwtSettings>(configuration.GetSection(nameof(JwtSettings)));
+            var jwtSettings = configuration.GetSection(nameof(JwtSettings)).Get<JwtSettings>();
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

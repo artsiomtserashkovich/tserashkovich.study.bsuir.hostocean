@@ -1,4 +1,5 @@
-﻿using HostOcean.Application.Interfaces.Persistance;
+﻿using HostOcean.Application.Interfaces.Infrastructure;
+using HostOcean.Application.Interfaces.Persistance;
 using HostOcean.Infrastructure.BsuirGroupService;
 using HostOcean.Persistence.Repositories;
 using Microsoft.Extensions.DependencyInjection;
