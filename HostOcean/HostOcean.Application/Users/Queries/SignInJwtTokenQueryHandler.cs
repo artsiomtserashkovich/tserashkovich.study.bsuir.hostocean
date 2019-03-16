@@ -20,9 +20,9 @@ namespace HostOcean.Application.Users.Queries
     public class SignInJwtTokenQueryHandler : IRequestHandler<SignInJwtTokenQuery, JwtToken>
     {
         private readonly JwtSettings _jwtSettings;
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<Domain.Entities.User> _userManager;
 
-        public SignInJwtTokenQueryHandler(IOptions<JwtSettings> jwtSettingsOptions, UserManager<User> userManager)
+        public SignInJwtTokenQueryHandler(IOptions<JwtSettings> jwtSettingsOptions, UserManager<Domain.Entities.User> userManager)
         {
             _jwtSettings = jwtSettingsOptions.Value;
             _userManager = userManager;
@@ -30,7 +30,6 @@ namespace HostOcean.Application.Users.Queries
 
         public async Task<JwtToken> Handle(SignInJwtTokenQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
             var user = await _userManager.FindByNameAsync(request.Username);
 
             if (user == null) throw new NotFoundException(nameof(User), request.Username);
@@ -58,7 +57,7 @@ namespace HostOcean.Application.Users.Queries
             return new JwtToken
             {
                 AccessToken = new JwtSecurityTokenHandler().WriteToken(token),
-                Expires = token.ValidTo,
+                Expires = token.ValidTo.ToUniversalTime(),
                 Role = roles.First()
             };
         }

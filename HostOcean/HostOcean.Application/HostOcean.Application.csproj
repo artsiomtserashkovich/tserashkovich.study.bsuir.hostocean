@@ -16,4 +16,8 @@
     <ProjectReference Include="..\HostOcean.Domain\HostOcean.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Queue\Commands\" />
+  </ItemGroup>
+
 </Project>
