@@ -8,7 +8,7 @@ namespace HostOcean.Persistence.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public UnitOfWork(HostOceanDbContext applicationDataBaseContext,
+        public UnitOfWork(HostOceanDataBaseContext applicationDataBaseContext,
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             IRepository<Group> groups,
@@ -27,7 +27,7 @@ namespace HostOcean.Persistence.Repositories
             UserQueues = userQueues;
         }
 
-        public HostOceanDbContext ApplicationDataBaseContext { get; }
+        public HostOceanDataBaseContext ApplicationDataBaseContext { get; }
         public UserManager<User> UserManager { get; private set; }
         public SignInManager<User> SignInManager { get; private set; }
         public IRepository<Group> Groups { get; private set; }

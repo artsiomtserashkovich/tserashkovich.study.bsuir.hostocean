@@ -11,6 +11,7 @@ namespace HostOcean.Domain.Entities
         }
 
         public string Name { get; set; }
+        public string CalendarId { get; set; }
 
         public virtual ICollection<User> Users { get; private set; }
         public virtual ICollection<LaboratoryWork> LaboratoryWorks { get; private set; }

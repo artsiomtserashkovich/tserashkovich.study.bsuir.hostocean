@@ -13,7 +13,7 @@ namespace HostOcean.Persistence.Repositories
     {
         protected readonly DbSet<TEntity> DbSet;
 
-        public Repository(HostOceanDbContext dataBaseContext)
+        public Repository(HostOceanDataBaseContext dataBaseContext)
         {
             DbSet = dataBaseContext.Set<TEntity>();
         }
@@ -26,9 +26,9 @@ namespace HostOcean.Persistence.Repositories
 
         public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate) => DbSet.Where(predicate);
 
-        public virtual TEntity Get(string id) => DbSet.Find(id);
+        public TEntity Get(string id) => DbSet.Find(id);
 
-        public virtual TEntity Get(int id) => DbSet.Find(id);
+        public TEntity Get(int id) => DbSet.Find(id);
 
         public virtual IEnumerable<TEntity> All => DbSet.ToList();
 

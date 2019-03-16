@@ -33,7 +33,7 @@ namespace HostOcean.Api
                 .AddOptions()
                 .ConfigureDataBase(Configuration)
                 .ConfigureCors()
-                .ConfigureIdentity<User, IdentityRole, HostOceanDbContext>()
+                .ConfigureIdentity<User, IdentityRole, HostOceanDataBaseContext>()
                 .RegisterDependencies()
                 .RegisterSwaggerGen(HostingEnvironment,Configuration)
                 .RegisterMediatoR()
@@ -54,7 +54,6 @@ namespace HostOcean.Api
                 }
             });
 
-            app.InitializeDatabase();
             app.InitializeHangfireSheduleCommands();
 
             if (env.IsDevelopment())
