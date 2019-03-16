@@ -1,27 +1,28 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles/index"
 import {
-    Toolbar, IconButton, Typography,
+    Toolbar, Typography,
     Button, AppBar
 } from "@material-ui/core";
-import MenuIcon from '@material-ui/icons/Menu';
 
-import styles from "./styles"
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
+import styles from "./styles";
 
-class NavBar extends React.Component {
+library.add(faSignInAlt)
+
+class NavBarComponent extends React.Component {
     render() {
         const { classes } = this.props;
         return (
             <div className={classes.root}>
                 <AppBar position="static">
                     <Toolbar>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                            <MenuIcon />
-                        </IconButton>
                         <Typography variant="h6" color="inherit" className={classes.grow}>
-                            Host Ocean
+                            HostOcean
                         </Typography>
-                        <Button color="inherit">Login</Button>
+                        <Button color="inherit">Login   <FontAwesomeIcon icon="sign-in-alt" /></Button>
                     </Toolbar>
                 </AppBar>
             </div>
@@ -29,4 +30,4 @@ class NavBar extends React.Component {
     }
 }
 
-export default withStyles(styles)(NavBar);
+export default withStyles(styles)(NavBarComponent);
