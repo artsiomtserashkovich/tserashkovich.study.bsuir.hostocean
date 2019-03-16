@@ -1,4 +1,4 @@
-import { MainPage } from './MainPage';
+import MainPageContainer from './mainpage/containers/MainPageContainer';
 import { AccountModule } from './account/AccountModule';
 import { QueueModule } from './queue/QueueModules';
 import { Statistics } from './statistics/Statistics';
@@ -6,7 +6,7 @@ import { Statistics } from './statistics/Statistics';
 export const MainRoutes = [
     {
         path: "",
-        component: MainPage,
+        component: MainPageContainer,
         exact: true,
     },
     {

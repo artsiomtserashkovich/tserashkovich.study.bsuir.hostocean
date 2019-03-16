@@ -5,22 +5,23 @@ import * as React from 'react';
 class MainModuleContainer extends React.Component {
     render() {
         const { match } = this.props;
-        return(
+        return (
             <Switch>
                 {
-                    MainRoutes.map((item,index) =>
-                    (
-                        <Route
-                            path={ `${match.path}${item.path}` }
+                    MainRoutes.map((item, index) => {
+
+                        return (<Route
+                            path={`${match.url}${item.path}`}
                             component={item.component}
                             exact={item.exact}
                             key={index}
-                        />
-                    ))
+                        />)
+
+                    })
                 }
             </Switch>
         );
     }
 };
 
-export const MainModule =  withRouter(MainModuleContainer);
+export const MainModule = withRouter(MainModuleContainer);
