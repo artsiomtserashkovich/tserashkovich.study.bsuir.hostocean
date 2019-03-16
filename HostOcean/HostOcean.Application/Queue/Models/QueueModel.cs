@@ -1,4 +1,4 @@
-﻿using HostOcean.Application.LaboratoryWork.Models;
+﻿using HostOcean.Application.LaboratoryWorks.Models;
 using HostOcean.Application.UserQueue.Models;
 using System;
 using System.Collections.Generic;
