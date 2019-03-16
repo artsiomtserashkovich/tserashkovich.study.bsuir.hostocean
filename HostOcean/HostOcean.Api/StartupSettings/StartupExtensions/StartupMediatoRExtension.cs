@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
-using HostOcean.Application.Infrastructure.RequestPipelineHandlers;
 using HostOcean.Application.Ping.Query.Ping;
+using HostOcean.Infrastructure.RequestPipelineHandlers;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 

@@ -14,12 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HostOcean.Domain\HostOcean.Domain.csproj" />
-    <ProjectReference Include="..\HostOcean.Infrastructure\HostOcean.Infrastructure.csproj" />
-    <ProjectReference Include="..\HostOcean.Persistence\HostOcean.Persistence.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Queue\Commands\" />
   </ItemGroup>
 
 </Project>
