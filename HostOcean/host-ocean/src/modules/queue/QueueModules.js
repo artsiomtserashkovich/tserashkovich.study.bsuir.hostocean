@@ -8,9 +8,10 @@ class QueueModuleContainer extends React.Component {
         return (
             <Switch>
                 {
-                    QueueRoutes.map((item) =>
+                    QueueRoutes.map((item, index) =>
                         (
                             <Route
+                                key={index}
                                 path={`${match.path}/${item.path}`}
                                 component={item.component}
                                 exact={item.exact}

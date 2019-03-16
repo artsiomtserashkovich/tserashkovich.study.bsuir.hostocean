@@ -19,8 +19,6 @@ class NavBarComponent extends React.Component {
             <div className={classes.root}>
                 <AppBar position="static">
                     <Toolbar>
-                        <img alt={"text"} width={"70px"} height={"60px"} />
-
                         <Typography variant="h6" color="inherit" className={classes.grow}>
                             HostOcean
                         </Typography>

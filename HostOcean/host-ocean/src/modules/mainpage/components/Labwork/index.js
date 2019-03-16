@@ -1,29 +1,33 @@
 import React from "react";
-import { TableRow, Paper, Table, TableHead, TableCell, TableBody } from "@material-ui/core";
-import Checkbox from '@material-ui/core/Checkbox';
+import { Paper, Typography, Divider, withStyles } from "@material-ui/core";
 
-const LaboratoryWorks = ({ laboratoryWorks }) => {
+import styles from "./styles"
+import QueueContainer from "../../containers/QueueContainer";
+
+const LaboratoryWork = ({ classes, startDate, title, id }) => {
+    const dateString = new Date(startDate).toLocaleTimeString("ru-RU", { hour: "numeric", minute: "numeric" })
     return (
-        <div>
-            <Paper >
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align="center">Лаборатоные</TableCell>
-                            <TableCell align="center">Какие будете сдавать</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {laboratoryWorks.map((item) => (
-                            <TableRow key={item.id}>
-                                <TableCell align="center">{item.title}</TableCell>
-                                <TableCell align="center"><Checkbox /></TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </Paper>
-        </div>);
+        <Paper className={classes.root}>
+            <Typography className={classes.title} variant="h6">{title}</Typography>
+            <Divider />
+            <div className={classes.infoContainer}>
+                <div className={classes.info}>
+                    <i className="material-icons">access_time</i>
+                    <Typography variant="subtitle2">{dateString}</Typography>
+                </div>
+                <div className={classes.info}>
+                    <i className="material-icons">location_on</i>
+                    <Typography variant="subtitle2">412-2</Typography>
+                </div>
+                <div className={classes.info}>
+                    <i className="material-icons">person</i>
+                    <Typography variant="subtitle2">Сасин Е.А</Typography>
+                </div>
+            </div>
+            <Divider />
+            <QueueContainer labworkId={id} />
+        </Paper>
+    );
 }
 
-export default LaboratoryWorks;
+export default withStyles(styles)(LaboratoryWork);
