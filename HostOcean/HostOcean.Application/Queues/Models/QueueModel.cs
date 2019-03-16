@@ -1,9 +1,9 @@
-﻿using HostOcean.Application.LaboratoryWork.Models;
-using HostOcean.Application.UserQueue.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using HostOcean.Application.LaboratoryWorks.Models;
+using HostOcean.Application.UserQueues.Models;
 
-namespace HostOcean.Application.Queue.Models
+namespace HostOcean.Application.Queues.Models
 {
     public class QueueModel
     {

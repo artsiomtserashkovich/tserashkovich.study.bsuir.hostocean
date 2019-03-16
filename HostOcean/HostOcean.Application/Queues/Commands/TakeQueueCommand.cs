@@ -1,10 +1,9 @@
-﻿using HostOcean.Domain.Entities;
-using MediatR;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using HostOcean.Application.Interfaces.Persistance;
+using HostOcean.Application.Interfaces.Persistence;
+using MediatR;
 
-namespace HostOcean.Application.Queue.Commands
+namespace HostOcean.Application.Queues.Commands
 {
     public class TakeQueueCommand : IRequest
     {

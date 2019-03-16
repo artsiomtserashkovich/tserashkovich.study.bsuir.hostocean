@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using HostOcean.Application.Interfaces.Persistance;
+using HostOcean.Application.Interfaces.Persistence;
 using HostOcean.Domain.Entities;
 
 namespace HostOcean.Persistence.Repositories

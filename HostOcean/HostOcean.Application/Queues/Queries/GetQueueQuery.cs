@@ -1,13 +1,12 @@
-﻿using AutoMapper;
-using HostOcean.Application.Exceptions;
-using HostOcean.Application.Queue.Models;
-using HostOcean.Infrastructure;
-using HostOcean.Persistence.Interfaces;
-using MediatR;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
+using HostOcean.Application.Exceptions;
+using HostOcean.Application.Interfaces.Persistence;
+using HostOcean.Application.Queues.Models;
+using MediatR;
 
-namespace HostOcean.Application.Queue.Queries
+namespace HostOcean.Application.Queues.Queries
 {
     public class GetQueueQuery : IRequest<QueueModel>
     {

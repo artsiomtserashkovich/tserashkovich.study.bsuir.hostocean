@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Threading.Tasks;
-using HostOcean.Application.Interfaces.Persistance;
+using HostOcean.Application.Interfaces.Persistence;
 
 namespace HostOcean.Persistence.Repositories
 {

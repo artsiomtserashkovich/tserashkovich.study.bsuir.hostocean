@@ -1,4 +1,4 @@
-﻿namespace HostOcean.Application.Group.Models
+﻿namespace HostOcean.Application.Groups.Models
 {
     public class GroupModel
     {

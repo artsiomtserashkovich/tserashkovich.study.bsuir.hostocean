@@ -1,7 +1,7 @@
-﻿using HostOcean.Application.Queue.Models;
+﻿using HostOcean.Application.Queues.Models;
 using HostOcean.Application.Users.Models;
 
-namespace HostOcean.Application.UserQueue.Models
+namespace HostOcean.Application.UserQueues.Models
 {
     public class UserQueueModel
     {

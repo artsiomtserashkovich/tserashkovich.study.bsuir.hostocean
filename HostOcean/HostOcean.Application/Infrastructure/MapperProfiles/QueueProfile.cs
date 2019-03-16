@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using HostOcean.Application.Queue.Models;
 using System.Linq;
+using HostOcean.Application.Queues.Models;
 
 namespace HostOcean.Application.Infrastructure.MapperProfiles
 {

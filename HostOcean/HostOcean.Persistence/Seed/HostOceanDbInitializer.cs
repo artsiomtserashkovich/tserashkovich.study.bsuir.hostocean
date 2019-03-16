@@ -49,14 +49,13 @@ namespace HostOcean.Persistence.Seed
 
         public void Seed(HostOceanDbContext context)
         {
-            SeedRoles(context);
-            SeedGroups(context);
-            SeedLabworks(context);
-            SeedUsers(context);
-            SeedQueues(context);
-            SeedPlaces(context);
-
-            context.SaveChanges();
+//            SeedRoles(context);
+//            SeedLabworks(context);
+//            SeedUsers(context);
+//            SeedQueues(context);
+//            SeedPlaces(context);
+//
+//            context.SaveChanges();
         }
 
         public void SeedRoles(HostOceanDbContext context)

@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using HostOcean.Application.Group.Models;
-using HostOcean.Application.Group.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using HostOcean.Application.Groups.Models;
+using HostOcean.Application.Groups.Queries;
 
 namespace HostOcean.Api.Controllers
 {

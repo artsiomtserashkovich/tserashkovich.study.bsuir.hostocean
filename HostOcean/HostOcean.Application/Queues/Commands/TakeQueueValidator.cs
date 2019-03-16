@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace HostOcean.Application.Queue.Commands
+namespace HostOcean.Application.Queues.Commands
 {
     public class TakeQueueValidator : AbstractValidator<TakeQueueCommand>
     {

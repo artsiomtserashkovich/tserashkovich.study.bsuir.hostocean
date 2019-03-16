@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using HostOcean.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 
-namespace HostOcean.Application.Interfaces.Persistance
+namespace HostOcean.Application.Interfaces.Persistence
 {
     public interface IUnitOfWork : IDisposable
     {
@@ -11,7 +11,7 @@ namespace HostOcean.Application.Interfaces.Persistance
         SignInManager<User> SignInManager { get; }
         IRepository<Group> Groups { get; }
         IRepository<LaboratoryWork> LaboratoryWorks { get; }
-        IRepository<Domain.Entities.Queue> Queues { get; }
+        IRepository<Queue> Queues { get; }
         IRepository<UserQueue> UserQueues { get; }
 
         Task SaveAsync();

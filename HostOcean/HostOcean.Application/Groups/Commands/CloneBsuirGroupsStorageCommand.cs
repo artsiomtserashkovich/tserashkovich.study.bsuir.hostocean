@@ -1,11 +1,8 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using HostOcean.Application.Extension;
 using HostOcean.Application.Interfaces.Infrastructure;
-using HostOcean.Application.Interfaces.Persistance;
-using HostOcean.Domain.Entities;
+using HostOcean.Application.Interfaces.Persistence;
 using MediatR;
 
 namespace HostOcean.Application.Groups.Commands
@@ -35,7 +32,7 @@ namespace HostOcean.Application.Groups.Commands
                 return Unit.Value;
             }
 
-            private async Task<bool> NewGroupPredicate(Group group) =>
+            private async Task<bool> NewGroupPredicate(Domain.Entities.Group group) =>
                  await _unitOfWork.Groups.IsExistByIdAsync(group.Id);
             
         }

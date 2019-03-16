@@ -1,12 +1,12 @@
-﻿using AutoMapper;
-using HostOcean.Application.Group.Models;
-using HostOcean.Persistence.Interfaces;
-using MediatR;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
+using HostOcean.Application.Groups.Models;
+using HostOcean.Application.Interfaces.Persistence;
+using MediatR;
 
-namespace HostOcean.Application.Group.Queries
+namespace HostOcean.Application.Groups.Queries
 {
     public class GetGroupsQuery : IRequest<IEnumerable<GroupModel>>
     {

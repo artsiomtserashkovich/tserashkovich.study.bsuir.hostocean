@@ -1,4 +1,4 @@
-﻿namespace HostOcean.Application.LaboratoryWork.Models
+﻿namespace HostOcean.Application.LaboratoryWorks.Models
 {
     public class LaboratoryWorkModel
     {
