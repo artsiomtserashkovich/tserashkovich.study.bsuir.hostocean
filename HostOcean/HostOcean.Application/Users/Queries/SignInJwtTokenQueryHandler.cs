@@ -20,9 +20,9 @@ namespace HostOcean.Application.Users.Queries
     public class SignInJwtTokenQueryHandler : IRequestHandler<SignInJwtTokenQuery, JwtToken>
     {
         private readonly JwtSettings _jwtSettings;
-        private readonly UserManager<Domain.Entities.User> _userManager;
+        private readonly UserManager<User> _userManager;
 
-        public SignInJwtTokenQueryHandler(IOptions<JwtSettings> jwtSettingsOptions, UserManager<Domain.Entities.User> userManager)
+        public SignInJwtTokenQueryHandler(IOptions<JwtSettings> jwtSettingsOptions, UserManager<User> userManager)
         {
             _jwtSettings = jwtSettingsOptions.Value;
             _userManager = userManager;

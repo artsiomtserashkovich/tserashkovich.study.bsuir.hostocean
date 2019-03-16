@@ -11,11 +11,8 @@ namespace HostOcean.Api.Controllers
 {
     public class GroupsController : BaseController
     {
-        private readonly IMapper _mapper;
-
         public GroupsController(IMediator mediator, IMapper mapper) : base(mediator)
         {
-            _mapper = mapper;
         }
 
         [HttpGet("all")]

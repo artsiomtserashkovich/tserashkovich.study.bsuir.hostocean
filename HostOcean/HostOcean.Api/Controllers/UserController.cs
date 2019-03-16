@@ -5,9 +5,7 @@ using System.Threading.Tasks;
 using HostOcean.Application.Users.Commands.CreateUser;
 using HostOcean.Application.Users.Models;
 using HostOcean.Application.Users.Queries;
-using System;
 using FluentValidation;
-using System.Linq;
 using System.Collections.Generic;
 
 namespace HostOcean.Api.Controllers

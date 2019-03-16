@@ -12,14 +12,12 @@ namespace HostOcean.Application.Groups.Queries
     {
         public class GetGroupsQueryHandler : IRequestHandler<GetGroupsQuery, IEnumerable<GroupModel>>
         {
-            private readonly IMediator _mediator;
             private readonly IUnitOfWork _unitOfWork;
             private readonly IMapper _mapper;
 
-            public GetGroupsQueryHandler(IUnitOfWork unitOfWork, IMediator mediator, IMapper mapper)
+            public GetGroupsQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
             {
                 _unitOfWork = unitOfWork;
-                _mediator = mediator;
                 _mapper = mapper;
             }
 

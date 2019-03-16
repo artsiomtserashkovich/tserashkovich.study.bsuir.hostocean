@@ -2,8 +2,8 @@
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using HostOcean.Application.Interfaces.Persistence;
 using HostOcean.Domain.Entities;
-using HostOcean.Persistence.Interfaces;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

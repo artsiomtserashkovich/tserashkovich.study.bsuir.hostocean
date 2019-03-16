@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace HostOcean.Persistence.Interfaces
+namespace HostOcean.Application.Interfaces.Persistence
 {
     public interface IHostOceanDataBaseContextInitializer
     {
