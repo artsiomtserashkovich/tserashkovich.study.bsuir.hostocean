@@ -32,7 +32,7 @@ namespace HostOcean.Application.Queues.Commands
                 _unitOfWork.UserQueues.Add(entity);
                 await _unitOfWork.SaveAsync();
 
-                return Unit.Value;
+                return await Unit.Task;
             }
         }
     }

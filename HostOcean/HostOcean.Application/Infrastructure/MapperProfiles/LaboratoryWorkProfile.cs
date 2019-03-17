@@ -8,6 +8,7 @@ namespace HostOcean.Application.Infrastructure.MapperProfiles
         public LaboratoryWorkProfile()
         {
             CreateMap<Domain.Entities.LaboratoryWork, LaboratoryWorkModel>();
+
         }
     }
 }

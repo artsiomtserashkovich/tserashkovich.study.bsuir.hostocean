@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace HostOcean.Application.Extension
@@ -15,7 +16,7 @@ namespace HostOcean.Application.Extension
             var match = new List<TEntity>();
             var noMatch = new List<TEntity>();
 
-            foreach (var entity in source)
+            foreach (var entity in source ?? Enumerable.Empty<TEntity>())
             {
                 if (await predicate(entity))
                 {

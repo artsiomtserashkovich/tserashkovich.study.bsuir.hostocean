@@ -11,6 +11,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Migrations\20190317075301_InitialMigration.cs" />
+    <Compile Include="Migrations\20190317075301_InitialMigration.Designer.cs" />
+    <Compile Include="Migrations\HostOceanDataBaseContextModelSnapshot.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
 	<PackageReference Include="LinqKit.Microsoft.EntityFrameworkCore" Version="1.1.15" />	<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.2" />
