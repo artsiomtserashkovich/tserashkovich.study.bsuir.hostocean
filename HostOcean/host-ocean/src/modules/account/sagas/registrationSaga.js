@@ -9,6 +9,7 @@ import * as sessionActions from "../../../state/actions/sessionActions"
 function* registerSuccess(action) {
     const token = action.response.data;
     yield put(sessionActions.setToken(token))
+    yield put(sessionActions.getUserRequest())
     yield put(push("/queue"))
 
 }

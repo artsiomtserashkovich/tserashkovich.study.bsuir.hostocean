@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using HostOcean.Application.Exceptions;
@@ -30,6 +31,7 @@ namespace HostOcean.Application.Queues.Queries
                 if (result == null) throw new NotFoundException("Queue", request.Id);
 
                 var model = _mapper.Map<Domain.Entities.Queue, QueueModel>(result);
+                model.UserQueues = model.UserQueues.OrderBy(c => c.CreatedOn).ToList();
 
                 return model;
             }

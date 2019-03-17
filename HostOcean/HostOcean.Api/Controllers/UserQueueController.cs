@@ -20,5 +20,14 @@ namespace HostOcean.Api.Controllers
             await Mediator.Send(command);
             return Ok();
         }
+
+        [HttpPost("leave")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
+        public async Task<OkResult> Leave([FromBody]LeaveQueueCommand command)
+        {
+            await Mediator.Send(command);
+            return Ok();
+        }
     }
 }

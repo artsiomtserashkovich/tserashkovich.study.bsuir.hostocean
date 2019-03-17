@@ -7,7 +7,8 @@ namespace HostOcean.Application.Infrastructure.MapperProfiles
     {
         public LaboratoryWorkProfile()
         {
-            CreateMap<Domain.Entities.LaboratoryWork, LaboratoryWorkModel>();
+            CreateMap<Domain.Entities.LaboratoryWork, LaboratoryWorkModel>()
+                .ForMember(model => model.QueueId, _ => _.MapFrom(e => e.Queue.Id));
         }
     }
 }

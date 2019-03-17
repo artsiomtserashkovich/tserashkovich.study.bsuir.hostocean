@@ -21,9 +21,9 @@ namespace HostOcean.Api.Controllers
         [HttpGet("upcoming")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType(typeof(IEnumerable<LaboratoryWorkModel>))]
-        public async Task<IActionResult> GetUpcomingLabs()
+        public async Task<IActionResult> GetUpcomingLabs(string groupId)
         {
-            var upcomingLabs = await Mediator.Send(new GetUpcomingLabworksQuery());
+            var upcomingLabs = await Mediator.Send(new GetUpcomingLabworksQuery() { GroupId = groupId } );
 
             return Ok(upcomingLabs);
         }

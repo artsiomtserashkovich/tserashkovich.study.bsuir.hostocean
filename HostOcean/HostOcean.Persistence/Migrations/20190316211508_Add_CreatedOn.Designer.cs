@@ -4,14 +4,16 @@ using HostOcean.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HostOcean.Persistence.Migrations
 {
     [DbContext(typeof(HostOceanDbContext))]
-    partial class HostOceanDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190316211508_Add_CreatedOn")]
+    partial class Add_CreatedOn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
