@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using Hangfire;
 using Hangfire.Common;
 using HostOcean.Application.Interfaces.Infrastructure;
@@ -22,6 +23,13 @@ namespace HostOcean.Infrastructure.Hangfire
             _commandExecutor = commandExecutor;
             _recurringJobManager = recurringJobManager;
             _backgroundJobClient = backgroundJobClient;
+        }
+
+        public string ExecuteExpressionWithDelay(Expression<Action> expression, TimeSpan delay)
+        {
+            var newTime = DateTime.Now + delay;
+
+            return _backgroundJobClient.Schedule(expression, newTime);
         }
 
         public string ExecuteNow(IRequest request, string description = null)

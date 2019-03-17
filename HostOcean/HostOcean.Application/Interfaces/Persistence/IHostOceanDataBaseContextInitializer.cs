@@ -4,6 +4,7 @@ namespace HostOcean.Application.Interfaces.Persistence
 {
     public interface IHostOceanDataBaseContextInitializer
     {
-        Task Initialize();
+        Task SeedDataBase();
+        Task InitializeMigration();
     }
 }

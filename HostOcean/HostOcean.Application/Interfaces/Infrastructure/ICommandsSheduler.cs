@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Linq.Expressions;
 using MediatR;
 
 namespace HostOcean.Application.Interfaces.Infrastructure
 {
     public interface ICommandsSheduler
     {
+        string ExecuteExpressionWithDelay(Expression<Action> expression, TimeSpan delay);
         string ExecuteNow(IRequest request, string description = null);
         string ExecuteAfterSuccessParentCommand(IRequest request, string parentCommandId, string description = null);
         string ExecuteAtDateTime(IRequest request, DateTime scheduleAt, string description = null);

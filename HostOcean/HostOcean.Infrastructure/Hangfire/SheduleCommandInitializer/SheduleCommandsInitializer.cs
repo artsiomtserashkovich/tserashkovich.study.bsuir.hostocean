@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using HostOcean.Application.ApplicationSettings;
 using HostOcean.Application.Groups.Commands;
 using HostOcean.Application.Interfaces.Infrastructure;
@@ -13,7 +14,8 @@ namespace HostOcean.Infrastructure.Hangfire.SheduleCommandInitializer
         private readonly IHostOceanDataBaseContextInitializer _hostOceanDataBaseContextInitializer;
         private readonly HangfireSettings _hangfireSettings;
 
-        public SheduleCommandsInitializer(ICommandsSheduler commandsSheduler,
+        public SheduleCommandsInitializer(
+            ICommandsSheduler commandsSheduler,
             IOptions<HangfireSettings> hangfireSettingsOption,
             IHostOceanDataBaseContextInitializer hostOceanDataBaseContextInitializer)
         {
@@ -24,7 +26,13 @@ namespace HostOcean.Infrastructure.Hangfire.SheduleCommandInitializer
 
         public void InitializeSheduleCommands()
         {
-            _commandsSheduler.ExecuteWithDelay(new CloneBsuirGroupsStorageCommand(), TimeSpan.FromSeconds(30));
+            _commandsSheduler.ExecuteExpressionWithDelay(
+                () => _hostOceanDataBaseContextInitializer.InitializeMigration(), TimeSpan.FromSeconds(10));
+
+            _commandsSheduler.ExecuteExpressionWithDelay(() => _hostOceanDataBaseContextInitializer.SeedDataBase(),
+                TimeSpan.FromSeconds(40));
+
+            _commandsSheduler.ExecuteWithDelay(new CloneBsuirGroupsStorageCommand(), TimeSpan.FromMinutes(2));
 
             _commandsSheduler.ExecutesByCronExpression(new CloneBsuirGroupsStorageCommand(), Guid.NewGuid().ToString(),
                 _hangfireSettings.GroupSeedingCron, "Update Group list from Bsuir IIS.");

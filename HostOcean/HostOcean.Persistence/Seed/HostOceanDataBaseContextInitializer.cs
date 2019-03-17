@@ -31,9 +31,8 @@ namespace HostOcean.Persistence.Seed
             _hostingEnvironment = hostingEnvironment;
             _roleManager = roleManager;
         }
-        public async Task Initialize()
+        public async Task SeedDataBase()
         {
-            await InitializeMigration();
             if (_hostingEnvironment.IsDevelopment())
                 await SeedDataBaseWithDebugDefaultValues();
             else
@@ -42,7 +41,7 @@ namespace HostOcean.Persistence.Seed
             await _dataBaseContext.SaveChangesAsync();
         }
 
-        private async Task InitializeMigration()
+        public async Task InitializeMigration()
         {
             try
             {
