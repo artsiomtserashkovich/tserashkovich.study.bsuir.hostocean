@@ -10,6 +10,9 @@ export default handleActions(
         [actions.getUserSuccess]: (state, action) => {
             return {...action.response.data}
         },
+        [actions.removeUser]: (state, action) => {
+            return {...initialState}
+        },
     },
     initialState
 );

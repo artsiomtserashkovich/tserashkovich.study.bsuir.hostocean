@@ -6,12 +6,15 @@ import * as _ from "lodash"
 import * as actions from "../actions"
 import * as sessionActions from "../../../state/actions/sessionActions"
 
-function* registerSuccess(action) {
+function* authSuccess(action) {
     const token = action.response.data;
     yield put(sessionActions.setToken(token))
     yield put(sessionActions.getUserRequest())
-    yield put(push("/queue"))
 
+}
+
+function* enterSite(action) {
+    yield put(push("/"))
 }
 
 function* registerFailed(action) {
@@ -29,10 +32,18 @@ function* registerFailed(action) {
     }
 }
 
+function* loginFailed(action) {
+    yield put(updateSyncErrors('login', {
+        username: "Incorrect username or password!"
+    }));
+}
+
 function* registrationSaga() {
     yield all([
-        takeLatest(actions.registerSuccess, registerSuccess),
+        takeLatest([actions.registerSuccess, actions.loginSuccess], authSuccess),
+        takeLatest(sessionActions.getUserSuccess, enterSite),
         takeLatest(actions.registerFailed, registerFailed),
+        takeLatest(actions.loginFailed, loginFailed),
     ])
 }
 

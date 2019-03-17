@@ -7,6 +7,7 @@ export const MainRoutes = [
     {
         path: "",
         component: MainPageContainer,
+        requireAuth: true,
         exact: true,
     },
     {
