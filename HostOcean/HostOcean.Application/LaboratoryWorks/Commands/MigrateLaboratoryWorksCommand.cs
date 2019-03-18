@@ -54,7 +54,16 @@ namespace HostOcean.Application.LaboratoryWorks.Commands
                         var splitedLaboratoryWorks =
                             await laboratoryWorks.SplitByPredicateAsync(NewLaboratoryWorkPredicate);
 
-                        _unitOfWork.LaboratoryWorks.AddRange(splitedLaboratoryWorks.Match);
+                        var newLaboratoryWorks = splitedLaboratoryWorks.Match;
+                        foreach (var labwork in newLaboratoryWorks)
+                        {
+                            var queue = new Queue() { LaboratoryWork = labwork };
+                            labwork.Queue = queue;
+
+                            _unitOfWork.Queues.Add(queue);
+                        }
+
+                        _unitOfWork.LaboratoryWorks.AddRange(newLaboratoryWorks);
                         _unitOfWork.LaboratoryWorks.UpdateRange(splitedLaboratoryWorks.NoMatch);
                         await _unitOfWork.SaveAsync();
 

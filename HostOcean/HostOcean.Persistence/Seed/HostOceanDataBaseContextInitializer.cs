@@ -18,11 +18,11 @@ namespace HostOcean.Persistence.Seed
         private Queue _defaultDebugQueue;
 
         private RoleManager<IdentityRole> _roleManager;
-        private readonly HostOceanDBContext _dbContext;
+        private readonly HostOceanDbContext _dbContext;
         private readonly IHostingEnvironment _hostingEnvironment;
 
         public HostOceanDataBaseContextInitializer(
-            HostOceanDBContext dbContext,
+            HostOceanDbContext dbContext,
             IHostingEnvironment hostingEnvironment,
             RoleManager<IdentityRole> roleManager
         )

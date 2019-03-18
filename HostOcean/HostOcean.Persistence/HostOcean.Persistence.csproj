@@ -11,8 +11,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Migrations\20190318161536_InitialMigration.cs" />
-    <Compile Include="Migrations\20190318161536_InitialMigration.Designer.cs" />
+    <Compile Include="Migrations\20190226080635_InitialMigration.cs" />
+    <Compile Include="Migrations\20190226080635_InitialMigration.Designer.cs" />
+    <Compile Include="Migrations\20190316185733_Add_CalendarId.cs" />
+    <Compile Include="Migrations\20190316185733_Add_CalendarId.Designer.cs" />
+    <Compile Include="Migrations\20190316211508_Add_CreatedOn.cs" />
+    <Compile Include="Migrations\20190316211508_Add_CreatedOn.Designer.cs" />
+    <Compile Include="Migrations\20190318214025_Labwork_Location_And_Lecturer.cs" />
+    <Compile Include="Migrations\20190318214025_Labwork_Location_And_Lecturer.Designer.cs" />
     <Compile Include="Migrations\HostOceanDBContextModelSnapshot.cs" />
   </ItemGroup>
 

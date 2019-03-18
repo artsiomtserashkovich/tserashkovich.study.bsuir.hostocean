@@ -9,7 +9,15 @@ export class LabworksListContainer extends React.Component {
 
         const props = {
             date: new Date(date).toLocaleString('en-EN', options),
-            laboratoryWorks
+            laboratoryWorks: laboratoryWorks.sort((a,b) => {
+                if (a.startDate > b.startDate) {
+                    return 1;
+                }
+                if (a.startDate < b.startDate) {
+                    return -1;
+                }
+                return 0;
+            })
         }
 
         return <LabworksList {...props} />

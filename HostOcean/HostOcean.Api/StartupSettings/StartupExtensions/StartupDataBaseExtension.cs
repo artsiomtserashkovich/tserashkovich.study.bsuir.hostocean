@@ -13,7 +13,7 @@ namespace HostOcean.Api.StartupSettings.StartupExtensions
         {
             services.AddTransient<IHostOceanDataBaseContextInitializer, HostOceanDataBaseContextInitializer>();
             var connection = Configuration.GetConnectionString("MSSQLDatabaseConnectionString");
-            services.AddDbContext<HostOceanDBContext>(options => {                
+            services.AddDbContext<HostOceanDbContext>(options => {                
                 options.UseLazyLoadingProxies();
                 options.UseSqlServer(connection, b => b.MigrationsAssembly("HostOcean.Persistence"));
             });

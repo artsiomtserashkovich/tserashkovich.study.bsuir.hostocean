@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+// ReSharper disable RedundantArgumentDefaultValue
 
 namespace HostOcean.Persistence.Migrations
 {
@@ -27,8 +28,7 @@ namespace HostOcean.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    CalendarId = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -221,7 +221,7 @@ namespace HostOcean.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    Order = table.Column<short>(nullable: false),
                     UserId = table.Column<string>(nullable: true),
                     QueueId = table.Column<string>(nullable: false)
                 },
@@ -301,6 +301,12 @@ namespace HostOcean.Persistence.Migrations
                 name: "IX_UserQueues_UserId",
                 table: "UserQueues",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserQueues_QueueId_Order",
+                table: "UserQueues",
+                columns: new[] { "QueueId", "Order" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserQueues_QueueId_UserId",

@@ -4,8 +4,8 @@ import { Paper, Typography, Divider, withStyles } from "@material-ui/core";
 import styles from "./styles"
 import QueueContainer from "../../containers/QueueContainer";
 
-const LaboratoryWork = ({ classes, startDate, title, id }) => {
-    const dateString = new Date(startDate).toLocaleTimeString("ru-RU", { hour: "numeric", minute: "numeric" })
+const LaboratoryWork = ({ classes, startDate, title, lecturer, location, id }) => {
+    const dateString = new Date(startDate).toLocaleTimeString("en-EN", { hour: "numeric", minute: "numeric" })
     return (
         <Paper className={classes.root}>
             <Typography className={classes.title} variant="h6">{title}</Typography>
@@ -17,11 +17,11 @@ const LaboratoryWork = ({ classes, startDate, title, id }) => {
                 </div>
                 <div className={classes.info}>
                     <i className="material-icons">location_on</i>
-                    <Typography variant="subtitle2">412-2</Typography>
+                    <Typography variant="subtitle2">{location}</Typography>
                 </div>
                 <div className={classes.info}>
                     <i className="material-icons">person</i>
-                    <Typography variant="subtitle2">Сасин Е.А</Typography>
+                    <Typography variant="subtitle2">{lecturer}</Typography>
                 </div>
             </div>
             <Divider />

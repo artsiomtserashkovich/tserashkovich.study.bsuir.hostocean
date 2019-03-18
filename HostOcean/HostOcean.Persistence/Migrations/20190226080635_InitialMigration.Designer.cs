@@ -9,15 +9,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HostOcean.Persistence.Migrations
 {
-    [DbContext(typeof(HostOceanDBContext))]
-    [Migration("20190318161536_InitialMigration")]
+    [DbContext(typeof(HostOceanDbContext))]
+    [Migration("20190226080635_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
+                .HasAnnotation("ProductVersion", "2.2.1-servicing-10028")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -25,8 +25,6 @@ namespace HostOcean.Persistence.Migrations
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CalendarId");
 
                     b.Property<string>("Name");
 
@@ -141,7 +139,7 @@ namespace HostOcean.Persistence.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<short>("Order");
 
                     b.Property<string>("QueueId")
                         .IsRequired();
@@ -151,6 +149,9 @@ namespace HostOcean.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
+
+                    b.HasIndex("QueueId", "Order")
+                        .IsUnique();
 
                     b.HasIndex("QueueId", "UserId")
                         .IsUnique()

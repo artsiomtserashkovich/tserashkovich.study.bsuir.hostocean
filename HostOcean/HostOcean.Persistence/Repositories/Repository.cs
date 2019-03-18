@@ -13,7 +13,7 @@ namespace HostOcean.Persistence.Repositories
     {
         protected readonly DbSet<TEntity> DbSet;
 
-        public Repository(HostOceanDBContext dbContext)
+        public Repository(HostOceanDbContext dbContext)
         {
             DbSet = dbContext.Set<TEntity>();
         }

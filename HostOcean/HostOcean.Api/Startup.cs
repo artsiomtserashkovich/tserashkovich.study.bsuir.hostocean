@@ -33,7 +33,7 @@ namespace HostOcean.Api
                 .AddOptions()
                 .ConfigureDataBase(Configuration)
                 .ConfigureCors()
-                .ConfigureIdentity<User, IdentityRole, HostOceanDBContext>()
+                .ConfigureIdentity<User, IdentityRole, HostOceanDbContext>()
                 .RegisterDependencies()
                 .RegisterSwaggerGen(HostingEnvironment,Configuration)
                 .RegisterMediatoR()
