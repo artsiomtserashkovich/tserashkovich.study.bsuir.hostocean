@@ -1,8 +1,10 @@
-﻿namespace HostOcean.Domain.Entities
+﻿using System;
+
+namespace HostOcean.Domain.Entities
 {
     public class UserQueue : Entity
     {
-        public short Order { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         public virtual User User { get; set; }
         public string UserId { get; set; }

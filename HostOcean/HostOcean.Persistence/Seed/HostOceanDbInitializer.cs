@@ -159,7 +159,7 @@ namespace HostOcean.Persistence.Seed
                 {
                     new UserQueue()
                     {
-                        Order = 1,
+                        CreatedOn = DateTime.Now,
                         Queue = queue,
                         User = user
                     }

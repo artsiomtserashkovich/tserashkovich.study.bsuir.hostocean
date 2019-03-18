@@ -5,7 +5,7 @@ namespace HostOcean.Application.UserQueues.Models
 {
     public class UserQueueModel
     {
-        public short Order { get; set; }
+        public string CreatedOn { get; set; }
 
         public UserModel User { get; set; }
 

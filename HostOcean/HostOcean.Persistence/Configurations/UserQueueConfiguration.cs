@@ -12,10 +12,6 @@ namespace HostOcean.Persistence.Configurations
                 .HasKey(x => x.Id);
 
             builder
-                .HasIndex(f => new { f.QueueId, f.Order })
-                .IsUnique();
-
-            builder
                 .HasIndex(f => new { f.QueueId, f.UserId })
                 .IsUnique();
 

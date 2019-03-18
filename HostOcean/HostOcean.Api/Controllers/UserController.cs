@@ -1,14 +1,12 @@
-using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+using FluentValidation;
 using HostOcean.Application.Users.Commands.CreateUser;
 using HostOcean.Application.Users.Models;
 using HostOcean.Application.Users.Queries;
-using System;
-using FluentValidation;
-using System.Linq;
+using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace HostOcean.Api.Controllers
 {
@@ -16,6 +14,14 @@ namespace HostOcean.Api.Controllers
     {
         public UserController(IMediator mediator) : base(mediator)
         {
+        }
+
+        [HttpGet("me")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType(typeof(UserModel))]
+        public async Task<IActionResult> GetMe()
+        {
+            return Ok(await Mediator.Send(new GetCurrentUserQuery()));
         }
 
         [HttpPost]
@@ -31,7 +37,7 @@ namespace HostOcean.Api.Controllers
                 var token = await Mediator.Send(signInQuery);
                 return Ok(token);
             }
-            catch(ValidationException ex)
+            catch (ValidationException ex)
             {
                 //TODO: move to handler
 
@@ -40,11 +46,11 @@ namespace HostOcean.Api.Controllers
                 {
                     dict.TryAdd(error.PropertyName, error.ErrorMessage);
                 }
-                
+
                 return BadRequest(new { Errors = dict });
             }
         }
-        
+
         [HttpPost("signin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType(typeof(JwtToken))]

@@ -5,6 +5,7 @@ using HostOcean.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,6 +13,8 @@ namespace HostOcean.Application.LaboratoryWorks.Queries
 {
     public class GetUpcomingLabworksQuery : IRequest<IEnumerable<LaboratoryWorkModel>>
     {
+        public string GroupId { get; set; }
+
         public class GetUpcomingLabworksQueryHandler : IRequestHandler<GetUpcomingLabworksQuery, IEnumerable<LaboratoryWorkModel>>
         {
             private readonly IMapper _mapper;
@@ -27,7 +30,7 @@ namespace HostOcean.Application.LaboratoryWorks.Queries
             {
                 var currentDate = DateTime.Today;
                 //var upcomingLabs = _unitOfWork.LaboratoryWorks.Find(e => e.StartDate > currentDate);
-                var upcomingLabs = _unitOfWork.LaboratoryWorks.All;
+                var upcomingLabs = _unitOfWork.LaboratoryWorks.Find(e => e.Group.Id == request.GroupId).ToList();
 
                 var mappedEntites = _mapper.Map<IEnumerable<LaboratoryWork>, IEnumerable<LaboratoryWorkModel>>(upcomingLabs);
 

@@ -11,6 +11,6 @@ namespace HostOcean.Application.Queues.Models
         public LaboratoryWorkModel LaboratoryWork { get; set; }
         public DateTime? CreatedOn { get; set; }
         public DateTime RegistrationStart { get; set; }
-        public ICollection<UserQueueModel> UserQueues { get; private set; }
+        public ICollection<UserQueueModel> UserQueues { get; set; }
     }
 }

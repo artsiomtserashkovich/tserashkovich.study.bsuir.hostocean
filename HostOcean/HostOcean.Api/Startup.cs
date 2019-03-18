@@ -67,6 +67,7 @@ namespace HostOcean.Api
                 app.UseHsts();
             }
 
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
 
