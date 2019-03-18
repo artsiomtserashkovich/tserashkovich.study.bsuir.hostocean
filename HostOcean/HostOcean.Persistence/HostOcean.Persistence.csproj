@@ -19,7 +19,7 @@
     <Compile Include="Migrations\20190316211508_Add_CreatedOn.Designer.cs" />
     <Compile Include="Migrations\20190318214025_Labwork_Location_And_Lecturer.cs" />
     <Compile Include="Migrations\20190318214025_Labwork_Location_And_Lecturer.Designer.cs" />
-    <Compile Include="Migrations\HostOceanDBContextModelSnapshot.cs" />
+    <Compile Include="Migrations\HostOceanDbContextModelSnapshot.cs" />
   </ItemGroup>
 
   <ItemGroup>
