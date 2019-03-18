@@ -13,6 +13,10 @@ const accountRequests = {
         method: 'post',
         data
     }),
+    getUserRequest: () => ({
+        url: `api/user/me`,
+        method: 'get'
+    }),
 }
 
 export default accountRequests

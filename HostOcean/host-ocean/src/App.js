@@ -9,7 +9,7 @@ import { MainModule } from './modules/MainModule';
 import * as actions from "./state/actions/sessionActions"
 
 import config from "./config/index"
-import NavBar from './modules/navbar';
+import NavbarContainer from './modules/navbar/containers/NavbarContainer';
 
 import createStore, { history } from './state';
 
@@ -27,7 +27,7 @@ class App extends React.Component {
         <PersistGate loading={null} persistor={persistor}>
           <ConnectedRouter history={history} context={ReactReduxContext}>
             <div>
-              <NavBar />
+              <NavbarContainer />
               <MainModule />
             </div>
           </ConnectedRouter>

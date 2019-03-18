@@ -2,15 +2,12 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles/index"
 import {
     Toolbar, Typography,
-    Button, AppBar
+    AppBar
 } from "@material-ui/core";
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
-import styles from "./styles";
+import UserContainer from "./../../containers/UserContainer";
 
-library.add(faSignInAlt)
+import styles from "./styles";
 
 class NavBarComponent extends React.Component {
     render() {
@@ -22,7 +19,7 @@ class NavBarComponent extends React.Component {
                         <Typography variant="h6" color="inherit" className={classes.grow}>
                             HostOcean
                         </Typography>
-                        <Button color="inherit">Login   <FontAwesomeIcon icon="sign-in-alt" /></Button>
+                        <UserContainer />
                     </Toolbar>
                 </AppBar>
             </div>

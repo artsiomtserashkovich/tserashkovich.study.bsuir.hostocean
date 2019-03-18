@@ -7,9 +7,9 @@ import * as labworksActions from "./../actions/labworksActions";
 
 class DailyLabworksContainer extends React.Component {
     componentDidMount() {
-        const { getLabworksRequest } = this.props;
+        const { getLabworksRequest, groupId } = this.props;
 
-        getLabworksRequest();
+        getLabworksRequest({ groupId });
     }
 
     render() {
@@ -33,7 +33,8 @@ class DailyLabworksContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return ({
-        laboratoryWorks: state.mainpage.labworks
+        laboratoryWorks: state.mainpage.labworks,
+        groupId: state.user.groupId
     });
 }
 

@@ -18,16 +18,16 @@ namespace HostOcean.Persistence.Seed
         private Queue _defaultDebugQueue;
 
         private RoleManager<IdentityRole> _roleManager;
-        private readonly HostOceanDataBaseContext _dataBaseContext;
+        private readonly HostOceanDBContext _dbContext;
         private readonly IHostingEnvironment _hostingEnvironment;
 
         public HostOceanDataBaseContextInitializer(
-            HostOceanDataBaseContext dataBaseContext,
+            HostOceanDBContext dbContext,
             IHostingEnvironment hostingEnvironment,
             RoleManager<IdentityRole> roleManager
         )
         {
-            _dataBaseContext = dataBaseContext;
+            _dbContext = dbContext;
             _hostingEnvironment = hostingEnvironment;
             _roleManager = roleManager;
         }
@@ -38,14 +38,14 @@ namespace HostOcean.Persistence.Seed
             else
                 await SeedDataBaseWithDefaultValues();
 
-            await _dataBaseContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task InitializeMigration()
         {
             try
             {
-                await _dataBaseContext.Database.MigrateAsync();
+                await _dbContext.Database.MigrateAsync();
             }
             catch (SqlException sqlException) when (sqlException.Number == 1801)
             {
@@ -69,7 +69,7 @@ namespace HostOcean.Persistence.Seed
 
         private async Task SeedRoles()
         {
-            if (! (await _dataBaseContext.Roles.AnyAsync()))
+            if (! (await _dbContext.Roles.AnyAsync()))
             {
                 await _roleManager.CreateAsync(new IdentityRole("Admin"));
                 await _roleManager.CreateAsync(new IdentityRole("User"));
@@ -78,7 +78,7 @@ namespace HostOcean.Persistence.Seed
 
         private async Task SeedDebugGroups()
         {
-            if (!(await _dataBaseContext.Groups.AnyAsync()))
+            if (!(await _dbContext.Groups.AnyAsync()))
             {
                 _defaultDebugGroup = new Group()
                 {
@@ -86,13 +86,13 @@ namespace HostOcean.Persistence.Seed
                     CalendarId = "dla8vgkme6547ks8gr03uekkm8@group.calendar.google.com"
                 };
 
-                await _dataBaseContext.Groups.AddAsync(_defaultDebugGroup);
+                await _dbContext.Groups.AddAsync(_defaultDebugGroup);
             }
         }
 
         public async Task SeedDebugLaboratoryworks()
         {
-            if (!_dataBaseContext.LaboratoryWorks.Any())
+            if (!_dbContext.LaboratoryWorks.Any())
             {
                 _defaultDebugLaboratoryWork = new LaboratoryWork()
                 {
@@ -100,13 +100,13 @@ namespace HostOcean.Persistence.Seed
                     Group = _defaultDebugGroup
                 };
 
-                await _dataBaseContext.LaboratoryWorks.AddAsync(_defaultDebugLaboratoryWork);
+                await _dbContext.LaboratoryWorks.AddAsync(_defaultDebugLaboratoryWork);
             }
         }
 
         private async Task SeedDebugUsers()
         {
-            if (!_dataBaseContext.Users.Any())
+            if (!_dbContext.Users.Any())
             {
                 _defaultDebugAdminUser = new User()
                 {
@@ -114,13 +114,13 @@ namespace HostOcean.Persistence.Seed
                     Group = _defaultDebugGroup,
                 };
 
-                await _dataBaseContext.Users.AddAsync(_defaultDebugAdminUser);
+                await _dbContext.Users.AddAsync(_defaultDebugAdminUser);
             }
         }
 
         private async Task SeedDebugQueues()
         {
-            if (!_dataBaseContext.Queues.Any())
+            if (!_dbContext.Queues.Any())
             {
                 _defaultDebugQueue = new Queue()
                 {
@@ -129,7 +129,7 @@ namespace HostOcean.Persistence.Seed
                     LaboratoryWork = _defaultDebugLaboratoryWork,
                 };
 
-                await _dataBaseContext.Queues.AddAsync(_defaultDebugQueue);
+                await _dbContext.Queues.AddAsync(_defaultDebugQueue);
             }
         }
     }

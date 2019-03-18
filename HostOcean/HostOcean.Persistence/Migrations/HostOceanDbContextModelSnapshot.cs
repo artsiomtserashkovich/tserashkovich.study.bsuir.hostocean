@@ -139,7 +139,7 @@ namespace HostOcean.Persistence.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<short>("Order");
+                    b.Property<DateTime>("CreatedOn");
 
                     b.Property<string>("QueueId")
                         .IsRequired();
@@ -149,9 +149,6 @@ namespace HostOcean.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
-
-                    b.HasIndex("QueueId", "Order")
-                        .IsUnique();
 
                     b.HasIndex("QueueId", "UserId")
                         .IsUnique()

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HostOcean.Persistence.Migrations
 {
-    [DbContext(typeof(HostOceanDataBaseContext))]
+    [DbContext(typeof(HostOceanDBContext))]
     [Migration("20190317075301_InitialMigration")]
     partial class InitialMigration
     {

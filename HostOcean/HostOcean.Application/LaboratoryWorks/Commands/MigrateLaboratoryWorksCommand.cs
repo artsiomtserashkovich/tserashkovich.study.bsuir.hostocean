@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading;
@@ -12,7 +10,7 @@ using HostOcean.Application.Interfaces.Persistence;
 using HostOcean.Domain.Entities;
 using MediatR;
 
-namespace HostOcean.Application.LaboratoryWorks
+namespace HostOcean.Application.LaboratoryWorks.Commands
 {
     public class MigrateLaboratoryWorksCommand: IRequest
     {

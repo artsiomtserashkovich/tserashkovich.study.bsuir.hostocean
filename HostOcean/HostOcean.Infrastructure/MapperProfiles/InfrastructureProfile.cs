@@ -10,7 +10,7 @@ namespace HostOcean.Infrastructure.MapperProfiles
     {
         public InfrastructureProfile()
         {
-            CreateMap<IISGroup, Domain.Entities.Group>();
+            CreateMap<IISGroup, Group>();
             CreateMap<Event, LaboratoryWork>()
                 .ForMember(x => x.Id, conf => conf.MapFrom(src => src.Id))
                 .ForMember(x => x.StartDate, conf => conf.MapFrom(src => src.Start.DateTime))

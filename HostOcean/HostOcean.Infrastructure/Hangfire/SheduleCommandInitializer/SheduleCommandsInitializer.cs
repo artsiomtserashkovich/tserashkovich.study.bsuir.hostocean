@@ -2,7 +2,7 @@
 using HostOcean.Application.ApplicationSettings;
 using HostOcean.Application.Groups.Commands;
 using HostOcean.Application.Interfaces.Persistence;
-using HostOcean.Application.LaboratoryWorks;
+using HostOcean.Application.LaboratoryWorks.Commands;
 using Microsoft.Extensions.Options;
 
 namespace HostOcean.Infrastructure.Hangfire.SheduleCommandInitializer

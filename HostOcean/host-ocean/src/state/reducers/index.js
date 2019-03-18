@@ -6,6 +6,7 @@ import ping from './../../modules/account/reducers/pingReducer';
 import groups from './../../modules/groups/reducers/groupsReducer';
 import session from "./sessionReducer";
 import config from "./configReducer";
+import user from "./userReducer";
 import mainpage from "../../modules/mainpage/reducers";
 import registerFormReducer from "../../modules/account/reducers/registerFormReducer";
 import loginFormReducer from "../../modules/account/reducers/loginFormReducer";
@@ -20,6 +21,7 @@ export default (history) => combineReducers({
     ping,
     groups,
     session,
+    user,
     config,
     mainpage
 })

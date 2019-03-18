@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HostOcean.Persistence
 {
-    public class HostOceanDataBaseContext : IdentityDbContext<User>
+    public class HostOceanDBContext : IdentityDbContext<User>
     {
-        public HostOceanDataBaseContext(DbContextOptions<HostOceanDataBaseContext> options) : base(options)
+        public HostOceanDBContext(DbContextOptions<HostOceanDBContext> options) : base(options)
         {
         }
 
@@ -19,7 +19,7 @@ namespace HostOcean.Persistence
         {
             base.OnModelCreating(builder);
 
-            builder.ApplyConfigurationsFromAssembly(typeof(HostOceanDataBaseContext).Assembly);
+            builder.ApplyConfigurationsFromAssembly(typeof(HostOceanDBContext).Assembly);
         }
     }
 }

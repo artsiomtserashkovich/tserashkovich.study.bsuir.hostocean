@@ -4,14 +4,16 @@ using HostOcean.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HostOcean.Persistence.Migrations
 {
-    [DbContext(typeof(HostOceanDBContext))]
-    partial class HostOceanDataBaseContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(HostOceanDbContext))]
+    [Migration("20190316211508_Add_CreatedOn")]
+    partial class Add_CreatedOn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -139,7 +141,7 @@ namespace HostOcean.Persistence.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<short>("Order");
+                    b.Property<DateTime>("CreatedOn");
 
                     b.Property<string>("QueueId")
                         .IsRequired();
@@ -149,9 +151,6 @@ namespace HostOcean.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
-
-                    b.HasIndex("QueueId", "Order")
-                        .IsUnique();
 
                     b.HasIndex("QueueId", "UserId")
                         .IsUnique()

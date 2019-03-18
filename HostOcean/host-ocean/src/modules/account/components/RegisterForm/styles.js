@@ -25,7 +25,7 @@ const styles = (theme) => ({
     flexDirection: "column"
   },
   submitButton: {
-    margin: 10
+    marginTop: 10,
   },
   container: {
     position: 'relative',
