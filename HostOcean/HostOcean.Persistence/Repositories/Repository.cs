@@ -13,9 +13,9 @@ namespace HostOcean.Persistence.Repositories
     {
         protected readonly DbSet<TEntity> DbSet;
 
-        public Repository(HostOceanDbContext dataBaseContext)
+        public Repository(HostOceanDbContext dbContext)
         {
-            DbSet = dataBaseContext.Set<TEntity>();
+            DbSet = dbContext.Set<TEntity>();
         }
 
         public virtual TEntity Add(TEntity entity) => DbSet.Add(entity).Entity;

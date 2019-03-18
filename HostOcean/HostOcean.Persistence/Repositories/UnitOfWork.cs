@@ -8,7 +8,7 @@ namespace HostOcean.Persistence.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public UnitOfWork(HostOceanDbContext applicationDataBaseContext,
+        public UnitOfWork(HostOceanDbContext applicationDbContext,
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             IRepository<Group> groups,
@@ -17,7 +17,7 @@ namespace HostOcean.Persistence.Repositories
             IRepository<UserQueue> userQueues
         )
         {
-            ApplicationDataBaseContext = applicationDataBaseContext;
+            ApplicationDbContext = applicationDbContext;
             UserManager = userManager;
             SignInManager = signInManager;
 
@@ -27,7 +27,7 @@ namespace HostOcean.Persistence.Repositories
             UserQueues = userQueues;
         }
 
-        public HostOceanDbContext ApplicationDataBaseContext { get; }
+        public HostOceanDbContext ApplicationDbContext { get; }
         public UserManager<User> UserManager { get; private set; }
         public SignInManager<User> SignInManager { get; private set; }
         public IRepository<Group> Groups { get; private set; }
@@ -35,7 +35,7 @@ namespace HostOcean.Persistence.Repositories
         public IRepository<Queue> Queues { get; private set; }
         public IRepository<UserQueue> UserQueues { get; private set; }
 
-        public async Task SaveAsync() => await ApplicationDataBaseContext.SaveChangesAsync();
+        public async Task SaveAsync() => await ApplicationDbContext.SaveChangesAsync();
 
         private bool _disposed;
 
@@ -45,7 +45,7 @@ namespace HostOcean.Persistence.Repositories
             {
                 if (disposing)
                 {
-                    ApplicationDataBaseContext.Dispose();
+                    ApplicationDbContext.Dispose();
                 }
             }
 

@@ -19,6 +19,7 @@ namespace HostOcean.Api.StartupSettings.StartupExtensions
         }
         public static IServiceCollection RegisterHangfire(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddTransient<IStartupCommandSheduler, CommandsScheduler>();
             services.AddTransient<ISheduleCommandsInitializer, SheduleCommandsInitializer>();
             services.AddTransient<ICommandsSheduler, CommandsScheduler>();
             services.AddTransient<ICommandExecutor, MediatRCommandExecutor>();

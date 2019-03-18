@@ -1,14 +1,14 @@
 ﻿using System;
+using System.Linq.Expressions;
 using Hangfire;
 using Hangfire.Common;
-using HostOcean.Application.Interfaces.Infrastructure;
 using HostOcean.Infrastructure.Hangfire.CommandExecutor;
 using MediatR;
 using Newtonsoft.Json;
 
 namespace HostOcean.Infrastructure.Hangfire
 {
-    public class CommandsScheduler : ICommandsSheduler
+    public class CommandsScheduler : IStartupCommandSheduler
     {
         private readonly ICommandExecutor _commandExecutor;
         private readonly IBackgroundJobClient _backgroundJobClient;
@@ -22,6 +22,23 @@ namespace HostOcean.Infrastructure.Hangfire
             _commandExecutor = commandExecutor;
             _recurringJobManager = recurringJobManager;
             _backgroundJobClient = backgroundJobClient;
+        }
+
+        public string ExecuteExpressionWithDelay(Expression<Action> expression, TimeSpan delay)
+        {
+            var newTime = DateTime.Now + delay;
+
+            return _backgroundJobClient.Schedule(expression, newTime);
+        }
+
+        public string ExecuteExpression(Expression<Action> expression)
+        {
+            return _backgroundJobClient.Enqueue(expression);
+        }
+
+        public string ExecuteExpressionAfterSuccessPrevious(Expression<Action> expression, string previousId)
+        {
+            return _backgroundJobClient.ContinueWith(previousId, expression);
         }
 
         public string ExecuteNow(IRequest request, string description = null)

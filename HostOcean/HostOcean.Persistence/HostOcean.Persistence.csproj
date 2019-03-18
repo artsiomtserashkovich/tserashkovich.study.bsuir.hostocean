@@ -5,7 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20190215142311_Initial.cs" />
+    <Compile Remove="Migrations\**" />
+    <EmbeddedResource Remove="Migrations\**" />
+    <None Remove="Migrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Migrations\20190226080635_InitialMigration.cs" />
+    <Compile Include="Migrations\20190226080635_InitialMigration.Designer.cs" />
+    <Compile Include="Migrations\20190316185733_Add_CalendarId.cs" />
+    <Compile Include="Migrations\20190316185733_Add_CalendarId.Designer.cs" />
+    <Compile Include="Migrations\20190316211508_Add_CreatedOn.cs" />
+    <Compile Include="Migrations\20190316211508_Add_CreatedOn.Designer.cs" />
+    <Compile Include="Migrations\20190318214025_Labwork_Location_And_Lecturer.cs" />
+    <Compile Include="Migrations\20190318214025_Labwork_Location_And_Lecturer.Designer.cs" />
+    <Compile Include="Migrations\HostOceanDbContextModelSnapshot.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,7 +32,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HostOcean.Application\HostOcean.Application.csproj" />
-    <ProjectReference Include="..\HostOcean.Infrastructure\HostOcean.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

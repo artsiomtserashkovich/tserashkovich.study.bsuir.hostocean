@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using HostOcean.Application.LaboratoryWorks.Models;
+﻿using HostOcean.Application.LaboratoryWorks.Models;
 using HostOcean.Application.LaboratoryWorks.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -11,11 +10,8 @@ namespace HostOcean.Api.Controllers
 {
     public class LabworksController : BaseController
     {
-        private readonly IMapper _mapper;
-
-        public LabworksController(IMediator mediator, IMapper mapper) : base(mediator)
+        public LabworksController(IMediator mediator) : base(mediator)
         {
-            _mapper = mapper;
         }
 
         [HttpGet("upcoming")]

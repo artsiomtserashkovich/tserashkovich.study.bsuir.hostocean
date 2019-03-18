@@ -10,13 +10,13 @@ export default handleActions(
         [actions.getQueueRequest]: (state, action) => {
             const { queueId } = action.payload;
 
-            const newState = { ...initialState };
+            const newState = { ...state };
             newState[queueId] = { ...newState[queueId], isLoading: true }
 
             return newState;
         },
         [actions.getQueueSuccess]: (state, action) => {
-            const newState = { ...initialState };
+            const newState = { ...state };
             const newQueue = action.response.data;
 
             newState[newQueue.id] = {

@@ -6,6 +6,8 @@ namespace HostOcean.Domain.Entities
     {
         public string Title { get; set; }
         public string Description { get; set; }
+        public string Location { get; set; }
+        public string Lecturer { get; set; }
         public DateTime StartDate { get; set; }
         public LaboratorySubGroup LaboratorySubGroup { get; set; }
         public virtual Group Group { get; set; }

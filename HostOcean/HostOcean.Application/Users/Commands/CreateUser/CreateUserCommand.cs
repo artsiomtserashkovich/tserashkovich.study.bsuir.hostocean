@@ -60,7 +60,7 @@ namespace HostOcean.Application.Users.Commands.CreateUser
 
                 if (!result.Succeeded) throw new NotImplementedException(result.ToString());
 
-                return Unit.Value;
+                return await Unit.Task;
             }
         }
     }

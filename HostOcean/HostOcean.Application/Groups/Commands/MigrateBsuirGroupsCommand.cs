@@ -7,33 +7,35 @@ using MediatR;
 
 namespace HostOcean.Application.Groups.Commands
 {
-    public class CloneBsuirGroupsStorageCommand : IRequest
+    public class MigrateBsuirGroupsCommand : IRequest
     {
-        public class CloneBsuirGroupsStorageCommandHandler : IRequestHandler<CloneBsuirGroupsStorageCommand>
+        public class MigrateBsuirGroupsCommandHandler : IRequestHandler<MigrateBsuirGroupsCommand>
         {
             private readonly IBsuirGroupService _bsuirGroupService;
             private readonly IUnitOfWork _unitOfWork;
 
-            public CloneBsuirGroupsStorageCommandHandler(IBsuirGroupService bsuirGroupService,IUnitOfWork unitOfWork)
+            public MigrateBsuirGroupsCommandHandler(IBsuirGroupService bsuirGroupService,IUnitOfWork unitOfWork)
             {
                 _bsuirGroupService = bsuirGroupService;
                 _unitOfWork = unitOfWork;
             }
 
-            public async Task<Unit> Handle(CloneBsuirGroupsStorageCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(MigrateBsuirGroupsCommand request, CancellationToken cancellationToken)
             {
                 var groups = await _bsuirGroupService.GetGroupsFromBsuirIIS();
 
                 var splitedGroups = await groups.SplitByPredicateAsync(NewGroupPredicate);
 
-                _unitOfWork.Groups.AddRange(splitedGroups.NoMatch);
-                _unitOfWork.Groups.UpdateRange(splitedGroups.Match);
+                _unitOfWork.Groups.AddRange(splitedGroups.Match);
+                _unitOfWork.Groups.UpdateRange(splitedGroups.NoMatch);
 
-                return Unit.Value;
+                await _unitOfWork.SaveAsync();
+
+                return await Unit.Task;
             }
 
             private async Task<bool> NewGroupPredicate(Domain.Entities.Group group) =>
-                 await _unitOfWork.Groups.IsExistByIdAsync(group.Id);
+                 !(await _unitOfWork.Groups.IsExistByIdAsync(group.Id));
             
         }
     }
