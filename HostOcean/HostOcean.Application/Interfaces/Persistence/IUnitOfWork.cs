@@ -12,7 +12,7 @@ namespace HostOcean.Application.Interfaces.Persistence
         IRepository<Group> Groups { get; }
         IRepository<LaboratoryWork> LaboratoryWorks { get; }
         IRepository<Queue> Queues { get; }
-        IRepository<UserQueue> UserQueues { get; }
+        IUserQueueRepository UserQueues { get; }
 
         Task SaveAsync();
     }
