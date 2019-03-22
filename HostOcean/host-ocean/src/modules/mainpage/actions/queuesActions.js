@@ -11,3 +11,6 @@ export const takeQueueSuccess = createAction('TAKE_QUEUE_SUCCESS')
 export const leaveQueueRequest = createAction('LEAVE_QUEUE_REQUEST')
 export const leaveQueueFailed = createAction('LEAVE_QUEUE_FAILED')
 export const leaveQueueSuccess = createAction('LEAVE_QUEUE_SUCCESS')
+
+export const addUserToQueue = createAction('ADD_USER_TO_QUEUE')
+export const removeUserFromQueue = createAction('REMOVE_USER_FROM_QUEUE')

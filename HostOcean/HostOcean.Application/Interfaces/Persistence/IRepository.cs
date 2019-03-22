@@ -9,7 +9,6 @@ namespace HostOcean.Application.Interfaces.Persistence
     public interface IRepository<TEntity> where TEntity : Entity
     {
         TEntity Get(string id);
-        TEntity Get(int id);
         IEnumerable<TEntity> All { get; }
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
         TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate);

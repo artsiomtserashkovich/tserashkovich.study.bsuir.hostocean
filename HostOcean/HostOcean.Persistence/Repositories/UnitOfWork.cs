@@ -14,7 +14,7 @@ namespace HostOcean.Persistence.Repositories
             IRepository<Group> groups,
             IRepository<LaboratoryWork> laboratoryWorks,
             IRepository<Queue> queues,
-            IRepository<UserQueue> userQueues
+            IUserQueueRepository userQueues
         )
         {
             ApplicationDbContext = applicationDbContext;
@@ -33,7 +33,7 @@ namespace HostOcean.Persistence.Repositories
         public IRepository<Group> Groups { get; private set; }
         public IRepository<LaboratoryWork> LaboratoryWorks { get; private set; }
         public IRepository<Queue> Queues { get; private set; }
-        public IRepository<UserQueue> UserQueues { get; private set; }
+        public IUserQueueRepository UserQueues { get; private set; }
 
         public async Task SaveAsync() => await ApplicationDbContext.SaveChangesAsync();
 

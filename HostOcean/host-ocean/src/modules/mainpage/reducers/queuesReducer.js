@@ -26,7 +26,30 @@ export default handleActions(
             };
 
             return { ...newState }
-        }
+        },
+
+        [actions.removeUserFromQueue]: (state, action) => {
+            const { queueId, userId } = action.payload;
+
+            const newState = { ...state };
+            let newUserQueue = [...newState[queueId].userQueues];
+            newUserQueue = newUserQueue.filter(uq => uq.userId !== userId)
+            newState[queueId] = { ...newState[queueId], userQueues: newUserQueue }
+
+            return newState;
+        },
+        [actions.addUserToQueue]: (state, action) => {
+            const data = action.payload;
+            const {queueId, userId} = data;
+
+            const newState = { ...state };
+            let newUserQueue = newState[queueId].userQueues.filter(uq => uq.userId !== userId);
+            newUserQueue.push(data);
+
+            newState[queueId] = { ...newState[queueId], userQueues: newUserQueue }
+
+            return newState;
+        },
     },
     initialState
 );
