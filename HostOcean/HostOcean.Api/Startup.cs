@@ -1,4 +1,7 @@
-﻿using HostOcean.Api.Hubs;
+﻿using Hangfire;
+using Hangfire.Dashboard;
+using HostOcean.Api.Filters;
+using HostOcean.Api.Hubs;
 using HostOcean.Api.StartupSettings.StartupExtensions;
 using HostOcean.Domain.Entities;
 using HostOcean.Infrastructure.GroupScheduleService;
@@ -9,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
 
 namespace HostOcean.Api
 {
