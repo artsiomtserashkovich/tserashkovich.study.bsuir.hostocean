@@ -16,6 +16,8 @@ namespace HostOcean.Api.StartupSettings.StartupExtensions
             services.AddScoped<IUserQueueRepository, UserQueueRepository>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IUserQueueRepository, UserQueueRepository>();
+            services.AddScoped<IQueueRepository, QueueRepository>();
+            services.AddScoped<ILaboratoryWorkRepository, LaboratoryWorkRepository>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
