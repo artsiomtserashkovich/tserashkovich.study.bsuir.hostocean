@@ -7,6 +7,25 @@ const initialState = {
 
 export default handleActions(
     {
+        [actions.takeQueueRequest]: (state, action) => {
+            return setIsLoading(state,action);
+        },  
+        [actions.takeQueueFailed]: (state, action) => {
+            return resetIsLoading(state,action);
+        }, 
+        [actions.takeQueueSuccess]: (state, action) => {
+            return resetIsLoading(state,action);
+        }, 
+
+        [actions.leaveQueueRequest]: (state, action) => {
+            return setIsLoading(state,action);
+        },  
+        [actions.leaveQueueFailed]: (state, action) => {
+            return resetIsLoading(state,action);
+        },
+        [actions.leaveQueueSuccess]: (state, action) => {
+            return resetIsLoading(state,action);
+        }, 
         [actions.getQueueRequest]: (state, action) => {
             const { queueId } = action.payload;
 
@@ -53,3 +72,21 @@ export default handleActions(
     },
     initialState
 );
+
+function setIsLoading(state, action) {
+    const { queueId } = action.payload;
+
+    const newState = { ...state };
+    newState[queueId] = { ...newState[queueId], isLoading: true }
+
+    return newState;
+}
+
+function resetIsLoading(state,action) {
+    const { queueId } = action.payload;
+
+    const newState = { ...state };
+    newState[queueId] = { ...newState[queueId], isLoading: false }
+
+    return newState;
+}

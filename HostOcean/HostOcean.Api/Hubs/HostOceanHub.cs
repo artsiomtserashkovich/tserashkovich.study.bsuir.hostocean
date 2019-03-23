@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using HostOcean.Application.Queues.Commands;
 using HostOcean.Application.Users.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

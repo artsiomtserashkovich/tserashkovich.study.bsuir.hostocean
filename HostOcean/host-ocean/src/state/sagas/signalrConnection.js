@@ -1,10 +1,10 @@
 import { eventChannel  } from 'redux-saga';
 import { put, select, fork, call, take, delay } from 'redux-saga/effects'
-import * as sessionActions from "./../actions/sessionActions"
+import * as signalrActions from "./../actions/signalrActions"
 import * as signalR from "@aspnet/signalr";
 import registerSignalREvents from "./../signalr";
 
-function* registerActions(connection) {
+function registerActions(connection) {
     return eventChannel(emit => {
         registerSignalREvents(emit,connection)
 
@@ -39,10 +39,10 @@ function* tryToConnect(action) {
 
         connection.start();
 
-        yield put(sessionActions.createConnectionSuccess(connection))
+        yield put(signalrActions.createConnectionSuccess(connection))
     }
     catch {
-        yield put(sessionActions.createConnectionFailed(connection))
+        yield put(signalrActions.createConnectionFailed(connection))
     }
 }
 

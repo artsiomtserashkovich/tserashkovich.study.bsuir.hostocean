@@ -4,6 +4,7 @@ import * as actions from "../actions/sessionActions";
 
 const initialState = {
     accessToken: undefined,
+    refreshToken: undefined,
     expires: undefined,
     role: undefined
 };
@@ -11,10 +12,13 @@ const initialState = {
 export default handleActions(
     {
         [actions.setToken]: (state, action) => {
-            return {...action.payload}
+            return { ...action.payload }
         },
         [actions.removeToken]: (state, action) => {
-            return {...initialState}
+            return { ...state }
+        },
+        [actions.refreshTokenSuccess]: (state, action) => {
+            return { ...initialState, ...action.response.data }
         },
     },
     initialState
