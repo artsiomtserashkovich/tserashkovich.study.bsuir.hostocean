@@ -1,16 +1,18 @@
-﻿using System.Collections.Generic;
-using Hangfire;
+﻿using Hangfire;
 using Hangfire.Dashboard;
 using HostOcean.Api.Filters;
+using HostOcean.Api.Hubs;
 using HostOcean.Api.StartupSettings.StartupExtensions;
 using HostOcean.Domain.Entities;
 using HostOcean.Infrastructure.GroupScheduleService;
 using HostOcean.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
 
 namespace HostOcean.Api
 {
@@ -25,7 +27,8 @@ namespace HostOcean.Api
         private IHostingEnvironment HostingEnvironment { get; }
         private IConfiguration Configuration { get; }
 
-        public void ConfigureServices(IServiceCollection services) =>
+        public void ConfigureServices(IServiceCollection services)
+        {
             services
                 .RegisterHangfire(Configuration)
                 .RegisterMvc()
@@ -41,33 +44,47 @@ namespace HostOcean.Api
                 .RegisterHttpClients(Configuration)
                 .AddGoogleCalendarClient<IGoogleCalendarClient, GoogleCalendarV3Client, GoogleCalendarApiConfiguration>
                     (Configuration);
-        
+
+            services.AddSignalR(config =>
+            {
+                config.EnableDetailedErrors = true;
+            })
+            .AddJsonProtocol(config =>
+            {
+                config.PayloadSerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
+        }
+
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseHangfireServer();
-            app.UseHangfireDashboard(Configuration["HangfireSettings:HangfirePath"],new DashboardOptions()
+            app.UseHangfireDashboard(Configuration["HangfireSettings:HangfirePath"], new DashboardOptions()
             {
                 Authorization = new List<IDashboardAuthorizationFilter>
                 {
                     new HangfireNoAuthFilter(),
                 }
             });
-
             app.InitializeHangfireSheduleCommands();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseCors("CorsPolicy");
             }
             else
             {
                 app.UseHsts();
             }
 
+            app.UseCors("CorsPolicy");
+            app.UseWebSockets();
             app.UseAuthentication();
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseSignalR(route =>
+            {
+                route.MapHub<HostOceanHub>("/hubs/hostocean");
+            });
             app.UseMvc();
 
             if (env.IsDevelopment())

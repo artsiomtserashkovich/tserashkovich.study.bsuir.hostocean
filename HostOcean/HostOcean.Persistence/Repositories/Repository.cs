@@ -6,11 +6,14 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using HostOcean.Application.Interfaces.Persistence;
 using HostOcean.Domain.Entities;
+using LinqKit;
 
 namespace HostOcean.Persistence.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
     {
+        protected virtual IQueryable<TEntity> Query => DbSet.AsQueryable();
+
         protected readonly DbSet<TEntity> DbSet;
 
         public Repository(HostOceanDbContext dbContext)
@@ -24,13 +27,11 @@ namespace HostOcean.Persistence.Repositories
 
         public void UpdateRange(IEnumerable<TEntity> entities) => DbSet.UpdateRange(entities);
 
-        public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate) => DbSet.Where(predicate);
+        public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate) => Query.Where(predicate);
 
-        public virtual TEntity Get(string id) => DbSet.Find(id);
+        public virtual TEntity Get(string id) => Query.First(e => e.Id == id);
 
-        public virtual TEntity Get(int id) => DbSet.Find(id);
-
-        public virtual IEnumerable<TEntity> All => DbSet.ToList();
+        public virtual IEnumerable<TEntity> All => Query.ToList();
 
         public virtual TEntity Remove(TEntity entity) => DbSet.Remove(entity).Entity;
 
@@ -40,7 +41,7 @@ namespace HostOcean.Persistence.Repositories
 
         public virtual void RemoveAll() => RemoveRange(All);
 
-        public virtual TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate) => DbSet.SingleOrDefault(predicate);
+        public virtual TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate) => Query.SingleOrDefault(predicate);
 
         public virtual TEntity Update(TEntity entity) => DbSet.Update(entity).Entity;
     }

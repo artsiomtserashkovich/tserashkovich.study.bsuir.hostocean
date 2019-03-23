@@ -3,7 +3,8 @@ import { handleActions } from "redux-actions";
 import * as actions from "../actions/sessionActions";
 
 const initialState = {
-    apiHostName: undefined
+    apiHostName: undefined,
+    signlarName: undefined
 };
 
 export default handleActions(

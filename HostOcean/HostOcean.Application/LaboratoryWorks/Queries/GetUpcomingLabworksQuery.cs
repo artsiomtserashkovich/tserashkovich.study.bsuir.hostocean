@@ -29,8 +29,7 @@ namespace HostOcean.Application.LaboratoryWorks.Queries
             public async Task<IEnumerable<LaboratoryWorkModel>> Handle(GetUpcomingLabworksQuery request, CancellationToken cancellationToken)
             {
                 var currentDate = DateTime.Today;
-                //var upcomingLabs = _unitOfWork.LaboratoryWorks.Find(e => e.StartDate > currentDate);
-                var upcomingLabs = _unitOfWork.LaboratoryWorks.Find(e => e.Group.Id == request.GroupId).ToList();
+                var upcomingLabs = _unitOfWork.LaboratoryWorks.Find(e => e.Group.Id == request.GroupId && e.StartDate >= currentDate).ToList();
 
                 var mappedEntites = _mapper.Map<IEnumerable<LaboratoryWork>, IEnumerable<LaboratoryWorkModel>>(upcomingLabs);
 

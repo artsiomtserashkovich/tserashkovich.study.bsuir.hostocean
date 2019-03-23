@@ -14,6 +14,8 @@ namespace HostOcean.Api.StartupSettings.StartupExtensions
             services.AddScoped<IGroupSheduleService, GroupSheduleService>();
             services.AddScoped<IBsuirGroupService, BsuirGroupService>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IUserQueueRepository, UserQueueRepository>();
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;

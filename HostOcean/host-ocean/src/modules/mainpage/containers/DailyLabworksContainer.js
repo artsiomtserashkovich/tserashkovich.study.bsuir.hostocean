@@ -16,7 +16,6 @@ class DailyLabworksContainer extends React.Component {
         let { laboratoryWorks } = this.props;
 
         const groupedByDayLabs = _.groupBy(laboratoryWorks, e => {
-            console.log(Date(e.startDate));
             return new Date(e.startDate).toLocaleDateString('en-EN', {
                 year: 'numeric',
                 month: 'numeric',

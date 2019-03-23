@@ -7,8 +7,9 @@ namespace HostOcean.Application.UserQueues.Models
     {
         public string CreatedOn { get; set; }
 
+        public string UserId { get; set; }
         public UserModel User { get; set; }
-
+        public string QueueId { get; set; }
         public QueueModel Queue { get; set; }
     }
 }
