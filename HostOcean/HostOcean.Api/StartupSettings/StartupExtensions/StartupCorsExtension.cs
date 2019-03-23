@@ -9,10 +9,10 @@ namespace HostOcean.Api.StartupSettings.StartupExtensions
             services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
             {
                 builder
-                    .AllowAnyOrigin()
                     .AllowAnyMethod()
                     .AllowAnyHeader()
-                    .AllowCredentials();
+                    .AllowCredentials()
+                    .WithOrigins("http://localhost:3000");
             }));
 
             return services;

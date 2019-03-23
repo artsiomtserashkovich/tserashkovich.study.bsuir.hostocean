@@ -20,5 +20,7 @@ namespace HostOcean.Persistence.Repositories
 
         public async Task<int> PredicateCountAsync(Expression<Func<UserQueue, bool>> predicate) =>
             await DbSet.FromSql(SelectClause );
+
+        protected override IQueryable<UserQueue> Query => DbSet.Include(e => e.Queue).Include(e => e.User);
     }
 }
