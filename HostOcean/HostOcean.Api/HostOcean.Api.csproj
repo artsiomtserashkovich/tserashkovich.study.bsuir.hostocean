@@ -31,4 +31,6 @@
     <ProjectReference Include="..\HostOcean.Persistence\HostOcean.Persistence.csproj" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1template_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
+
 </Project>

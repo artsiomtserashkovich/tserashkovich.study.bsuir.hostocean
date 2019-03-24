@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using HostOcean.Application.Groups.Models;
 using HostOcean.Application.Groups.Queries;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HostOcean.Api.Controllers
 {

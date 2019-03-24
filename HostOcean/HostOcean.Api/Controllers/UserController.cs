@@ -1,8 +1,10 @@
 using FluentValidation;
+using HostOcean.Application.Tokens.Models;
 using HostOcean.Application.Users.Commands.CreateUser;
 using HostOcean.Application.Users.Models;
 using HostOcean.Application.Users.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -17,6 +19,7 @@ namespace HostOcean.Api.Controllers
         }
 
         [HttpGet("me")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType(typeof(UserModel))]
         public async Task<IActionResult> GetMe()

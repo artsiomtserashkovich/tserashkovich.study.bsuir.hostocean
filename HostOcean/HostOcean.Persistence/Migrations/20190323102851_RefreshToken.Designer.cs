@@ -4,14 +4,16 @@ using HostOcean.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HostOcean.Persistence.Migrations
 {
     [DbContext(typeof(HostOceanDbContext))]
-    partial class HostOceanDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190323102851_RefreshToken")]
+    partial class RefreshToken
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -150,15 +152,15 @@ namespace HostOcean.Persistence.Migrations
                     b.Property<string>("QueueId")
                         .IsRequired();
 
-                    b.Property<string>("UserId")
-                        .IsRequired();
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
                     b.HasIndex("QueueId", "UserId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[QueueId] IS NOT NULL AND [UserId] IS NOT NULL");
 
                     b.ToTable("UserQueues");
                 });
@@ -306,8 +308,7 @@ namespace HostOcean.Persistence.Migrations
 
                     b.HasOne("HostOcean.Domain.Entities.User", "User")
                         .WithMany("UserQueues")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

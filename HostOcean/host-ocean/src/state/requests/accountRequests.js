@@ -17,6 +17,11 @@ const accountRequests = {
         url: `api/user/me`,
         method: 'get'
     }),
+    refreshTokenRequest: (data) => ({
+        url: `api/token/refresh`,
+        method: 'post',
+        data
+    }),
 }
 
 export default accountRequests

@@ -1,6 +1,6 @@
 import { handleActions } from "redux-actions";
 
-import * as actions from "../actions/sessionActions";
+import * as actions from "../actions/signalrActions";
 
 const initialState = {
     connection: undefined,

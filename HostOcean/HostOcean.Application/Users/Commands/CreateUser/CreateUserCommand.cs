@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
@@ -21,6 +22,16 @@ namespace HostOcean.Application.Users.Commands.CreateUser
             private readonly UserManager<Domain.Entities.User> _userManager;
             private readonly IUnitOfWork _unitOfWork;
 
+            private string GenerateRefreshToken()
+            {
+                var randomNumber = new byte[32];
+                using (var rng = RandomNumberGenerator.Create())
+                {
+                    rng.GetBytes(randomNumber);
+                    return Convert.ToBase64String(randomNumber);
+                }
+            }
+
             public CreateUserCommandHandler(UserManager<Domain.Entities.User> userManager, IUnitOfWork unitOfWork)
             {
                 _userManager = userManager;
@@ -33,7 +44,8 @@ namespace HostOcean.Application.Users.Commands.CreateUser
                 {
                     UserName = request.UserName,
                     Email = request.Email,
-                    GroupId = request.GroupId
+                    GroupId = request.GroupId,
+                    RefreshToken = GenerateRefreshToken()
                 };
 
                 var group = _unitOfWork.Groups.Get(request.GroupId);
