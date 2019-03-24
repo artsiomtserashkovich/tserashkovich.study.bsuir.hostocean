@@ -20,9 +20,9 @@ namespace HostOcean.Persistence.Repositories
         {
             DbSet = dbContext.Set<TEntity>();
         }
-
+        
         public virtual TEntity Add(TEntity entity) => DbSet.Add(entity).Entity;
-
+       
         public virtual void AddRange(IEnumerable<TEntity> entities) => DbSet.AddRange(entities);
 
         public void UpdateRange(IEnumerable<TEntity> entities) => DbSet.UpdateRange(entities);
