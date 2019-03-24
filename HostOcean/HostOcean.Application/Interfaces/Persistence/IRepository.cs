@@ -19,6 +19,7 @@ namespace HostOcean.Application.Interfaces.Persistence
         TEntity Remove(TEntity entity);
         Task<bool> IsExistByIdAsync(string id);
         void RemoveRange(IEnumerable<TEntity> entities);
+
         void RemoveAll();
     }
 }

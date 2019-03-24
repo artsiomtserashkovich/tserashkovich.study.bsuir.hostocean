@@ -12,8 +12,8 @@ namespace HostOcean.Persistence.Repositories
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             IRepository<Group> groups,
-            IRepository<LaboratoryWork> laboratoryWorks,
-            IRepository<Queue> queues,
+            ILaboratoryWorkRepository laboratoryWorks,
+            IQueueRepository queues,
             IUserQueueRepository userQueues
         )
         {
@@ -31,8 +31,8 @@ namespace HostOcean.Persistence.Repositories
         public UserManager<User> UserManager { get; private set; }
         public SignInManager<User> SignInManager { get; private set; }
         public IRepository<Group> Groups { get; private set; }
-        public IRepository<LaboratoryWork> LaboratoryWorks { get; private set; }
-        public IRepository<Queue> Queues { get; private set; }
+        public ILaboratoryWorkRepository LaboratoryWorks { get; private set; }
+        public IQueueRepository Queues { get; private set; }
         public IUserQueueRepository UserQueues { get; private set; }
 
         public async Task SaveAsync() => await ApplicationDbContext.SaveChangesAsync();

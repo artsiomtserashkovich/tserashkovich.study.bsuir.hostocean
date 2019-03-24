@@ -1,7 +1,11 @@
-﻿using HostOcean.Application.Interfaces.Persistence;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
+using HostOcean.Application.Interfaces.Persistence;
 using HostOcean.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace HostOcean.Persistence.Repositories
 {
@@ -11,6 +15,12 @@ namespace HostOcean.Persistence.Repositories
         {
         }
 
-        protected override IQueryable<UserQueue> Query => DbSet.Include(e => e.Queue).Include(e => e.User);
+        protected override IQueryable<UserQueue> Query => 
+            DbSet.Include(e => e.Queue).Include(e => e.User);
+
+        public IEnumerable<TResult> GetPredicatedAsync<TResult>(
+            Expression<Func<UserQueue, bool>> predicate,
+            Expression<Func<UserQueue, TResult>> selector) =>
+                DbSet.Where(predicate).Select(selector);
     }
 }
