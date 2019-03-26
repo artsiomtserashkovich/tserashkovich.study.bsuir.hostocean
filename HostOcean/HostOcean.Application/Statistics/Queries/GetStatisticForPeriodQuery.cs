@@ -88,7 +88,7 @@ namespace HostOcean.Application.Statistics.Queries
                     ParticipantsCount = userQueues.Count(),
                     Place = userQueue.index + 1,
                     QueueId = queueId,
-                    QueueTitle = queue.LaboratoryWork.Title,
+                    QueueTitle = queue.LaboratoryWorkEvent.LaboratoryWork.Title,
                     QueueStartTime = createdQueueDateTime,
                     TakeQueueTime = userQueue.item.CreatedOn - createdQueueDateTime, 
                 };

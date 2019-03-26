@@ -33,8 +33,7 @@ class LabworkContainer extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-    const queueId = state.mainpage.labworks[props.labworkId].queueId;
-    const queue = state.mainpage.queues[queueId];
+    const queue = state.mainpage.queues[props.queueId];
     const user = state.user;
     const isAlreadyInQueue = queue && queue.userQueues ? queue.userQueues.some(u => u.user.id === user.id) : false;
 

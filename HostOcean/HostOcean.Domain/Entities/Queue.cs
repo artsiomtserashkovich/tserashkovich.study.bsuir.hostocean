@@ -5,7 +5,8 @@ namespace HostOcean.Domain.Entities
 {
     public class Queue : Entity
     {
-        public virtual LaboratoryWork LaboratoryWork { get; set; }
+        public string EventId { get; set; }
+        public virtual LaboratoryWorkEvent LaboratoryWorkEvent { get; set; }
         public DateTime? CreatedOn { get; set; }
         public DateTime RegistrationStart { get; set; }
         

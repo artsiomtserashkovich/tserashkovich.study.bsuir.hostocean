@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Google.Apis.Calendar.v3.Data;
 using HostOcean.Application.Interfaces.Infrastructure;
 using HostOcean.Domain.Entities;
 
@@ -17,13 +18,12 @@ namespace HostOcean.Infrastructure.GroupScheduleService
             _googleCalendarClient = googleCalendarClient;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<LaboratoryWork>> GetLaboratoryWorksForPeriod(string calendarId,
-            DateTime startDateTime, DateTime endDateTime)
+        public async Task<IEnumerable<LaboratoryWorkEvent>> GetEventsForPeriod(string calendarId, DateTime startDateTime, DateTime endDateTime)
         {
             var laboratoryWorkEvents = await 
                 _googleCalendarClient.GetLaboratoryWorkEvents(calendarId, startDateTime, endDateTime);
 
-            return _mapper.Map<IEnumerable<LaboratoryWork>>(laboratoryWorkEvents.Items);
+            return _mapper.Map<IEnumerable<Event>, IEnumerable<LaboratoryWorkEvent>>(laboratoryWorkEvents.Items);
         }
     }
 }

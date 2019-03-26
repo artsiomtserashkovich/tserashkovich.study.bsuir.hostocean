@@ -23,6 +23,8 @@
     <Compile Include="Migrations\20190323102851_RefreshToken.Designer.cs" />
     <Compile Include="Migrations\20190323113810_UserRequired.cs" />
     <Compile Include="Migrations\20190323113810_UserRequired.Designer.cs" />
+    <Compile Include="Migrations\20190326115439_LaboratoryWorkEvent.cs" />
+    <Compile Include="Migrations\20190326115439_LaboratoryWorkEvent.Designer.cs" />
     <Compile Include="Migrations\HostOceanDbContextModelSnapshot.cs" />
   </ItemGroup>
 

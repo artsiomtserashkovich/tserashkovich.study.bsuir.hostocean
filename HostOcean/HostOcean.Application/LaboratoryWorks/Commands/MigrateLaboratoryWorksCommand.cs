@@ -40,42 +40,45 @@ namespace HostOcean.Application.LaboratoryWorks.Commands
                         if (string.IsNullOrEmpty(group.CalendarId))
                             continue;
 
-                        var laboratoryWorks =
-                            (await _groupSheduleService.GetLaboratoryWorksForPeriod(group.CalendarId, startDate,
-                                endDate))
-                            .Select(x =>
-                            {
-                                x.Group = group;
-                                return x;
-                            });
+                        var events = await _groupSheduleService.GetEventsForPeriod(group.CalendarId, startDate, endDate);
 
+                        var splitedEvents = await events.SplitByPredicateAsync(NewLaboratoryWorkEventPredicate);
 
-
-                        var splitedLaboratoryWorks =
-                            await laboratoryWorks.SplitByPredicateAsync(NewLaboratoryWorkPredicate);
-
-                        var newLaboratoryWorks = splitedLaboratoryWorks.Match;
-                        foreach (var labwork in newLaboratoryWorks)
+                        var newEvents = splitedEvents.Match;
+                        foreach (var labworkEvent in newEvents)
                         {
-                            var queue = new Queue() { LaboratoryWork = labwork };
-                            labwork.Queue = queue;
+                            var labwork = labworkEvent.LaboratoryWork;
+                            labwork.Group = group;
 
+                            var entity = _unitOfWork.LaboratoryWorks.SingleOrDefault(e => e.Lecturer == labwork.Lecturer && e.Title == labwork.Title && e.Group.Id == labwork.Group.Id);
+                            if (entity == null)
+                            {
+                                _unitOfWork.LaboratoryWorks.Add(labwork);
+                            } else
+                            {
+                                labwork = entity;
+                            }
+                            
+                            var queue = new Queue() { LaboratoryWorkEvent = labworkEvent };
+                            labworkEvent.Queue = queue;
+                            labworkEvent.LaboratoryWork = labwork;
                             _unitOfWork.Queues.Add(queue);
+                            _unitOfWork.Events.Add(labworkEvent);
+
+                            await _unitOfWork.SaveAsync();
                         }
 
-                        _unitOfWork.LaboratoryWorks.AddRange(newLaboratoryWorks);
-                        _unitOfWork.LaboratoryWorks.UpdateRange(splitedLaboratoryWorks.NoMatch);
+                       // _unitOfWork.Events.UpdateRange(splitedEvents.NoMatch);
                         await _unitOfWork.SaveAsync();
 
                     }
                     //TODO: Reolve bug with 404 NOT FOUND Calendar page
-                    catch (GoogleApiException googleApiException) when (googleApiException.HttpStatusCode ==
-                                                                        HttpStatusCode.NotFound)
+                    catch (GoogleApiException googleApiException) when (googleApiException.HttpStatusCode == HttpStatusCode.NotFound)
                     {
                         //Ignored
                     }
                     // TODO: Add logger to log any exceptions
-                    catch (Exception)
+                    catch (Exception ex)
                     {
                         //Ignored
                     }
@@ -83,8 +86,8 @@ namespace HostOcean.Application.LaboratoryWorks.Commands
                 return await Unit.Task;
             }
 
-            private async Task<bool> NewLaboratoryWorkPredicate(LaboratoryWork laboratoryWork) => 
-                !(await _unitOfWork.LaboratoryWorks.IsExistByIdAsync(laboratoryWork.Id));
+            private async Task<bool> NewLaboratoryWorkEventPredicate(LaboratoryWorkEvent labworkEvent) => 
+                !(await _unitOfWork.Events.IsExistByIdAsync(labworkEvent.Id));
             
         }
     }

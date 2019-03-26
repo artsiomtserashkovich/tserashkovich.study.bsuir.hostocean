@@ -1,13 +1,13 @@
 import { withStyles } from '@material-ui/core';
 import * as React from 'react';
-import DailyLabworksContainer from '../../containers/DailyLabworksContainer';
+import DailyEventsContainer from '../../containers/DailyEventsContainer';
 
 import styles from "./styles";
 
 const MainPage = () => {
     return (
         <div>
-            <DailyLabworksContainer />
+            <DailyEventsContainer />
         </div>
     );
 }

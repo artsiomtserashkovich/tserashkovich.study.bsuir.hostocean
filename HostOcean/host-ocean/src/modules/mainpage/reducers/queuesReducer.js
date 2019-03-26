@@ -1,12 +1,19 @@
 import { handleActions } from "redux-actions";
 
 import * as actions from "../actions/queuesActions";
+import * as eventsActions from "../actions/eventsActions";
 
 const initialState = {
 };
 
 export default handleActions(
     {
+        [eventsActions.getEventsSuccess]: (state, action) => {
+            const newState = { ...initialState };
+            action.response.data.forEach(event => newState[event.queueId] = event.queue);
+            return { ...newState }
+        },
+
         [actions.takeQueueRequest]: (state, action) => {
             return setIsLoading(state,action);
         },  
