@@ -1,5 +1,6 @@
 const styles = (theme) => ({
     formsLayout: {
+      marginTop: "40px",
       display: "flex",
       minHeight: "100%"
     },
@@ -48,6 +49,15 @@ const styles = (theme) => ({
     },
     divider: {
       height: theme.spacing.unit * 2,
+    },
+    avatar: {
+      margin: theme.spacing.unit,
+      backgroundColor: theme.palette.secondary.main,
+    },
+    header: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center"
     },
   });
   

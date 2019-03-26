@@ -11,6 +11,7 @@ import signalr from "./signalrReducer";
 import mainpage from "../../modules/mainpage/reducers";
 import registerFormReducer from "../../modules/account/reducers/registerFormReducer";
 import loginFormReducer from "../../modules/account/reducers/loginFormReducer";
+import app from "../../modules/notifications/reducers";
 
 
 export default (history) => combineReducers({
@@ -25,5 +26,6 @@ export default (history) => combineReducers({
     user,
     signalr,
     config,
-    mainpage
+    mainpage,
+    app
 })

@@ -1,4 +1,4 @@
 export default ({
-    apiHostName: "https://localhost:44324/",
-    signlarName: "https://localhost:44324/hubs/hostocean"
+    apiHostName: "https://localhost:5001/",
+    signlarName: "https://localhost:5001/hubs/hostocean"
 })
