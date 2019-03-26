@@ -7,8 +7,8 @@ export default function* tokenExpirationSaga() {
         while (true) {
             yield delay(1000);
 
-            const { accessToken, refreshToken } = yield select(state => state.session);
-            if (accessToken && refreshToken) {
+            const { accessToken, refreshToken, expires } = yield select(state => state.session);
+            if (accessToken && refreshToken && new Date(expires) > new Date()) {
                 yield put(actions.refreshTokenRequest({ refreshToken }))
                 yield delay(60000);
             }

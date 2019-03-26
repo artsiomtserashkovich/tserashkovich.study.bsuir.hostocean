@@ -1,9 +1,8 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 
-import { Paper, withStyles } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import { Paper, Button, Typography, withStyles } from "@material-ui/core";
+import Avatar from '@material-ui/core/Avatar';
 
 import PasswordInputContainer from "../../../shared/components/PasswordInputField/containers/PasswordInputContainer";
 import AutocompleteInputFieldContainer from "../../../shared/components/AutocompleteInputField/containers/AutocompleteInputFieldContainer";
@@ -22,8 +21,15 @@ const RegisterForm = ({
   return (
     <div className={classes.formsLayout}>
       <Paper className={classes.paper}>
-        <Typography variant="headline">Register</Typography>
         <form className={classes.form} onSubmit={handleSubmit(register)} >
+          <div className={classes.header}>
+            <Avatar className={classes.avatar}>
+              <i class="material-icons">how_to_reg</i>
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Register
+            </Typography>
+          </div>
           <Field
             name="username"
             title="Username"
@@ -37,10 +43,10 @@ const RegisterForm = ({
             classes={classes}
             suggestions={groupsList} />
           <Field
-            name="email" 
-            title="Email" 
+            name="email"
+            title="Email"
             type="email"
-            component={DefaultInput} 
+            component={DefaultInput}
             classes={classes} />
           <Field
             name="password"

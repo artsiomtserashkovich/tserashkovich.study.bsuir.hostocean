@@ -10,6 +10,7 @@ import * as actions from "./state/actions/sessionActions"
 
 import config from "./config/index"
 import NavbarContainer from './modules/navbar/containers/NavbarContainer';
+import { SnackbarProvider } from 'notistack';
 
 import createStore, { history } from './state';
 
@@ -25,12 +26,14 @@ class App extends React.Component {
     return (
       <Provider store={store} context={ReactReduxContext}>
         <PersistGate loading={null} persistor={persistor}>
-          <ConnectedRouter history={history} context={ReactReduxContext}>
-            <div>
-              <NavbarContainer />
-              <MainModule />
-            </div>
-          </ConnectedRouter>
+          <SnackbarProvider>
+            <ConnectedRouter history={history} context={ReactReduxContext}>
+              <div>
+                <NavbarContainer />
+                <MainModule />
+              </div>
+            </ConnectedRouter>
+          </SnackbarProvider>
         </PersistGate>
       </Provider >
     );

@@ -22,10 +22,12 @@ function* handle(connection) {
 
 function* tryToConnect(action) {
     const { signlarName } = yield select(state => state.config)
-    const { accessToken } = yield select(state => state.session)
+    const { accessToken, expires } = yield select(state => state.session)
     const { isEstablished } = yield select(state => state.signalr)
 
-    if (!signlarName || !accessToken || isEstablished) {
+    let isTokenExpired = new Date(expires) < new Date();
+
+    if (!signlarName || !accessToken || isEstablished || isTokenExpired) {
         return;
     }
 

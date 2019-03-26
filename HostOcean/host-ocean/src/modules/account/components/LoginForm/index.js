@@ -1,14 +1,16 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 
-import { Paper, withStyles } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import { Paper, Button, Typography, withStyles } from "@material-ui/core";
+import Avatar from '@material-ui/core/Avatar';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 import PasswordInputContainer from "../../../shared/components/PasswordInputField/containers/PasswordInputContainer";
 import DefaultInput from '../../../shared/components/DefaultInput';
+import * as urls from "./../../constants/urls";
 
 import styles from "./styles"
+import { Link } from "react-router-dom";
 
 const formName = "login";
 
@@ -20,7 +22,14 @@ const LoginForm = ({
     return (
         <div className={classes.formsLayout}>
             <Paper className={classes.paper}>
-                <Typography variant="headline">Login</Typography>
+                <div className={classes.header}>
+                    <Avatar className={classes.avatar}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Login
+                    </Typography>
+                </div>
                 <form className={classes.form} onSubmit={handleSubmit(login)} >
                     <Field
                         name="username"
@@ -34,6 +43,9 @@ const LoginForm = ({
                         component={PasswordInputContainer}
                         classes={classes}
                     />
+                    <Typography>
+                        <Link className={classes.link} to={urls.accountRegister}>Doesn't have an account? Sign Up!</Link>
+                    </Typography>
                     <Button
                         type="submit"
                         color="primary"
@@ -41,7 +53,7 @@ const LoginForm = ({
                         className={classes.submitButton}
                     >
                         Login
-          </Button>
+                    </Button>
                 </form>
             </Paper>
         </div>

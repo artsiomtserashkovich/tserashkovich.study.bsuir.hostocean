@@ -6,14 +6,14 @@ import { Redirect, Route } from "react-router";
 
 const AuthorizedControl = ({ component: Component, isAuthorized, ...rest }) => {
   return (
-  <Route
-    {...rest}
-    render={props =>
-      isAuthorized ?
-        <Component {...props} />
-        : <Redirect to="/accounts/login" />
-    }
-  />);
+    <Route
+      {...rest}
+      render={props =>
+        isAuthorized ?
+          <Component {...props} />
+          : <Redirect to="/accounts/login" />
+      }
+    />);
 };
 
 AuthorizedControl.propTypes = {
@@ -21,8 +21,11 @@ AuthorizedControl.propTypes = {
   isAuthorized: PropTypes.bool
 };
 
-const mapStateToProps = state => ({
-  isAuthorized: Boolean(state.user.id)
-});
+const mapStateToProps = state => {
+  const isExpired = new Date(state.session.expires) < new Date();
+  return {
+    isAuthorized: Boolean(state.user.id && state.session.accessToken && !isExpired)
+  }
+};
 
 export default connect(mapStateToProps)(AuthorizedControl);
