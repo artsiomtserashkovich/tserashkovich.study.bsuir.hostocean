@@ -15,6 +15,7 @@ namespace HostOcean.Infrastructure.MapperProfiles
             CreateMap<IISGroup, Domain.Entities.Group>();
             CreateMap<Event, LaboratoryWorkEvent>()
                 .ForMember(x => x.StartDate, conf => conf.MapFrom(src => src.Start.DateTime))
+                .ForMember(x => x.RegistrationStartedAt, conf => conf.MapFrom(src => src.Start.DateTime.Value.AddDays(-1)))
                 .ForMember(x => x.Location, conf => conf.MapFrom<LaboratoryWorkLocationResolver>())
                 .ForMember(x => x.LaboratoryWork, conf => conf.MapFrom<LaboratoryWorkEventResolver>());
         }

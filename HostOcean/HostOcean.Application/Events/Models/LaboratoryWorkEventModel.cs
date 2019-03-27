@@ -9,6 +9,7 @@ namespace HostOcean.Application.Events.Models
         public string Id { get; set; }
         public string Location { get; set; }
         public DateTime StartDate { get; set; }
+        public DateTime RegistrationStartedAt { get; set; }
 
         public string LaboratoryWorkId { get; set; }
         public LaboratoryWorkModel LaboratoryWork { get; set; }

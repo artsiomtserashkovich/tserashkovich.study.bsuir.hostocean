@@ -113,7 +113,9 @@ namespace HostOcean.Persistence.Seed
                 _defaultDebugLaboratoryWorkEvent = new LaboratoryWorkEvent()
                 {
                     Queue = _defaultDebugQueue,
-                    LaboratoryWork = _defaultDebugLaboratoryWork
+                    LaboratoryWork = _defaultDebugLaboratoryWork,
+                    StartDate = new DateTime(),
+                    RegistrationStartedAt = new DateTime()
                 };
 
                 await _dbContext.LaboratoryWorks.AddAsync(_defaultDebugLaboratoryWork);

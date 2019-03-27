@@ -1,10 +1,9 @@
-﻿using System;
+﻿using HostOcean.Application.Interfaces.Persistence;
+using MediatR;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using FluentValidation;
-using HostOcean.Application.Interfaces.Persistence;
-using MediatR;
 
 namespace HostOcean.Application.Queues.Commands
 {
@@ -24,10 +23,16 @@ namespace HostOcean.Application.Queues.Commands
 
             public async Task<Unit> Handle(TakeQueueCommand request, CancellationToken cancellationToken)
             {
-                var userQueue = _unitOfWork.UserQueues.Find(e => e.UserId == request.UserId && e.QueueId == request.QueueId).FirstOrDefault(); 
+                var userQueue = _unitOfWork.UserQueues.Find(e => e.UserId == request.UserId && e.QueueId == request.QueueId).FirstOrDefault();
                 if (userQueue != null)
                 {
-                    throw new ValidationException("User already in queue");
+                    throw new FluentValidation.ValidationException("User already in queue");
+                }
+
+                var queue = _unitOfWork.Queues.Find(e => e.Id == request.QueueId).FirstOrDefault();
+                if (queue.LaboratoryWorkEvent.RegistrationStartedAt > DateTime.Now)
+                {
+                    throw new Exception("Registration not started yet");
                 }
 
                 var entity = new Domain.Entities.UserQueue
@@ -36,7 +41,7 @@ namespace HostOcean.Application.Queues.Commands
                     QueueId = request.QueueId,
                     CreatedOn = DateTime.Now
                 };
-            
+
                 _unitOfWork.UserQueues.Add(entity);
                 await _unitOfWork.SaveAsync();
 

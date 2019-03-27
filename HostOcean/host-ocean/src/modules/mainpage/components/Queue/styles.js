@@ -9,8 +9,5 @@ export default {
         alignItems: "center",
         justifyContent: "center",
         flex: 1
-    },
-    button: {
-        width: "100%"
     }
 };

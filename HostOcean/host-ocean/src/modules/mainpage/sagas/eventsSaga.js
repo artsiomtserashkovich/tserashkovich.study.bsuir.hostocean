@@ -1,7 +1,6 @@
-import { takeLatest, all, put } from 'redux-saga/effects'
+import { takeLatest, all } from 'redux-saga/effects'
 
 import * as eventsActions from "../actions/eventsActions"
-import * as queuesActions from "../actions/queuesActions"
 
 function* getEventsSuccess(action) {
     if (action.response.data) {

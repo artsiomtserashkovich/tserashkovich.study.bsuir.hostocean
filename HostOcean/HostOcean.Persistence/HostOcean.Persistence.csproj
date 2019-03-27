@@ -25,6 +25,8 @@
     <Compile Include="Migrations\20190323113810_UserRequired.Designer.cs" />
     <Compile Include="Migrations\20190326115439_LaboratoryWorkEvent.cs" />
     <Compile Include="Migrations\20190326115439_LaboratoryWorkEvent.Designer.cs" />
+    <Compile Include="Migrations\20190327164030_RegistrationStartedAt.cs" />
+    <Compile Include="Migrations\20190327164030_RegistrationStartedAt.Designer.cs" />
     <Compile Include="Migrations\HostOceanDbContextModelSnapshot.cs" />
   </ItemGroup>
 
