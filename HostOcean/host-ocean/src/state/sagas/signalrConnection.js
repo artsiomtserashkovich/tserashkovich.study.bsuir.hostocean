@@ -41,8 +41,6 @@ function* tryToConnect(action) {
 
         connection.start();
 
-        console.log(connection);
-
         yield put(signalrActions.createConnectionSuccess(connection))
     }
     catch {

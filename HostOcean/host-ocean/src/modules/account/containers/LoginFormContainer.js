@@ -10,11 +10,12 @@ import * as signalrActions from "./../../../state/actions/signalrActions";
 
 class RegisterFormContainer extends React.Component {
     componentDidMount() {
-        const {removeToken, removeUser, terminateConnection} = this.props;
+        const {removeToken, removeUser, resetState, terminateConnection} = this.props;
         
         removeToken();
         removeUser();
         terminateConnection();
+        resetState();
     }
 
     login = ({ username, password }) => {
