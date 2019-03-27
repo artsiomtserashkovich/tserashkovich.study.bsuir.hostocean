@@ -10,24 +10,24 @@ using HostOcean.Application.Interfaces.Persistence;
 using HostOcean.Domain.Entities;
 using MediatR;
 
-namespace HostOcean.Application.LaboratoryWorks.Commands
+namespace HostOcean.Application.Events.Commands
 {
-    public class MigrateLaboratoryWorksCommand: IRequest
+    public class MigrateLaboratoryWorkEventsCommand: IRequest
     {
         public TimeSpan MigratePeriod { get; set; }
 
-        public class MigrateLaboratoryWorksCommandHandler : IRequestHandler<MigrateLaboratoryWorksCommand>
+        public class MigrateLaboratoryWorkEventsCommandHandler : IRequestHandler<MigrateLaboratoryWorkEventsCommand>
         {
             private readonly IUnitOfWork _unitOfWork;
             private readonly IGroupSheduleService _groupSheduleService;
 
-            public MigrateLaboratoryWorksCommandHandler(IUnitOfWork unitOfWork,
+            public MigrateLaboratoryWorkEventsCommandHandler(IUnitOfWork unitOfWork,
                 IGroupSheduleService groupSheduleService)
             {
                 _unitOfWork = unitOfWork;
                 _groupSheduleService = groupSheduleService;
             }
-            public async Task<Unit> Handle(MigrateLaboratoryWorksCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(MigrateLaboratoryWorkEventsCommand request, CancellationToken cancellationToken)
             {
                 var groups = _unitOfWork.Groups.All;
                 var startDate = DateTime.Now;

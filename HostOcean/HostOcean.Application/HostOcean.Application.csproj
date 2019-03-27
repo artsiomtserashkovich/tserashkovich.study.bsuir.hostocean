@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Events\Commands\" />
+    <Folder Include="LaboratoryWorks\Commands\" />
     <Folder Include="LaboratoryWorks\Queries\" />
     <Folder Include="Tokens\Commands\" />
   </ItemGroup>
