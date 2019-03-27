@@ -15,7 +15,7 @@ export default handleActions(
             return { ...action.payload }
         },
         [actions.removeToken]: (state, action) => {
-            return { ...state }
+            return { ...initialState }
         },
         [actions.refreshTokenSuccess]: (state, action) => {
             return { ...initialState, ...action.response.data }

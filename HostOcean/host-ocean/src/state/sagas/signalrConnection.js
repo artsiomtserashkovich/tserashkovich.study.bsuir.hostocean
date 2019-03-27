@@ -1,5 +1,5 @@
 import { eventChannel  } from 'redux-saga';
-import { put, select, fork, call, take, delay } from 'redux-saga/effects'
+import { put, select, fork, call, take, delay, all, takeLatest } from 'redux-saga/effects'
 import * as signalrActions from "./../actions/signalrActions"
 import * as signalR from "@aspnet/signalr";
 import registerSignalREvents from "./../signalr";
@@ -41,6 +41,8 @@ function* tryToConnect(action) {
 
         connection.start();
 
+        console.log(connection);
+
         yield put(signalrActions.createConnectionSuccess(connection))
     }
     catch {
@@ -48,7 +50,28 @@ function* tryToConnect(action) {
     }
 }
 
+function* terminateConnection(action) {
+    const { connection, isEstablished } = yield select(state => state.signalr)
+
+    if (!isEstablished) {
+        return;
+    }
+
+    try {
+        connection.stop();
+
+        yield put(signalrActions.terminateConnectionSuccess())
+    }
+    catch {
+        yield put(signalrActions.terminateConnectionFailed())
+    }
+}
+
 export default function* signalrConnection() {
+    yield all([
+        takeLatest(signalrActions.terminateConnection, terminateConnection),
+    ])
+
     yield delay(1000);
     while (true) {
         yield fork(tryToConnect);
