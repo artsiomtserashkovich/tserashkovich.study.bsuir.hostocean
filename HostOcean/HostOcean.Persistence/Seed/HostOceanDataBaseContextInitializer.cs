@@ -1,12 +1,12 @@
-﻿using System;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
-using HostOcean.Application.Interfaces.Persistence;
+﻿using HostOcean.Application.Interfaces.Persistence;
 using HostOcean.Domain.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace HostOcean.Persistence.Seed
 {
@@ -15,6 +15,7 @@ namespace HostOcean.Persistence.Seed
         private User _defaultDebugAdminUser;
         private Group _defaultDebugGroup;
         private LaboratoryWork _defaultDebugLaboratoryWork;
+        private LaboratoryWorkEvent _defaultDebugLaboratoryWorkEvent;
         private Queue _defaultDebugQueue;
 
         private RoleManager<IdentityRole> _roleManager;
@@ -63,13 +64,14 @@ namespace HostOcean.Persistence.Seed
             await SeedRoles();
             await SeedDebugGroups();
             await SeedDebugLaboratoryworks();
+            await SeedDebugEvents();
             await SeedDebugUsers();
             await SeedDebugQueues();
         }
 
         private async Task SeedRoles()
         {
-            if (! (await _dbContext.Roles.AnyAsync()))
+            if (!(await _dbContext.Roles.AnyAsync()))
             {
                 await _roleManager.CreateAsync(new IdentityRole("Admin"));
                 await _roleManager.CreateAsync(new IdentityRole("User"));
@@ -104,6 +106,22 @@ namespace HostOcean.Persistence.Seed
             }
         }
 
+        public async Task SeedDebugEvents()
+        {
+            if (!_dbContext.LaboratoryWorkEvents.Any())
+            {
+                _defaultDebugLaboratoryWorkEvent = new LaboratoryWorkEvent()
+                {
+                    Queue = _defaultDebugQueue,
+                    LaboratoryWork = _defaultDebugLaboratoryWork,
+                    StartDate = new DateTime(),
+                    RegistrationStartedAt = new DateTime()
+                };
+
+                await _dbContext.LaboratoryWorks.AddAsync(_defaultDebugLaboratoryWork);
+            }
+        }
+
         private async Task SeedDebugUsers()
         {
             if (!_dbContext.Users.Any())
@@ -126,7 +144,7 @@ namespace HostOcean.Persistence.Seed
                 {
                     CreatedOn = DateTime.Now,
                     RegistrationStart = DateTime.Now.AddHours(6),
-                    LaboratoryWork = _defaultDebugLaboratoryWork,
+                    LaboratoryWorkEvent = _defaultDebugLaboratoryWorkEvent,
                 };
 
                 await _dbContext.Queues.AddAsync(_defaultDebugQueue);

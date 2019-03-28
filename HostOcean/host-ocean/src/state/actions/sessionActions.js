@@ -1,5 +1,7 @@
 import { createAction } from 'redux-actions'
 
+export const resetState = createAction('RESET_STATE')
+
 export const setConfig = createAction('SET_CONFIG')
 
 export const setToken = createAction('SET_TOKEN')

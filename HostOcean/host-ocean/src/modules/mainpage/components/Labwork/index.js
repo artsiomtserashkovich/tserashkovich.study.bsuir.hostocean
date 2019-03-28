@@ -1,13 +1,13 @@
 import React from "react";
-import { Paper, Typography, Divider, withStyles } from "@material-ui/core";
+import PropTypes from "prop-types";
+import { Typography, Divider, withStyles } from "@material-ui/core";
 
 import styles from "./styles"
-import QueueContainer from "../../containers/QueueContainer";
 
-const LaboratoryWork = ({ classes, startDate, title, lecturer, location, id }) => {
+const LaboratoryWork = ({ classes, startDate, title, lecturer, location }) => {
     const dateString = new Date(startDate).toLocaleTimeString("en-EN", { hour: "numeric", minute: "numeric" })
     return (
-        <Paper className={classes.root}>
+        <React.Fragment>
             <Typography className={classes.title} variant="h6">{title}</Typography>
             <Divider />
             <div className={classes.infoContainer}>
@@ -24,10 +24,16 @@ const LaboratoryWork = ({ classes, startDate, title, lecturer, location, id }) =
                     <Typography variant="subtitle2">{lecturer}</Typography>
                 </div>
             </div>
-            <Divider />
-            <QueueContainer labworkId={id} />
-        </Paper>
+        </React.Fragment>
     );
+}
+
+LaboratoryWork.propTypes = {
+    classes: PropTypes.object.isRequired,
+    startDate: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    lecturer: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired
 }
 
 export default withStyles(styles)(LaboratoryWork);

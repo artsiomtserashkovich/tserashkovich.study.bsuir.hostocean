@@ -2,7 +2,7 @@
 using HostOcean.Application.ApplicationSettings;
 using HostOcean.Application.Groups.Commands;
 using HostOcean.Application.Interfaces.Persistence;
-using HostOcean.Application.LaboratoryWorks.Commands;
+using HostOcean.Application.Events.Commands;
 using Microsoft.Extensions.Options;
 
 namespace HostOcean.Infrastructure.Hangfire.SheduleCommandInitializer
@@ -37,7 +37,7 @@ namespace HostOcean.Infrastructure.Hangfire.SheduleCommandInitializer
             _commandsSheduler.ExecutesByCronExpression(new MigrateBsuirGroupsCommand(), Guid.NewGuid().ToString(),
                 _hangfireSettings.GroupSeedingCron, "Update Group list from Bsuir IIS.");
 
-            _commandsSheduler.ExecutesByCronExpression(new MigrateLaboratoryWorksCommand
+            _commandsSheduler.ExecutesByCronExpression(new MigrateLaboratoryWorkEventsCommand
                     {
                         MigratePeriod = TimeSpan.FromDays(7)
                     },

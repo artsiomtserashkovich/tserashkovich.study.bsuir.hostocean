@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HostOcean.Application.Groups.Models;
+using HostOcean.Domain.Entities;
 
 namespace HostOcean.Application.LaboratoryWorks.Models
 {
@@ -7,9 +8,10 @@ namespace HostOcean.Application.LaboratoryWorks.Models
         public string Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public string Location { get; set; }
         public string Lecturer { get; set; }
-        public DateTime StartDate { get; set; }
-        public string QueueId { get; set; }
+        public LaboratorySubGroup LaboratorySubGroup { get; set; }
+
+        public string GroupId { get; set; }
+        public virtual GroupModel Group { get; set; }
     }
 }

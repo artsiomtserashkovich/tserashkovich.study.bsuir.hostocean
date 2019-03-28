@@ -1,16 +1,19 @@
 import { handleActions } from "redux-actions";
 
-import * as actions from "../actions/labworksActions";
+import * as eventsActions from "../actions/eventsActions";
+import * as stateActions from "../../../state/actions/sessionActions";
 
 const initialState = {
 };
 
 export default handleActions(
     {
-        [actions.getLabworksSuccess]: (state, action) => {
+        [stateActions.resetState]: (state,action) => {
+            return { ...initialState }
+        },
+        [eventsActions.getEventsSuccess]: (state, action) => {
             const newState = { ...initialState };
-            action.response.data.forEach(lab => newState[lab.id] = lab);
-
+            action.response.data.forEach(event => newState[event.laboratoryWorkId] = event.laboratoryWork);
             return { ...newState }
         }
     },

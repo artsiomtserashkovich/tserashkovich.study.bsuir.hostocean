@@ -5,15 +5,23 @@ import Labwork from "./../components/Labwork"
 
 class LabworkContainer extends React.Component {
     render() {
-        const { labwork } = this.props;
+        const { labwork, location, startDate } = this.props;
 
-        return <Labwork {...labwork} />;
+        const props = {
+            ...labwork,
+            location,
+            startDate
+        }
+
+        return <Labwork {...props} />;
     }
 }
 
 const mapStateToProps = (state, props) => {
     return ({
-        labwork: state.mainpage.labworks[props.id]
+        labwork: state.mainpage.labworks[props.labworkId],
+        location: state.mainpage.events[props.eventId].location,
+        startDate: state.mainpage.events[props.eventId].startDate
     });
 }
 

@@ -47,17 +47,42 @@ namespace HostOcean.Persistence.Migrations
 
                     b.Property<string>("Lecturer");
 
-                    b.Property<string>("Location");
-
-                    b.Property<DateTime>("StartDate");
-
                     b.Property<string>("Title");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GroupId");
+                    b.HasIndex("GroupId", "Lecturer", "Title")
+                        .IsUnique()
+                        .HasFilter("[Lecturer] IS NOT NULL AND [Title] IS NOT NULL");
 
                     b.ToTable("LaboratoryWorks");
+                });
+
+            modelBuilder.Entity("HostOcean.Domain.Entities.LaboratoryWorkEvent", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("LaboratoryWorkId")
+                        .IsRequired();
+
+                    b.Property<string>("Location");
+
+                    b.Property<string>("QueueId")
+                        .IsRequired();
+
+                    b.Property<DateTime>("RegistrationStartedAt");
+
+                    b.Property<DateTime>("StartDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LaboratoryWorkId");
+
+                    b.HasIndex("QueueId")
+                        .IsUnique();
+
+                    b.ToTable("LaboratoryWorkEvents");
                 });
 
             modelBuilder.Entity("HostOcean.Domain.Entities.Queue", b =>
@@ -67,15 +92,11 @@ namespace HostOcean.Persistence.Migrations
 
                     b.Property<DateTime?>("CreatedOn");
 
-                    b.Property<string>("FK_Laboratory_Work")
-                        .IsRequired();
+                    b.Property<string>("EventId");
 
                     b.Property<DateTime>("RegistrationStart");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("FK_Laboratory_Work")
-                        .IsUnique();
 
                     b.ToTable("Queues");
                 });
@@ -281,11 +302,16 @@ namespace HostOcean.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("HostOcean.Domain.Entities.Queue", b =>
+            modelBuilder.Entity("HostOcean.Domain.Entities.LaboratoryWorkEvent", b =>
                 {
                     b.HasOne("HostOcean.Domain.Entities.LaboratoryWork", "LaboratoryWork")
-                        .WithOne("Queue")
-                        .HasForeignKey("HostOcean.Domain.Entities.Queue", "FK_Laboratory_Work")
+                        .WithMany("LaboratoryWorkEvents")
+                        .HasForeignKey("LaboratoryWorkId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("HostOcean.Domain.Entities.Queue", "Queue")
+                        .WithOne("LaboratoryWorkEvent")
+                        .HasForeignKey("HostOcean.Domain.Entities.LaboratoryWorkEvent", "QueueId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

@@ -7,7 +7,6 @@ namespace HostOcean.Application.Interfaces.Infrastructure
 {
     public interface IGroupSheduleService
     {
-        Task<IEnumerable<LaboratoryWork>> GetLaboratoryWorksForPeriod(string calendarId, DateTime startDateTime,
-            DateTime endDateTime);
+        Task<IEnumerable<LaboratoryWorkEvent>> GetEventsForPeriod(string calendarId, DateTime startDateTime, DateTime endDateTime);
     }
 }

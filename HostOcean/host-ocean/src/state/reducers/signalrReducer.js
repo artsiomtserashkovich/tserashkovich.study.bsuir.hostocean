@@ -15,6 +15,10 @@ export default handleActions(
         [actions.createConnectionFailed]: (state, action) => {
             return { ...state, connection: undefined, isEstablished: false }
         },
+
+        [actions.terminateConnectionSuccess]: (state, action) => {
+            return { ...initialState }
+        }
     },
     initialState
 );

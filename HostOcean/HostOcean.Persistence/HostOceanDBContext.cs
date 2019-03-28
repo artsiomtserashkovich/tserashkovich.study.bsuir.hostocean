@@ -12,6 +12,7 @@ namespace HostOcean.Persistence
 
         public DbSet<Group> Groups { get; set; }
         public DbSet<LaboratoryWork> LaboratoryWorks { get; set; }
+        public DbSet<LaboratoryWorkEvent> LaboratoryWorkEvents { get; set; }
         public DbSet<UserQueue> UserQueues { get; set; }
         public DbSet<Queue> Queues { get; set; }
 

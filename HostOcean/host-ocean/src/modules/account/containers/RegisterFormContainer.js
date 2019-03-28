@@ -5,13 +5,20 @@ import { change, updateSyncErrors } from "redux-form";
 import PropTypes from 'prop-types';
 
 import RegisterForm from "../components/RegisterForm";
+
 import * as actions from "../actions/index";
-import * as groupActions from "../../groups/actions/index"
+import * as groupActions from "../../groups/actions/index";
+import * as sessionActions from "./../../../state/actions/sessionActions";
+import * as signalrActions from "./../../../state/actions/signalrActions";
 
 class RegisterFormContainer extends React.Component {
     componentDidMount = () => {
-        const { getGroupsRequest } = this.props;
-
+        const { getGroupsRequest, removeToken, removeUser, resetState, terminateConnection} = this.props;
+        
+        removeToken();
+        removeUser();
+        terminateConnection();
+        resetState();
         getGroupsRequest();
     };
 
@@ -67,7 +74,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     change: bindActionCreators(change, dispatch),
     updateSyncErrors: bindActionCreators(updateSyncErrors, dispatch),
-    ...bindActionCreators({ ...actions, ...groupActions }, dispatch)
+    ...bindActionCreators({ ...actions, ...groupActions, ...sessionActions, ...signalrActions }, dispatch)
 });
 
 export default connect(

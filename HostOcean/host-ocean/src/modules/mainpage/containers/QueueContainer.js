@@ -1,31 +1,14 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { bindActionCreators } from "redux";
 
-import Queue from "./../components/Queue"
-import * as queueActions from "./../actions/queuesActions"
+import Queue from "./../components/Queue";
 
-class LabworkContainer extends React.Component {
-    onTakeQueue = () => {
-        const { queue, user, takeQueueRequest } = this.props;
-
-        takeQueueRequest({ queueId: queue.id, userId: user.id })
-    }
-
-    onLeaveQueue = () => {
-        const { queue, user, leaveQueueRequest } = this.props;
-
-        leaveQueueRequest({ queueId: queue.id, userId: user.id })
-    }
-
+class QueueContainer extends React.Component {
     render() {
-        const { queue, isAlreadyInQueue } = this.props;
+        const { queue } = this.props;
 
         const props = {
-            queue,
-            isAlreadyInQueue,
-            onTakeQueue: this.onTakeQueue,
-            onLeaveQueue: this.onLeaveQueue
+            queue
         }
 
         return <Queue {...props} />;
@@ -33,22 +16,16 @@ class LabworkContainer extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-    const queueId = state.mainpage.labworks[props.labworkId].queueId;
-    const queue = state.mainpage.queues[queueId];
-    const user = state.user;
-    const isAlreadyInQueue = queue && queue.userQueues ? queue.userQueues.some(u => u.user.id === user.id) : false;
+    const queue = state.mainpage.queues[props.queueId];
 
     return ({
-        queue,
-        user,
-        isAlreadyInQueue
+        queue
     });
 }
 
-const mapDispatchToProps = (dispatch, props) => {
+const mapDispatchToProps = () => {
     return ({
-        ...bindActionCreators({ ...queueActions }, dispatch)
     });
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LabworkContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(QueueContainer);

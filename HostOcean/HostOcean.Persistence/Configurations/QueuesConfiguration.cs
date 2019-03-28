@@ -13,8 +13,9 @@ namespace HostOcean.Persistence.Configurations
                 .HasKey(x => x.Id);
 
             builder
-                .HasOne(f => f.LaboratoryWork)
-                .WithOne(p => p.Queue);
+                .HasOne(f => f.LaboratoryWorkEvent)
+                .WithOne(p => p.Queue)
+                .IsRequired();
 
             builder
                 .HasMany(f => f.UserQueues)

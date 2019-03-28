@@ -18,10 +18,12 @@ namespace HostOcean.Persistence.Configurations
                 .IsRequired();
 
             builder
-                .HasOne(f => f.Queue)
-                .WithOne(p => p.LaboratoryWork)
-                .HasForeignKey<Queue>("FK_Laboratory_Work")
-                .IsRequired();
+               .HasMany(f => f.LaboratoryWorkEvents)
+               .WithOne(p => p.LaboratoryWork);
+
+            builder
+                .HasIndex(e => new { e.GroupId, e.Lecturer, e.Title })
+                .IsUnique();
 
             builder
                 .Property(x => x.LaboratorySubGroup)
