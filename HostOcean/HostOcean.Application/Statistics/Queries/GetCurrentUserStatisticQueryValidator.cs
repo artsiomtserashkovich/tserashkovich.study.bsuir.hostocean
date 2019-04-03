@@ -2,11 +2,10 @@
 
 namespace HostOcean.Application.Statistics.Queries
 {
-    class GetStatisticForPeriodValidator : AbstractValidator<GetStatisticForPeriodQuery>
+    class GetCurrentUserStatisticQueryValidator : AbstractValidator<GetCurrentUserStatisticQuery>
     {
-        public GetStatisticForPeriodValidator()
+        public GetCurrentUserStatisticQueryValidator()
         {
-            RuleFor(x => x.UserId).NotEmpty();
             RuleFor(x => x.EndPeriod).GreaterThan(x => x.StartPeriod);
         }
     }
