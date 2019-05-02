@@ -54,6 +54,11 @@ const User = ({
                     onClose={handleClose}
                 >
                     <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <Link className={classes.link} to="/statistics">
+                        <MenuItem onClick={handleClose}>
+                            Statistic
+                        </MenuItem>
+                    </Link>
                     <Link className={classes.link} to="/accounts/login">
                         <MenuItem onClick={handleClose}>
                             Log out

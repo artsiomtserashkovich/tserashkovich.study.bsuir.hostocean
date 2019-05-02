@@ -1,0 +1,279 @@
+#include "gpu_shared_hyper_upgrade_worker.cuh"
+
+const int BLOCKDIM_X = 32;
+const int BLOCKDIM_Y = 8;
+
+__global__	void gpu_shared_hyper_updated_filter(
+	unsigned char * original_extended_image, 
+	unsigned int original_width,
+	unsigned char * image_result,
+	unsigned int result_width,
+	unsigned int result_height,
+	unsigned int devision_coefficent
+)
+{
+	int result_current_width = blockIdx.x * blockDim.x + threadIdx.x;
+	int result_current_height = blockIdx.y * blockDim.y + threadIdx.y;
+
+	__shared__ int temp_image[BLOCKDIM_Y][BLOCKDIM_X];
+
+	int filter[3][3] =
+	{
+		{ 1,-2,1 },{ -2,5,-2 },{ 1,-2,1 }
+	};
+	
+	temp_image[threadIdx.x][threadIdx.y] = original_extended_image[
+		result_current_width * original_width + result_current_height		
+		];
+
+	/*{
+		if (threadIdx.x == 0 && threadIdx.y == 0)
+		{
+			temp_image[0][0] = original_extended_image[index(
+				original_current_height - 1,
+				original_current_height - 1,
+				original_width
+			)];
+		}
+
+		if (threadIdx.x == (blockDim.x - 1) && threadIdx.y == 0)
+		{
+			temp_image[0][blockDim.x + 1] = original_extended_image[index(
+				original_current_height - 1,
+				original_current_width + 1,
+				original_width
+			)];
+		}
+
+		if (threadIdx.x == (blockDim.x - 1) && threadIdx.y == (blockDim.y - 1))
+		{
+			temp_image[blockDim.y + 1][blockDim.x + 1] = original_extended_image[index(
+				original_current_height + 1,
+				original_current_width + 1,
+				original_width
+			)];
+		}
+
+		if (threadIdx.x == 0 && threadIdx.y == (blockDim.y - 1))
+		{
+			temp_image[blockDim.y + 1][0] = original_extended_image[index(
+				original_current_height + 1,
+				original_current_width - 1,
+				original_width
+			)];
+		}
+	}
+
+	{
+		if (threadIdx.x == 0)
+		{
+			temp_image[threadIdx.y + 1][0] = original_extended_image[index(
+				original_current_height,
+				original_current_width - 1,
+				original_width
+			)];
+		}
+
+		if (threadIdx.x == (blockDim.x - 1))
+		{
+			temp_image[threadIdx.y + 1][blockDim.x + 1] = original_extended_image[index(
+				original_current_height,
+				original_current_width + 1,
+				original_width
+			)];
+		}
+
+		if (threadIdx.y == 0)
+		{
+			temp_image[0][threadIdx.x + 1] = original_extended_image[index(
+				original_current_height - 1,
+				original_current_width,
+				original_width
+			)];
+		}
+
+		if (threadIdx.y == (blockDim.y - 1))
+		{
+			temp_image[blockDim.y + 1][threadIdx.x + 1] = original_extended_image[index(
+				original_current_height + 1,
+				original_current_width,
+				original_width
+			)];
+		}
+	}*/
+
+	__syncthreads();
+
+	image_result[result_current_height * result_width + result_current_width] = (
+		(
+			  temp_image[threadIdx.y    ][threadIdx.x    ] * (filter[0][0])
+			+ temp_image[threadIdx.y    ][threadIdx.x + 1] * (filter[0][1])
+			+ temp_image[threadIdx.y    ][threadIdx.x + 2] * (filter[0][2])
+			+ temp_image[threadIdx.y + 1][threadIdx.x    ] * (filter[1][0])
+			+ temp_image[threadIdx.y + 1][threadIdx.x + 1] * (filter[1][1])
+			+ temp_image[threadIdx.y + 1][threadIdx.x + 2] * (filter[1][2])
+			+ temp_image[threadIdx.y + 2][threadIdx.x    ] * (filter[2][0])
+			+ temp_image[threadIdx.y + 2][threadIdx.x + 1] * (filter[2][1])
+			+ temp_image[threadIdx.y + 2][threadIdx.x + 2] * (filter[2][2])
+			)
+			/ devision_coefficent
+		);
+
+}
+
+//unsigned char* initialize_image_result_matrix(Task task)
+//{
+//	unsigned char * image_result;
+//
+//	auto cuda_status = cudaMalloc(
+//		(void**)(&image_result),
+//		(task.work_matrix.height) * (task.work_matrix.width) * sizeof(unsigned char)
+//	);
+//	check_cuda_check(cuda_status, "initialize_image_result_matrix");
+//
+//	return image_result;	
+//}
+//
+//unsigned char* create_extended_matrix(Task task)
+//{
+//	unsigned char * extended_image;
+//
+//	auto cuda_status = cudaMalloc(
+//		(void**)(&extended_image),
+//		(task.image.matrix.height) * (task.image.matrix.width) * sizeof(unsigned char)
+//	);
+//	check_cuda_check(cuda_status, "create_extended_matrix");
+//
+//	cuda_status = cudaMemcpy(
+//		extended_image,
+//		task.image.matrix.matrix,
+//		(task.image.matrix.height) * (task.image.matrix.width) * sizeof(unsigned char),
+//		cudaMemcpyHostToDevice
+//	);
+//	check_cuda_check(cuda_status, "create_extended_matrix");
+//
+//	return extended_image;
+//}
+//
+////void copy_memory_result(Task task, unsigned char* image_result)
+////{
+////	auto cuda_status = cudaMemcpy(
+////		task.work_matrix.matrix,
+////		image_result,
+////		(task.work_matrix.height) * (task.work_matrix.width) * sizeof(unsigned char),
+////		cudaMemcpyDeviceToHost
+////	);
+////
+////	check_cuda_check(cuda_status, "copy_memory_result");
+////}
+
+Result perform_GPU_shared_hyper_upgrade_worker(Task task)
+{
+	cudaEvent_t start_time, stop_time;
+	cudaEventCreate(&start_time);
+	cudaEventCreate(&stop_time);
+
+	unsigned char* image_original;
+	unsigned char* image_result;
+
+	auto cuda_status =
+		cudaMalloc((void**)(&image_original),
+		(task.image.matrix.height) * (task.image.matrix.width) * sizeof(unsigned char));
+
+	if (cuda_status != cudaSuccess)
+	{
+		fprintf(stderr, "cudaMalloc failed!");
+		exit(EXIT_FAILURE);
+	}
+
+	cuda_status = cudaMemcpy(image_original,
+		task.image.matrix.matrix,
+		(task.image.matrix.height) * (task.image.matrix.width) *
+		sizeof(unsigned char), cudaMemcpyHostToDevice);
+
+	if (cuda_status != cudaSuccess)
+	{
+		fprintf(stderr, "cudaMalloc failed!");
+		exit(EXIT_FAILURE);
+	}
+
+	cuda_status =
+		cudaMalloc((void**)(&image_result),
+		(task.work_matrix.height) * (task.work_matrix.width) * sizeof(unsigned char));
+
+	if (cuda_status != cudaSuccess)
+	{
+		fprintf(stderr, "cudaMalloc failed!");
+		exit(EXIT_FAILURE);
+	}
+
+	dim3 block(BLOCKDIM_X, BLOCKDIM_Y);
+	dim3 grid;
+
+	grid.x = task.work_matrix.width / block.x;
+	if (task.work_matrix.width % block.x != 0)
+		grid.x += 1;
+
+	grid.y = task.work_matrix.height / block.y;
+	if (task.work_matrix.height % block.y != 0)
+		grid.y += 1;
+
+	cudaEventRecord(start_time);
+	gpu_shared_hyper_updated_filter <<<grid, block >>> (
+				image_original,
+				task.image.matrix.width,
+				image_result,
+				task.work_matrix.width,
+				task.work_matrix.height,
+				task.division_coef
+			);cudaDeviceSynchronize();
+	cudaEventRecord(stop_time);
+	cudaEventSynchronize(stop_time);
+
+	Result result;
+	cudaEventElapsedTime(&result.time, start_time, stop_time);
+
+	cuda_status = cudaMemcpy(task.work_matrix.matrix,
+		image_result,
+		(task.work_matrix.height) * (task.work_matrix.width) * sizeof(unsigned char), cudaMemcpyDeviceToHost);
+
+	if (cuda_status != cudaSuccess)
+	{
+		fprintf(stderr, "cudaMalloc failed!");
+		exit(EXIT_FAILURE);
+	}
+
+	result.result = task.work_matrix;
+	cudaEventElapsedTime(&result.time, start_time, stop_time);
+	return result;
+}
+
+//GPU_config setup_GPU_config(Task task)
+//{
+//	GPU_config gpu_config;
+//	gpu_config.block = dim3(BLOCKDIM_X, BLOCKDIM_Y);
+//	dim3 grid;
+//
+//	grid.x = task.work_matrix.width / gpu_config.block.x;
+//	if (task.work_matrix.width % gpu_config.block.x != 0)
+//		grid.x += 1;
+//
+//	grid.y = task.work_matrix.height / gpu_config.block.y;
+//	if (task.work_matrix.height % gpu_config.block.y != 0)
+//		grid.y += 1;
+//
+//	gpu_config.grid = grid;
+//	return  gpu_config;
+//}
+//
+//
+//void check_cuda_check(cudaError_t cuda_status, char* method)
+//{
+//	if (cuda_status != cudaSuccess)
+//	{
+//		fprintf(stderr, method);
+//		fprintf(stderr, "/ngpu_shared_hyper_updated_filter/n");
+//		fprintf(stderr, "/ncudaMalloc failed!/n");
+//		exit(EXIT_FAILURE);
+//	}
+//}

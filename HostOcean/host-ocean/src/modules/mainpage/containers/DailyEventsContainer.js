@@ -10,7 +10,6 @@ import * as eventsActions from "../actions/eventsActions";
 class DailyEventsContainer extends React.Component {
     componentDidMount() {
         const { getEventsRequest, groupId } = this.props;
-
         getEventsRequest({ groupId });
     }
 
