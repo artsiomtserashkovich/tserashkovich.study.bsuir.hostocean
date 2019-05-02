@@ -1,5 +1,5 @@
 const statisticRequests = {
-    getCurrentUserStatisticForPeriod : ({startPeriod, endPeriod}) => ({
+    statisticRequest : ({startPeriod, endPeriod}) => ({
         url: `api/statistic/?startPeriod=${startPeriod}&endPeriod=${endPeriod}`,
         method: "get"
     })

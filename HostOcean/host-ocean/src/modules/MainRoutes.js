@@ -1,7 +1,7 @@
 import MainPageContainer from './mainpage/containers/MainPageContainer';
 import { AccountModule } from './account/AccountModule';
 import { QueueModule } from './queue/QueueModules';
-import { Statistics } from './statistics/Statistics';
+import { StatisticsContainer } from './statistics/containers/StatisticsContainer';
 
 export const MainRoutes = [
     {
@@ -22,7 +22,7 @@ export const MainRoutes = [
     },
     {
         path: "statistics",
-        component: Statistics,
+        component: StatisticsContainer,
         exact: false,
     }
 ];

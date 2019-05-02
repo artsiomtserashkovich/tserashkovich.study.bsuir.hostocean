@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from "react";
 import { Typography } from '@material-ui/core';
 
-class StatisticsContainer extends React.Component {
+export class StatisticsContainer extends React.Component {
     render() {
         return (
             <Typography align={"left"} variant={"h2"} >
@@ -10,5 +10,3 @@ class StatisticsContainer extends React.Component {
         );
     }
 }
-
-export const Statistics = StatisticsContainer;

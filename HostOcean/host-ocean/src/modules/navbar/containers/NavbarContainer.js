@@ -12,8 +12,7 @@ class NavbarContainer extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-    return ({
-    });
+    return ({});
 }
 
 const mapDispatchToProps = (dispatch, props) => {

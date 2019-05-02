@@ -4,6 +4,7 @@ import { connectRouter } from 'connected-react-router'
 
 import ping from './../../modules/account/reducers/pingReducer';
 import groups from './../../modules/groups/reducers/groupsReducer';
+import statisticsFormReducer from './../../modules/statistics/reducers/statisticsFormReducer';
 import session from "./sessionReducer";
 import config from "./configReducer";
 import user from "./userReducer";
@@ -18,7 +19,8 @@ export default (history) => combineReducers({
     router: connectRouter(history),
     form: formReducer.plugin({
         register: registerFormReducer,
-        login: loginFormReducer
+        login: loginFormReducer,
+        statistic: statisticsFormReducer,
     }),
     ping,
     groups,

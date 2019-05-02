@@ -1,9 +1,10 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles/index"
 import {
-    Toolbar, Typography,
+    Toolbar,
     AppBar
 } from "@material-ui/core";
+import LabelLink from "../LabelLink/LabelLink";
 
 import UserContainer from "./../../containers/UserContainer";
 
@@ -16,9 +17,8 @@ class NavBarComponent extends React.Component {
             <div className={classes.root}>
                 <AppBar position="static">
                     <Toolbar>
-                        <Typography variant="h6" color="inherit" className={classes.grow}>
-                            HostOcean
-                        </Typography>
+                        <LabelLink to={"/"} label={"HostOcean"}/>
+                        <LabelLink to={"/statistics"} label={"Statistics"}/>
                         <UserContainer />
                     </Toolbar>
                 </AppBar>
