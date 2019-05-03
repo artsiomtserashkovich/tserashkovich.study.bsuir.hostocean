@@ -17,13 +17,13 @@ class NavBarComponent extends React.Component {
             <div className={classes.root}>
                 <AppBar position="static">
                     <Grid container direction="row" alignItems={"center"} className={classes.grid}>
-                        <Grid item lg={1}>
+                        <Grid item lg={2}>
                             <LabelLink to={"/"} label={"HostOcean"} primary/>
                         </Grid>
                         <Grid item lg={1}>
                             <LabelLink to={"/statistics"} label={"Statistics"}/>
                         </Grid>                        
-                        <Grid item lg={10} >
+                        <Grid item lg={9} >
                             <Grid container justify={"flex-end"}>
                                 <Grid item>
                                     <UserContainer/>

@@ -3,8 +3,9 @@ const styles = theme => ({
         marginTop: theme.spacing.unit,
         marginBot: theme.spacing.unit,
     },
-    gridContainer: {
-        padding: theme.spacing.unit,
+    chartContainetDiv: {
+        width: "100%", 
+        height: 500
     }
 });
   

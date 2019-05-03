@@ -5,6 +5,7 @@ import { Provider, ReactReduxContext } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router'
 
 import { MainModule } from './modules/MainModule';
+import DatePickerProvider from "./modules/shared/providers/MUIDatePickerProvider/index";
 
 import * as actions from "./state/actions/sessionActions"
 
@@ -26,14 +27,16 @@ class App extends React.Component {
     return (
       <Provider store={store} context={ReactReduxContext}>
         <PersistGate loading={null} persistor={persistor}>
-          <SnackbarProvider>
-            <ConnectedRouter history={history} context={ReactReduxContext}>
-              <div>
-                <NavbarContainer />
-                <MainModule />
-              </div>
-            </ConnectedRouter>
-          </SnackbarProvider>
+          <DatePickerProvider locale="en">
+            <SnackbarProvider>
+              <ConnectedRouter history={history} context={ReactReduxContext}>
+                <div>
+                  <NavbarContainer />
+                  <MainModule />
+                </div>
+              </ConnectedRouter>
+            </SnackbarProvider>
+          </DatePickerProvider>
         </PersistGate>
       </Provider >
     );
