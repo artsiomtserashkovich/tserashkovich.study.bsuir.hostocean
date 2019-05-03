@@ -23,6 +23,7 @@ export const MainRoutes = [
     {
         path: "statistics",
         component: StatisticsContainer,
+        requireAuth: true,
         exact: false,
     }
 ];

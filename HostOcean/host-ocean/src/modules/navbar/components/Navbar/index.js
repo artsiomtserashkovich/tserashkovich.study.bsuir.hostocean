@@ -1,7 +1,7 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles/index"
 import {
-    Toolbar,
+    Grid,
     AppBar
 } from "@material-ui/core";
 import LabelLink from "../LabelLink/LabelLink";
@@ -16,11 +16,21 @@ class NavBarComponent extends React.Component {
         return (
             <div className={classes.root}>
                 <AppBar position="static">
-                    <Toolbar>
-                        <LabelLink to={"/"} label={"HostOcean"}/>
-                        <LabelLink to={"/statistics"} label={"Statistics"}/>
-                        <UserContainer />
-                    </Toolbar>
+                    <Grid container direction="row" alignItems={"center"} className={classes.grid}>
+                        <Grid item lg={1}>
+                            <LabelLink to={"/"} label={"HostOcean"} primary/>
+                        </Grid>
+                        <Grid item lg={1}>
+                            <LabelLink to={"/statistics"} label={"Statistics"}/>
+                        </Grid>                        
+                        <Grid item lg={10} >
+                            <Grid container justify={"flex-end"}>
+                                <Grid item>
+                                    <UserContainer/>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
                 </AppBar>
             </div>
         );

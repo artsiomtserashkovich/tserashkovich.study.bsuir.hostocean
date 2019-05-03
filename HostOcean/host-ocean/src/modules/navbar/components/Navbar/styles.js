@@ -9,7 +9,7 @@ export default ({
   color: {
     background: "red",
   },
-  link: {
-    textDecoration: "none"
+  grid: {
+    padding: '10px'
   },
 });

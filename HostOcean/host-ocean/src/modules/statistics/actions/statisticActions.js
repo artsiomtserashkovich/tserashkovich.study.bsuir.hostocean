@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
 
-export const getStatisticRequest = createAction('GET_STATISTIC_REQUEST')
-export const getStatisticFailed = createAction('GET_STATISTIC_FAILED')
-export const getStatisticSuccess = createAction('GET_STATISTIC_SUCCESS')
+export const statisticsRequest = createAction('GET_STATISTIC_REQUEST')
+export const statisticsFailed = createAction('GET_STATISTIC_FAILED')
+export const statisticsSuccess = createAction('GET_STATISTIC_SUCCESS')

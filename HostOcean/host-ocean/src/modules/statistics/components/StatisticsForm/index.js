@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styles from "./styles";
+import { Field, reduxForm } from "redux-form";
+import { Paper, Button, withStyles } from "@material-ui/core";
 
 const formName = "statistics";
 
@@ -8,12 +10,32 @@ const formName = "statistics";
 function StatisticsFormContainer(props) {
     const { classes, handleSubmit } = props;
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="startPeriod">Start Period:</label>
-            <Field name="startPeriod" component="input" type="date" />
-            <label htmlFor="endPeriod">End Period:</label>
-            <Field name="endPeriod" component="input" type="date" />
-        </form>
+        <div className={classes.formsLayout}>
+            <Paper className={classes.paper}>
+                <form className={classes.form} onSubmit={handleSubmit}>
+                    <Field
+                        name="startPeriod"
+                        title="Start Period"
+                        type="date"
+                        classes={classes}
+                    />
+                    <Field
+                        name="endPeriod"
+                        title="End Period"
+                        type="date"
+                        classes={classes}
+                    />
+                    <Button
+                        type="submit"
+                        color="primary"
+                        variant="contained"
+                        className={classes.submitButton}
+                    >
+                        Login
+                    </Button>
+                </form>
+            </Paper>
+        </div>
     );
 }
 
