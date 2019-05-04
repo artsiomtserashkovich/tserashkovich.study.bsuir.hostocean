@@ -5,7 +5,10 @@ const styles = theme => ({
     },
     gridContainer: {
         padding: theme.spacing.unit,
+    },
+    button: {
+        marginTop: "12px",
     }
 });
-  
+
 export default styles;

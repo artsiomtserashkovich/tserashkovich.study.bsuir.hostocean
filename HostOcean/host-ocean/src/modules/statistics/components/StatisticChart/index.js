@@ -2,10 +2,8 @@ import * as React from "react";
 import PropTypes from 'prop-types';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
-import { withStyles } from "@material-ui/core";
-import styles from "./styles";
 
-class StatisticChart extends React.Component {
+export default class StatisticChart extends React.Component {
     componentDidMount() {
         this.chart = am4core.create(this.props.chartId, am4charts.XYChart);
 
@@ -100,7 +98,4 @@ StatisticChart.propTypes = {
     seriesDataField: PropTypes.string.isRequired,
     seriesValueField: PropTypes.string.isRequired,
     seriesTooltipTextPattern: PropTypes.string.isRequired,
-    classes: PropTypes.object.isRequired,
 }
-
-export default withStyles(styles)(StatisticChart);

@@ -11,22 +11,19 @@ function StatisticsFormContainer(props) {
     return (
         <form>
             <Paper className={classes.paper}>
-                <Grid 
-                    container 
-                    spacig={8}
+                <Grid
+                    container
                     direction="row"
-                    alignContent={"flex-end"}
                     className={classes.gridContainer}
                 >
-                    <Grid item lg={1}/>
-                    <Grid item lg={2} md={4} xs={12}>
+                    <Grid item lg={5} md={6} xs={12}>
                         <InlineDatePicker
                             label="Start Period"
                             value={new Date()}
                             onChange={() => new Date()}
                         />
                     </Grid>
-                    <Grid item lg={2} md={4} xs={12}> 
+                    <Grid item lg={5} md={6} xs={12}>
                         <InlineDatePicker
                             label="End Period"
                             value={new Date()}
@@ -34,7 +31,7 @@ function StatisticsFormContainer(props) {
                         />
                     </Grid>
                     <Grid item lg={2} md={4} xs={12}>
-                        <Button variant="outlined">
+                        <Button variant="outlined" className={classes.button}>
                             Get Statistic
                         </Button>
                     </Grid>
