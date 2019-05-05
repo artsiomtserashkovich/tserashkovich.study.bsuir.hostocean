@@ -1,6 +1,8 @@
+import moment from "moment";
+
 const statisticRequests = {
-    statisticRequest : ({startPeriod, endPeriod}) => ({
-        url: `api/statistic/?startPeriod=${startPeriod}&endPeriod=${endPeriod}`,
+    getStatisticRequest : ({startPeriod, endPeriod}) => ({
+        url: `api/statistic/?startPeriod=${moment(startPeriod).format('YYYY MM DD')}&endPeriod=${moment(endPeriod).format('YYYY MM DD')}`,
         method: "get"
     })
 }

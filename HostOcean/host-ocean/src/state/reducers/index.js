@@ -8,6 +8,7 @@ import statisticsFormReducer from './../../modules/statistics/reducers/statistic
 import session from "./sessionReducer";
 import config from "./configReducer";
 import user from "./userReducer";
+import statistic from "../../modules/statistics/reducers/statisticsReducer";
 import signalr from "./signalrReducer";
 import mainpage from "../../modules/mainpage/reducers";
 import registerFormReducer from "../../modules/account/reducers/registerFormReducer";
@@ -20,7 +21,7 @@ export default (history) => combineReducers({
     form: formReducer.plugin({
         register: registerFormReducer,
         login: loginFormReducer,
-        statistic: statisticsFormReducer,
+        statistics: statisticsFormReducer,
     }),
     ping,
     groups,
@@ -29,5 +30,6 @@ export default (history) => combineReducers({
     signalr,
     config,
     mainpage,
-    app
+    app,
+    statistic,
 })

@@ -5,17 +5,15 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 
 export default class StatisticChart extends React.Component {
     componentDidMount() {
-        this.chart = am4core.create(this.props.chartId, am4charts.XYChart);
+        let chart = am4core.create(this.props.chartId, am4charts.XYChart);
 
-        this.chart.data = this.props.data;
-        this.createDateAxis();
-        this.createValueAxis();
-        this.chart.series.push(this.createLineSeries());
-        this.chart.cursor = this.createCursor();
-    }
+        chart.data = this.props.data;
+        this.createDateAxis(chart);
+        this.createValueAxis(chart);
+        chart.series.push(this.createLineSeries());
+        chart.cursor = this.createCursor();
 
-    componentDidUpdate() {
-        this.chart.data = this.props.date;
+        this.chart = chart;
     }
 
     componentWillUnmount(){
@@ -68,26 +66,22 @@ export default class StatisticChart extends React.Component {
     }
 
     createValueAxis(chart) {
-        let axis = this.chart.yAxes.push(new am4charts.ValueAxis());
+        let axis = chart.yAxes.push(new am4charts.ValueAxis());
 
         axis.min = 0;
         axis.renderer.grid.template.disabled = true;
         axis.renderer.baseGrid.disabled = true;
         axis.renderer.labels.template.disabled = true;
         axis.cursorTooltipEnabled = false;
-
-        return axis;
     }
 
-    createDateAxis() {
-        let axis = this.chart.xAxes.push(new am4charts.DateAxis());
+    createDateAxis(chart) {
+        let axis = chart.xAxes.push(new am4charts.DateAxis());
 
         axis.renderer.grid.template.disabled = true;
         axis.startLocation = 0.7;
         axis.endLocation = 0.7;
         axis.cursorTooltipEnabled = false;
-
-        return axis;
     }
 }
 

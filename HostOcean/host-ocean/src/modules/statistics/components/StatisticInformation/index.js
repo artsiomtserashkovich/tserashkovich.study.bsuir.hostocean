@@ -13,17 +13,17 @@ class StatisticsInformation extends React.Component {
                 className={classes.gridContainer}
             >
                 <Grid item lg={4} md={6} xs={12}>
-                    <Typography variant={"h8"}>
+                    <Typography variant={"subtitle1"}>
                         Количество очередей: {this.props.information.countQueues || 0}
                     </Typography>
                 </Grid>
                 <Grid item lg={4} md={6} xs={12}>
-                    <Typography variant={"h8"}>
+                    <Typography variant={"subtitle1"}>
                         Среднее время: {this.props.information.averageTakeQueueTime || 0}
                     </Typography>
                 </Grid>
                 <Grid item lg={4} md={6} xs={12}>
-                    <Typography variant={"h8"}>
+                    <Typography variant={"subtitle1"}>
                         Среднее место: {this.props.information.averagePlace || 0}
                     </Typography>
                 </Grid>

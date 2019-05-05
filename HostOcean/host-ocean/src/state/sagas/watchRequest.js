@@ -14,7 +14,7 @@ function* callAPI(action) {
             accessToken,
             data
         })
-
+        
         const newType = action.type.replace('_REQUEST', '_SUCCESS')
         yield put({ type: newType, response, payload: action.payload })
     } catch (e) {

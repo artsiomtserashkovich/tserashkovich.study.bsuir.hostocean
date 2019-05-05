@@ -1,7 +1,7 @@
 import MainPageContainer from './mainpage/containers/MainPageContainer';
 import { AccountModule } from './account/AccountModule';
 import { QueueModule } from './queue/QueueModules';
-import { StatisticsContainer } from './statistics/containers/StatisticsContainer';
+import StatisticsContainer from './statistics/containers/StatisticsContainer';
 
 export const MainRoutes = [
     {
