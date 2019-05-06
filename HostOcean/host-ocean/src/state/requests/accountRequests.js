@@ -22,6 +22,11 @@ const accountRequests = {
         method: 'post',
         data
     }),
+    updateUserRequest: (data) => ({
+        url: `api/user/update`,
+        method: 'put',
+        data
+    }),
 }
 
 export default accountRequests

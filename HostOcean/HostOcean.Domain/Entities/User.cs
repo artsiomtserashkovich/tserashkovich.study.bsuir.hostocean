@@ -18,7 +18,8 @@ namespace HostOcean.Domain.Entities
         public UserSubGroup UserSubGroup { get; set; }
         public string GroupId { get; set; }
         public virtual Group Group { get; set; }
-
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string RefreshToken { get; set; }
         
         public virtual ICollection<UserQueue> UserQueues { get; private set; }

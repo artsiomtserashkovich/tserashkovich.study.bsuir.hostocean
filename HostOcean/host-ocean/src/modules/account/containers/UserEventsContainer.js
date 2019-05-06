@@ -6,20 +6,9 @@ import PropTypes from "prop-types";
 
 import UserCard from "../components/UserCard";
 
-import * as rawActions from "./../actions/index";
+import * as rawActions from "../actions/index";
 
-class UserCardContainer extends React.Component {
-    editInfo = () => {
-        const { editUserInfo } = this.props;
-        editUserInfo();
-    };
-
-    saveInfo = values => {
-        const { saveUserInfo, updateUserRequest } = this.props;
-        saveUserInfo();
-        updateUserRequest(values);
-    };
-
+class UserEventsContainer extends React.Component {
     render() {
         const { user, isEditing } = this.props;
 
@@ -30,18 +19,17 @@ class UserCardContainer extends React.Component {
             saveInfo: this.saveInfo
         };
 
-        return <UserCard {...props} />;
+        return "test"
     }
 }
 
-UserCardContainer.propTypes = {
+UserEventsContainer.propTypes = {
     user: PropTypes.object.isRequired,
     isEditing: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
     user: state.user,
-    isEditing: state.form.userInfo.isEditing
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -51,4 +39,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(UserCardContainer);
+)(UserEventsContainer);

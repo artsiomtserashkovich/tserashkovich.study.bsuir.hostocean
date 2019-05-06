@@ -11,6 +11,7 @@ import signalr from "./signalrReducer";
 import mainpage from "../../modules/mainpage/reducers";
 import registerFormReducer from "../../modules/account/reducers/registerFormReducer";
 import loginFormReducer from "../../modules/account/reducers/loginFormReducer";
+import userInfoReducer from "../../modules/account/reducers/userInfoReducer";
 import app from "../../modules/notifications/reducers";
 
 
@@ -18,7 +19,8 @@ export default (history) => combineReducers({
     router: connectRouter(history),
     form: formReducer.plugin({
         register: registerFormReducer,
-        login: loginFormReducer
+        login: loginFormReducer,
+        userInfo: userInfoReducer
     }),
     ping,
     groups,

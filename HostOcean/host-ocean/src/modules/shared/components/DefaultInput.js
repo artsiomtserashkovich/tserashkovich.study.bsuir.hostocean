@@ -11,6 +11,7 @@ const DefaultInput = ({
   title,
   type="text",
   meta: { touched, error },
+  required = true,
   ...rest
 }) => {
   return (
@@ -20,7 +21,7 @@ const DefaultInput = ({
       touched={touched}
       error={error}
     >
-      <Input {...rest} {...input} error={error && touched} type={type} required />
+      <Input {...rest} {...input} error={error && touched} type={type} required={required} />
     </FormInputField>
   );
 }

@@ -4,6 +4,7 @@ import {
     Toolbar, Typography,
     AppBar
 } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 import UserContainer from "./../../containers/UserContainer";
 
@@ -15,10 +16,12 @@ class NavBarComponent extends React.Component {
         return (
             <div className={classes.root}>
                 <AppBar position="static">
-                    <Toolbar>
-                        <Typography variant="h6" color="inherit" className={classes.grow}>
-                            HostOcean
-                        </Typography>
+                    <Toolbar className={classes.toolbar}>
+                        <Link className={classes.link} to="/">
+                            <Typography variant="h6" color="inherit" className={classes.grow}>
+                                HostOcean
+                            </Typography>
+                        </Link>
                         <UserContainer />
                     </Toolbar>
                 </AppBar>
