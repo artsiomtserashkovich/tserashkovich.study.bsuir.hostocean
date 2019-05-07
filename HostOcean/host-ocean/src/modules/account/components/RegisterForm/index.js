@@ -24,7 +24,7 @@ const RegisterForm = ({
         <form className={classes.form} onSubmit={handleSubmit(register)} >
           <div className={classes.header}>
             <Avatar className={classes.avatar}>
-              <i class="material-icons">how_to_reg</i>
+              <i className="material-icons">how_to_reg</i>
             </Avatar>
             <Typography component="h1" variant="h5">
               Register

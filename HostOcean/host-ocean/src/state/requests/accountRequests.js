@@ -27,6 +27,11 @@ const accountRequests = {
         method: 'put',
         data
     }),
+    changePasswordRequest: (data) => ({
+        url: `api/user/password`,
+        method: 'put',
+        data
+    }),
 }
 
 export default accountRequests

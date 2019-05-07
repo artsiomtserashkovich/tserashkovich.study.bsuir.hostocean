@@ -29,24 +29,27 @@ const UserCard = ({
         <Paper className={classes.card}>
             <form onSubmit={handleSubmit(saveInfo)}>
                 <div className={classes.header}>
-                    <Typography>User information</Typography>
+                    <div className={classes.title}>
+                        <Avatar className={classes.avatar}>
+                            <i className="material-icons">info</i>
+                        </Avatar>
+                        <Typography>User information</Typography>
+                    </div>
                     {!isEditing && (
-                        <IconButton>
+                        <IconButton onClick={editInfo}>
                             <i
                                 className="material-icons"
                                 style={{ color: "blue" }}
-                                onClick={editInfo}
                             >
                                 edit
                             </i>
                         </IconButton>
                     )}
                     {isEditing && (
-                        <IconButton type="submit">
+                        <IconButton type="submit" onClick={editInfo}>
                             <i
                                 className="material-icons"
                                 style={{ color: "red" }}
-                                onClick={editInfo}
                             >
                                 save
                             </i>
@@ -55,9 +58,6 @@ const UserCard = ({
                 </div>
                 <Divider />
                 <div className={classes.body}>
-                    <div className={classes.avatar}>
-                        <Avatar>VR</Avatar>
-                    </div>
                     <div className={classes.fields}>
                         <Field
                             name="userName"

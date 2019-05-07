@@ -18,3 +18,7 @@ export const updateUserFailed = createAction('UPDATE_USER_FAILED')
 
 export const editUserInfo = createAction('EDIT_USER_INFO')
 export const saveUserInfo = createAction('SAVE_USER_INFO')
+
+export const changePasswordRequest = createAction('CHANGE_PASSWORD_REQUEST')
+export const changePasswordSuccess = createAction('CHANGE_PASSWORD_SUCCESS')
+export const changePasswordFailed = createAction('CHANGE_PASSWORD_FAILED')

@@ -41,7 +41,7 @@ UserCardContainer.propTypes = {
 
 const mapStateToProps = state => ({
     user: state.user,
-    isEditing: state.form.userInfo.isEditing
+    isEditing: state.form.userInfo.isEditing || false
 });
 
 const mapDispatchToProps = dispatch => ({
