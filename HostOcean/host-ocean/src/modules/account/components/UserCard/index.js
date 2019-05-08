@@ -33,23 +33,21 @@ const UserCard = ({
                         <Avatar className={classes.avatar}>
                             <i className="material-icons">info</i>
                         </Avatar>
-                        <Typography>User information</Typography>
+                        <Typography variant="subtitle1">User information</Typography>
                     </div>
                     {!isEditing && (
-                        <IconButton onClick={editInfo}>
+                        <IconButton className={classes.primary} onClick={editInfo}>
                             <i
                                 className="material-icons"
-                                style={{ color: "blue" }}
                             >
                                 edit
                             </i>
                         </IconButton>
                     )}
                     {isEditing && (
-                        <IconButton type="submit" onClick={editInfo}>
+                        <IconButton className={classes.secondary} type="submit" onClick={editInfo}>
                             <i
                                 className="material-icons"
-                                style={{ color: "red" }}
                             >
                                 save
                             </i>

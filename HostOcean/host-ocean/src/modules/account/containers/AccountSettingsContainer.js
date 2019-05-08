@@ -1,12 +1,32 @@
-import * as React from 'react';
-import { Typography } from '@material-ui/core';
+import * as React from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 
-import AccountSettings from '../components/AccountSettings'
+import * as eventsActions from "../../mainpage/actions/eventsActions"
+
+import AccountSettings from "../components/AccountSettings";
 
 class AccountSettingsContainer extends React.Component {
+    componentDidMount() {
+        const { getEventsRequest, groupId } = this.props;
+
+        getEventsRequest({ groupId });
+    }
+
     render() {
-        return <AccountSettings />
+        return <AccountSettings />;
     }
 }
 
-export default AccountSettingsContainer;
+const mapStateToProps = state => ({
+    groupId: state.user.groupId
+});
+
+const mapDispatchToProps = dispatch => ({
+    ...bindActionCreators(eventsActions, dispatch)
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AccountSettingsContainer);

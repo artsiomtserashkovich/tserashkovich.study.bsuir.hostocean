@@ -2,7 +2,7 @@ const styles = theme => ({
   card: {
     padding: 10,
     margin: 10,
-    width: 300
+    flexGrow: 1
   },
   header: {
     display: "flex",

@@ -3,6 +3,7 @@ const styles = theme => ({
       padding: 10,
       margin: 10,
       minWidth: 240,
+      height: "max-content",
       flexGrow: 1
     },
     header: {
@@ -16,12 +17,12 @@ const styles = theme => ({
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",
-      marginLeft: -10
+      marginLeft: -10,
     },
     body: {
       marginTop: 10,
       display: "flex",
-      flexDirection: "row"
+      flexDirection: "row",
     },
     fields: {
       display: "flex",

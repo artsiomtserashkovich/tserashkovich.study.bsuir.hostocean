@@ -23,7 +23,7 @@ const NotificationsCard = ({
                     <Avatar className={classes.avatar}>
                         <i className="material-icons">notifications</i>
                     </Avatar>
-                    <Typography>Notifications</Typography>
+                    <Typography variant="subtitle1">Notifications</Typography>
                 </div>
             </div>
             <Divider />

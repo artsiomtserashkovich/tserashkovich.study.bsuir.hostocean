@@ -1,14 +1,26 @@
-const styles = (theme) => ({
-  root: {
+const styles = theme => ({
+    root: {
+        width: 900,
+        margin: "auto",
+        "@media (max-width: 900px)": {
+            width: "inherit"
+        },
+        marginBottom: 10
+    },
+    main: {
+        display: "flex",
+        "@media (max-width: 900px)": {
+            flexFlow: "wrap"
+        },
+        "@media (max-width: 512px)": {
+            flexDirection: "column"
+        }
+    },
+    mid: {
+        dislpay: "flex",
+        flexDirection: "column",
+        flexGrow: 1
+    }
+});
 
-  },
-  main: {
-    display: "flex"
-  },
-  security: {
-    dislpay: "flex",
-    flexDirection: "column"
-  }
-  });
-  
-  export default styles;
+export default styles;

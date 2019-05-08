@@ -30,7 +30,7 @@ const PasswordCard = ({
                         <Avatar className={classes.avatar}>
                             <i className="material-icons">security</i>
                         </Avatar>
-                        <Typography>Security</Typography>
+                        <Typography variant="subtitle1">Security</Typography>
                     </div>
                 </div>
                 <Divider />

@@ -17,7 +17,7 @@ export default (preloadedState) => {
     const persistConfig = {
         key: "root",
         storage,
-        whitelist: ["session", "user"]
+        whitelist: ["session", "user", "ui"]
     };
 
     const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

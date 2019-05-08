@@ -1,35 +1,34 @@
 import * as React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import * as _ from "lodash";
 
 import PropTypes from "prop-types";
 
-import UserCard from "../components/UserCard";
-
 import * as rawActions from "../actions/index";
+import UserEvents from "../components/UserEvents";
 
 class UserEventsContainer extends React.Component {
     render() {
-        const { user, isEditing } = this.props;
+        const { events } = this.props;
+        const props = { events };
 
-        const props = {
-            user,
-            isEditing,
-            editInfo: this.editInfo,
-            saveInfo: this.saveInfo
-        };
-
-        return "test"
+        return <UserEvents {...props} />;
     }
 }
 
 UserEventsContainer.propTypes = {
-    user: PropTypes.object.isRequired,
-    isEditing: PropTypes.bool.isRequired
+    events: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
-    user: state.user,
+    events: _.filter(
+        state.mainpage.events,
+        e =>
+            e &&
+            e.queue &&
+            e.queue.userQueues.some(uq => uq.user.id === state.user.id)
+    )
 });
 
 const mapDispatchToProps = dispatch => ({

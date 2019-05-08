@@ -2,7 +2,9 @@ const styles = theme => ({
   card: {
     padding: 10,
     margin: 10,
-    width: 300
+    minWidth: 240,
+    maxWidth: 512,
+    flexGrow: 1
   },
   header: {
     display: "flex",
@@ -34,6 +36,12 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     backgroundColor: theme.palette.secondary.main,
   },
+  primary: {
+    color: theme.palette.primary.main
+  },
+  secondary: {
+    color: theme.palette.secondary.main
+  }
 });
 
 export default styles;
