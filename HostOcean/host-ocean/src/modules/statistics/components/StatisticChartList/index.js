@@ -14,25 +14,29 @@ export default class StatisticsChartList extends React.Component {
                 .map((value, key) => ({queueTitle: key, queueStatistic: value}))
                 .value()
             : [];
-
         return(
             <Paper>
                 <StatisticsInformation information={statistic}/>
                 <Divider/>
                 {
-                    queueCharts.map((index, item) => (
+                    queueCharts.map((item, index) => (
                         <>
-                            <Typography variant={"h6"}>
+                            <Typography variant={"h6"} align="center">
                                 {item.queueTitle}
-                            </Typography>
-                            <StatisticChart
-                                chartId={"statChart" + index}
-                                colorSchema={"#722452"}
-                                seriesDataField={"queueStartTime"}
-                                seriesValueField={"place"}
-                                seriesTooltipTextPattern={"{queueStartTime}:{place}; Take Time:{takeQueueTime}; Count of Participant:{participantsCount}"}
-                                data={item.queueStatistic}
-                            />
+                            </Typography>                           
+                              <StatisticChart
+                                    chartId={"statchart" + index}
+                                    colorSchema={"#722452"}
+                                    seriesDataField={"queueStartTime"}
+                                    seriesValueField={"place"}
+                                    seriesTooltipTextPattern={"Place:{place}; TakeTime:{takeQueueTime}, Participant: {participantsCount}"}
+                                    data={
+                                        [
+                                            ...item.queueStatistic,
+                                            {place: 0, queueStartTime: "2019", takeQueueTime: ""},
+                                        ]
+                                    }
+                                />
                             <Divider/>
                         </>
                     ))
