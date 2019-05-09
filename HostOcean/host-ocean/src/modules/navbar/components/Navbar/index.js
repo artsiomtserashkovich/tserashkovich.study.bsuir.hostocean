@@ -1,10 +1,11 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles/index"
 import {
-    Grid,
+    Typography,
+    Toolbar,
     AppBar
 } from "@material-ui/core";
-import LabelLink from "../LabelLink/LabelLink";
+import { Link } from "react-router-dom";
 
 import UserContainer from "./../../containers/UserContainer";
 
@@ -16,21 +17,19 @@ class NavBarComponent extends React.Component {
         return (
             <div className={classes.root}>
                 <AppBar position="static">
-                    <Grid container direction="row" alignItems={"center"} className={classes.grid}>
-                        <Grid item lg={2}>
-                            <LabelLink to={"/"} label={"HostOcean"} primary/>
-                        </Grid>
-                        <Grid item lg={1}>
-                            <LabelLink to={"/statistics"} label={"Statistics"}/>
-                        </Grid>                        
-                        <Grid item lg={9} >
-                            <Grid container justify={"flex-end"}>
-                                <Grid item>
-                                    <UserContainer/>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                    </Grid>
+                    <Toolbar className={classes.toolbar}>
+                        <Link className={classes.link} to="/">
+                            <Typography variant="h6" color="inherit" className={classes.grow}>
+                                HostOcean
+                            </Typography>
+                        </Link> 
+                        <Link className={classes.link} to="/statistics">
+                            <Typography variant="h6" color="inherit" className={classes.grow}>
+                                Statistics
+                            </Typography>
+                        </Link>
+                        <UserContainer />
+                    </Toolbar>
                 </AppBar>
             </div>
         );

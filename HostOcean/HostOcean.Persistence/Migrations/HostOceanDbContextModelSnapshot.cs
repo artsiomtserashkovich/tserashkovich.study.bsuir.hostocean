@@ -116,8 +116,12 @@ namespace HostOcean.Persistence.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<string>("FirstName");
+
                     b.Property<string>("GroupId")
                         .IsRequired();
+
+                    b.Property<string>("LastName");
 
                     b.Property<bool>("LockoutEnabled");
 

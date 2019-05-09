@@ -1,4 +1,5 @@
 ﻿using Hangfire;
+using Hangfire.SqlServer;
 using HostOcean.Application.ApplicationSettings;
 using HostOcean.Application.Interfaces.Infrastructure;
 using HostOcean.Infrastructure.Hangfire;
