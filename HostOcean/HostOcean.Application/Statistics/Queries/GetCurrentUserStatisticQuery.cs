@@ -92,7 +92,7 @@ namespace HostOcean.Application.Statistics.Queries
                     QueueId = queueId,
                     QueueTitle = queue.LaboratoryWorkEvent.LaboratoryWork.Title,
                     QueueStartTime = createdQueueDateTime,
-                    TakeQueueTime = userQueue.item.CreatedOn - createdQueueDateTime, 
+                    TakeQueueTime = (userQueue.item.CreatedOn - createdQueueDateTime), 
                 };
             }
 
@@ -100,8 +100,8 @@ namespace HostOcean.Application.Statistics.Queries
                 string userId, DateTime starTime, DateTime endTime)
             {
                 return userQueue => userQueue.UserId == userId 
-                                        && userQueue.CreatedOn.ToUniversalTime() >= starTime.ToUniversalTime() 
-                                        && userQueue.CreatedOn.ToUniversalTime() <= endTime.ToUniversalTime();
+                                        && userQueue.CreatedOn.Date >= starTime.Date 
+                                        && userQueue.CreatedOn.Date <= endTime.Date;
             }
         }
     }

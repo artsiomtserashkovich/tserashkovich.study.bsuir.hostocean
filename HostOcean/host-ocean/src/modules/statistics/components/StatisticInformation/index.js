@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import styles from "./styles";
 import { withStyles, Grid, Typography } from "@material-ui/core";
+import { formatAverageEventTime } from "../../util/dateUtils";
 
 class StatisticsInformation extends React.Component {
     render() {
@@ -19,7 +20,7 @@ class StatisticsInformation extends React.Component {
                 </Grid>
                 <Grid item lg={4} md={6} xs={12}>
                     <Typography variant={"subtitle1"}>
-                        Среднее время: {this.props.information.averageTakeQueueTime || 0}
+                        Среднее время: {formatAverageEventTime(this.props.information.averageTakeQueueTime) || 0}
                     </Typography>
                 </Grid>
                 <Grid item lg={4} md={6} xs={12}>

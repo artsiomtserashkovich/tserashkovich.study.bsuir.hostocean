@@ -19,10 +19,10 @@ export default class StatisticsChartList extends React.Component {
                 <StatisticsInformation information={statistic}/>
                 <Divider/>
                 {
-                    queueCharts.map((item, index) => (
+                    queueCharts.map(({ queueTitle, queueStatistic }, index) => (
                         <>
                             <Typography variant={"h6"} align="center">
-                                {item.queueTitle}
+                                {queueTitle}
                             </Typography>                           
                               <StatisticChart
                                     chartId={"statchart" + index}
@@ -32,8 +32,8 @@ export default class StatisticsChartList extends React.Component {
                                     seriesTooltipTextPattern={"Place:{place}; TakeTime:{takeQueueTime}, Participant: {participantsCount}"}
                                     data={
                                         [
-                                            ...item.queueStatistic,
-                                            {place: 0, queueStartTime: "2019", takeQueueTime: ""},
+                                            ...queueStatistic,
+                                            {place: 0, queueStartTime: "2019-05", takeQueueTime: ""},
                                         ]
                                     }
                                 />

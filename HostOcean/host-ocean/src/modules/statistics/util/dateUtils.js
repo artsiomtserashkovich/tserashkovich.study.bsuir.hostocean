@@ -1,0 +1,1 @@
+export const formatAverageEventTime = (date) => date.substr(0, date.indexOf('.')); 
