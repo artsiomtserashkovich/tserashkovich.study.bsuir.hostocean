@@ -11,7 +11,7 @@ const EventButton = ({ classes, queue, onLeaveQueue, onTakeQueue, isRegistration
                 {isAlreadyInQueue && <Button className={classes.button} disabled={queue.isLoading} onClick={onLeaveQueue} variant="contained" color="secondary">Покинуть очередь</Button>}
                 {!isAlreadyInQueue && <Button className={classes.button} disabled={queue.isLoading} onClick={onTakeQueue} variant="contained" color="primary">Занять очередь</Button>}
             </React.Fragment> :
-            <Button className={classes.button} onClick={onLeaveQueue} variant="contained" disabled={true} >
+            <Button className={classes.button} variant="contained" >
                 Регистрация через: {remains}
             </Button>
     );

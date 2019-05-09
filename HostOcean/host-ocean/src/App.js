@@ -5,7 +5,7 @@ import { Provider, ReactReduxContext } from "react-redux";
 import { SnackbarProvider } from "notistack";
 
 import * as actions from "./state/actions/sessionActions";
-
+import DatePickerProvider from "./modules/shared/providers/MUIDatePickerProvider/index";
 import config from "./config/index";
 
 import createStore from "./state";
@@ -23,9 +23,11 @@ class App extends React.Component {
         return (
             <Provider store={store} context={ReactReduxContext}>
                 <PersistGate loading={null} persistor={persistor}>
+                  <DatePickerProvider locale="en">
                     <SnackbarProvider>
                         <UI />
                     </SnackbarProvider>
+                  </DatePickerProvider>
                 </PersistGate>
             </Provider>
         );

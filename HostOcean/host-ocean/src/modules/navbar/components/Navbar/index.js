@@ -1,7 +1,8 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles/index"
 import {
-    Toolbar, Typography,
+    Typography,
+    Toolbar,
     AppBar
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
@@ -20,6 +21,11 @@ class NavBarComponent extends React.Component {
                         <Link className={classes.link} to="/">
                             <Typography variant="h6" color="inherit" className={classes.grow}>
                                 HostOcean
+                            </Typography>
+                        </Link> 
+                        <Link className={classes.link} to="/statistics">
+                            <Typography variant="h6" color="inherit" className={classes.grow}>
+                                Statistics
                             </Typography>
                         </Link>
                         <UserContainer />

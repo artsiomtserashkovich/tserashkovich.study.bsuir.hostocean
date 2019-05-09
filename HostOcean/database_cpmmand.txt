@@ -1,0 +1,6 @@
+"ConnectionStrings": {
+    "MSSQLDatabaseConnectionString": "Server=localhost,1433;Database=HostOceanDB;User=sa;Password=hstn650502!",
+    "HangfireDatabaseConnectionString": "Server=localhost,1433;Database=master;User=sa;Password=hstn650502!"
+},
+
+docker run command: docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=hstn650502!' -p 1433:1433 -d microsoft/mssql-server-linux:latest

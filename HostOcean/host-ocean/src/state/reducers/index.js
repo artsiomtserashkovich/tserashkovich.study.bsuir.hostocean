@@ -7,6 +7,8 @@ import groups from "./../../modules/groups/reducers/groupsReducer";
 import session from "./sessionReducer";
 import config from "./configReducer";
 import user from "./userReducer";
+import statistic from "../../modules/statistics/reducers/statisticsReducer";
+import statisticsFormReducer from './../../modules/statistics/reducers/statisticsFormReducer';
 import signalr from "./signalrReducer";
 import mainpage from "../../modules/mainpage/reducers";
 import registerFormReducer from "../../modules/account/reducers/registerFormReducer";
@@ -21,7 +23,8 @@ export default history =>
         form: formReducer.plugin({
             register: registerFormReducer,
             login: loginFormReducer,
-            userInfo: userInfoReducer
+            userInfo: userInfoReducer,
+            statistics: statisticsFormReducer,
         }),
         ping,
         groups,
@@ -31,5 +34,6 @@ export default history =>
         config,
         mainpage,
         app,
-        ui
+        ui,
+        statistic
     });
