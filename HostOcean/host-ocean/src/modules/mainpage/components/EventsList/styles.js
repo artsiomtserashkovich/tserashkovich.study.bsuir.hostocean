@@ -6,6 +6,7 @@ export default {
         margin: 10
     },
     container: {
-        display: "flex"
+        display: "flex",
+        overflowX: "auto"
     }
 };

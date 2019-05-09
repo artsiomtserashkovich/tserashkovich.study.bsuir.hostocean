@@ -8,6 +8,7 @@ import { ReactReduxContext } from "react-redux";
 import { history } from "./state";
 
 import { MainModule } from "./modules/MainModule";
+import Footer from "./modules/footer/components";
 
 import NavbarContainer from "./modules/navbar/containers/NavbarContainer";
 
@@ -26,11 +27,12 @@ class UI extends React.Component {
         return (
             <MuiThemeProvider theme={theme}>
                 <ConnectedRouter history={history} context={ReactReduxContext}>
-                    <div>
+                    <React.Fragment>
                         <CssBaseline />
                         <NavbarContainer />
                         <MainModule />
-                    </div>
+                        {/* <Footer /> */}
+                    </React.Fragment>
                 </ConnectedRouter>
             </MuiThemeProvider>
         );

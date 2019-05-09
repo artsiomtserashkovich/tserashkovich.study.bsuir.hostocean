@@ -19,9 +19,27 @@ export default theme => {
             background: theme.palette.background.paper,
             color: theme.palette.text.primary
         },
+        main: {
+            display: "flex",
+            justifyContent: "start",
+            alignItems: "center"
+        },
         link: {
             textDecoration: "none",
-            color: "inherit"
+            color: "inherit",
+            marginRight: 40
+        },
+        sidebar: {
+            display: "none",
+            "@media (max-width: 768px)": {
+                display: "block"
+            },
+        },
+        items: {
+            display: "block",
+            "@media (max-width: 768px)": {
+                display: "none"
+            },
         }
     };
 };
