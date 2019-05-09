@@ -11,3 +11,14 @@ export const registerFailed = createAction('REGISTER_FAILED')
 export const loginRequest = createAction('LOGIN_REQUEST')
 export const loginSuccess = createAction('LOGIN_SUCCESS')
 export const loginFailed = createAction('LOGIN_FAILED')
+
+export const updateUserRequest = createAction('UPDATE_USER_REQUEST')
+export const updateUserSuccess = createAction('UPDATE_USER_SUCCESS')
+export const updateUserFailed = createAction('UPDATE_USER_FAILED')
+
+export const editUserInfo = createAction('EDIT_USER_INFO')
+export const saveUserInfo = createAction('SAVE_USER_INFO')
+
+export const changePasswordRequest = createAction('CHANGE_PASSWORD_REQUEST')
+export const changePasswordSuccess = createAction('CHANGE_PASSWORD_SUCCESS')
+export const changePasswordFailed = createAction('CHANGE_PASSWORD_FAILED')

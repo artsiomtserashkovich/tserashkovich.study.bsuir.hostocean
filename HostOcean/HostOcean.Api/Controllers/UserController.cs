@@ -1,6 +1,8 @@
 using FluentValidation;
 using HostOcean.Application.Tokens.Models;
+using HostOcean.Application.Users.Commands.ChangePassword;
 using HostOcean.Application.Users.Commands.CreateUser;
+using HostOcean.Application.Users.Commands.UpdateUser;
 using HostOcean.Application.Users.Models;
 using HostOcean.Application.Users.Queries;
 using MediatR;
@@ -60,6 +62,23 @@ namespace HostOcean.Api.Controllers
         public async Task<IActionResult> SignIn([FromBody] SignInJwtTokenQuery signInQuery)
         {
             return Ok(await Mediator.Send(signInQuery));
+        }
+
+        [HttpPut("update")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType(typeof(UserModel))]
+        public async Task<IActionResult> Update([FromBody] UpdateUserCommand updateUserCommand)
+        {
+            return Ok(await Mediator.Send(updateUserCommand));
+        }
+
+        [HttpPut("password")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType(typeof(void))]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordCommand changePasswordCommand)
+        {
+            await Mediator.Send(changePasswordCommand);
+            return Ok();
         }
     }
 }
