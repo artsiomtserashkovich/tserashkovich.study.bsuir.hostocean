@@ -30,7 +30,7 @@ const styles = (theme) => ({
   },
   container: {
     position: 'relative',
-    width: 300
+    width: "100%"
   },
   suggestionsContainerOpen: {
     position: 'absolute',

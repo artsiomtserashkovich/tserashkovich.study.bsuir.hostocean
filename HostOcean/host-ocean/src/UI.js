@@ -8,7 +8,6 @@ import { ReactReduxContext } from "react-redux";
 import { history } from "./state";
 
 import { MainModule } from "./modules/MainModule";
-import Footer from "./modules/footer/components";
 
 import NavbarContainer from "./modules/navbar/containers/NavbarContainer";
 

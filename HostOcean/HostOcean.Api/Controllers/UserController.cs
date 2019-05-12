@@ -1,3 +1,4 @@
+using AutoMapper;
 using FluentValidation;
 using HostOcean.Application.Tokens.Models;
 using HostOcean.Application.Users.Commands.ChangePassword;
@@ -16,7 +17,7 @@ namespace HostOcean.Api.Controllers
 {
     public class UserController : BaseController
     {
-        public UserController(IMediator mediator) : base(mediator)
+        public UserController(IMediator mediator, IMapper mapper) : base(mediator, mapper)
         {
         }
 
@@ -64,6 +65,7 @@ namespace HostOcean.Api.Controllers
             return Ok(await Mediator.Send(signInQuery));
         }
 
+        [Authorize]
         [HttpPut("update")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType(typeof(UserModel))]
@@ -72,6 +74,7 @@ namespace HostOcean.Api.Controllers
             return Ok(await Mediator.Send(updateUserCommand));
         }
 
+        [Authorize]
         [HttpPut("password")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType(typeof(void))]

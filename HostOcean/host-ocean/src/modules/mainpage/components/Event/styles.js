@@ -1,6 +1,7 @@
 export default {
     root: {
-        minWidth: 300,
+        minWidth: 324,
+        maxWidth: 324,
         minHeight: 324,
         padding: 10,
         margin: 10,

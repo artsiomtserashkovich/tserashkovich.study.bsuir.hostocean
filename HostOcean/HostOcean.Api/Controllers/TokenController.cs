@@ -1,4 +1,5 @@
-﻿using HostOcean.Application.Tokens.Models;
+﻿using AutoMapper;
+using HostOcean.Application.Tokens.Models;
 using HostOcean.Application.Tokens.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -11,7 +12,7 @@ namespace HostOcean.Api.Controllers
     [Authorize]
     public class TokenController : BaseController
     {
-        public TokenController(IMediator mediator) : base(mediator)
+        public TokenController(IMediator mediator, IMapper mapper) : base(mediator, mapper)
         {
         }
 

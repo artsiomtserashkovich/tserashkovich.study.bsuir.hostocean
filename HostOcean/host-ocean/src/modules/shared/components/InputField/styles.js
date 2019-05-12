@@ -3,7 +3,7 @@ const styles = theme => ({
       marginLeft: theme.spacing.unit,
       marginRight: theme.spacing.unit,
       marginTop: 10,
-      marginBotton: 10
+      marginBottom: 10
     },
   });
   

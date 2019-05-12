@@ -21,11 +21,11 @@ const Event = ({ classes, location, place, title, time }) => {
             </div>
             <div className={classes.body}>
                 <div className={classes.info}>
-                    <i className="material-icons">place</i>
+                    <i className="material-icons" style={{ color : "red" }}>place</i>
                     <Typography variant="subtitle2">{location}</Typography>
                 </div>
                 <div className={classes.info}>
-                    <i className="material-icons">star</i>
+                    <i className="material-icons" >star</i>
                     <Typography variant="subtitle2">{place}</Typography>
                 </div>
                 <div className={classes.info}>
