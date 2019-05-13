@@ -17,7 +17,7 @@ const AutocompleteInputField = ({
         container: classes.container,
         suggestionsContainerOpen: classes.suggestionsContainerOpen,
         suggestionsList: classes.suggestionsList,
-        suggestion: classes.suggestion,
+        suggestion: classes.suggestion
       }}
       renderSuggestionsContainer={options => (
         <Paper {...options.containerProps} square>

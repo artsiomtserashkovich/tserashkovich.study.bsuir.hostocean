@@ -16,7 +16,7 @@ const LaboratoryWork = ({ classes, startDate, title, lecturer, location }) => {
                     <Typography variant="subtitle2">{dateString}</Typography>
                 </div>
                 <div className={classes.info}>
-                    <i className="material-icons">location_on</i>
+                    <i className="material-icons" style={{ color: "red" }}>location_on</i>
                     <Typography variant="subtitle2">{location}</Typography>
                 </div>
                 <div className={classes.info}>

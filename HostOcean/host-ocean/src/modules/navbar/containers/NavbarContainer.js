@@ -4,10 +4,28 @@ import { connect } from 'react-redux';
 import Navbar from "../components/Navbar"
 
 class NavbarContainer extends React.Component {
-    render() {
-        const { labwork } = this.props;
+    constructor(props) {
+        super(props);
 
-        return <Navbar {...labwork} />;
+        this.state = {
+            isMenuOpened: false
+        };
+    }
+
+    toggleMenu = () => {
+        const { isMenuOpened } = this.state;
+        this.setState({ isMenuOpened: !isMenuOpened })
+    }
+
+    render() {
+        const { isMenuOpened } = this.state;
+
+        const props = {
+            isMenuOpened,
+            toggleMenu: this.toggleMenu
+        }
+
+        return <Navbar {...props} />;
     }
 }
 

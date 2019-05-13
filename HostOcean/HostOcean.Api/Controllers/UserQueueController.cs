@@ -8,6 +8,7 @@ using HostOcean.Api.Hubs;
 using HostOcean.Application.UserQueues.Queries;
 using Microsoft.AspNetCore.Authorization;
 using HostOcean.Application.Users.Queries;
+using AutoMapper;
 
 namespace HostOcean.Api.Controllers
 {
@@ -16,7 +17,7 @@ namespace HostOcean.Api.Controllers
     {
         private readonly IHubContext<HostOceanHub> _hubContext;
 
-        public UserQueueController(IMediator mediator, IHubContext<HostOceanHub> hubContext) : base(mediator)
+        public UserQueueController(IMediator mediator, IMapper mapper, IHubContext<HostOceanHub> hubContext) : base(mediator, mapper)
         {
             _hubContext = hubContext;
         }

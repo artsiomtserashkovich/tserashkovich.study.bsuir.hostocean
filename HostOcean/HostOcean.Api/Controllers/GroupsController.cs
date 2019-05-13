@@ -12,7 +12,7 @@ namespace HostOcean.Api.Controllers
 {
     public class GroupsController : BaseController
     {
-        public GroupsController(IMediator mediator, IMapper mapper) : base(mediator)
+        public GroupsController(IMediator mediator, IMapper mapper) : base(mediator, mapper)
         {
         }
 

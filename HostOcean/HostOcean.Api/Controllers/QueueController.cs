@@ -4,13 +4,14 @@ using System.Threading.Tasks;
 using HostOcean.Application.Queues.Models;
 using HostOcean.Application.Queues.Queries;
 using Microsoft.AspNetCore.Authorization;
+using AutoMapper;
 
 namespace HostOcean.Api.Controllers
 {
     [Authorize]
     public class QueueController : BaseController
     {
-        public QueueController(IMediator mediator) : base(mediator)
+        public QueueController(IMediator mediator, IMapper mapper) : base(mediator, mapper)
         {
         }
 

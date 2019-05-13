@@ -17,7 +17,8 @@ const styles = theme => ({
     },
     avatar: {
         margin: theme.spacing.unit,
-        backgroundColor: theme.palette.secondary.main
+        backgroundColor: theme.palette.secondary.main,
+        color: "white"
     },
     info: {
         margin: "auto",

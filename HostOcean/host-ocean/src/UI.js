@@ -26,11 +26,12 @@ class UI extends React.Component {
         return (
             <MuiThemeProvider theme={theme}>
                 <ConnectedRouter history={history} context={ReactReduxContext}>
-                    <div>
+                    <React.Fragment>
                         <CssBaseline />
                         <NavbarContainer />
                         <MainModule />
-                    </div>
+                        {/* <Footer /> */}
+                    </React.Fragment>
                 </ConnectedRouter>
             </MuiThemeProvider>
         );

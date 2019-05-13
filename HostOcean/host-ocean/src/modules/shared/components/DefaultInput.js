@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Input from "@material-ui/core/Input";
+import {TextField} from "@material-ui/core";
 
 import FormInputField from "./InputField";
 
@@ -21,7 +21,7 @@ const DefaultInput = ({
       touched={touched}
       error={error}
     >
-      <Input {...rest} {...input} error={error && touched} type={type} required={required} />
+      <TextField {...rest} {...input} label={title} error={error && touched} type={type} required={required} />
     </FormInputField>
   );
 }
