@@ -12,6 +12,7 @@ namespace HostOcean.Persistence.Repositories
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             IRepository<Group> groups,
+            IRepository<Request> requests,
             IRepository<LaboratoryWorkEvent> events,
             ILaboratoryWorkRepository laboratoryWorks,
             IQueueRepository queues,
@@ -24,6 +25,7 @@ namespace HostOcean.Persistence.Repositories
 
             Groups = groups;
             Events = events;
+            Requests = requests;
             LaboratoryWorks = laboratoryWorks;
             Queues = queues;
             UserQueues = userQueues;
@@ -34,6 +36,7 @@ namespace HostOcean.Persistence.Repositories
         public SignInManager<User> SignInManager { get; private set; }
         public IRepository<Group> Groups { get; private set; }
         public IRepository<LaboratoryWorkEvent> Events { get; private set; }
+        public IRepository<Request> Requests { get; private set; }
         public ILaboratoryWorkRepository LaboratoryWorks { get; private set; }
         public IQueueRepository Queues { get; private set; }
         public IUserQueueRepository UserQueues { get; private set; }

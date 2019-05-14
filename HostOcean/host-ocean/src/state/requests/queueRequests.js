@@ -1,18 +1,33 @@
 const queueRequests = {
-    getQueueRequest: ({queueId}) => ({
+    getQueueRequest: ({ queueId }) => ({
         url: `api/queue?id=${queueId}`,
-        method: 'get'
+        method: "get"
     }),
-    takeQueueRequest: (data) => ({
+    takeQueueRequest: data => ({
         url: `api/userqueue/take`,
-        method: 'post',
+        method: "post",
         data
     }),
-    leaveQueueRequest: (data) => ({
+    leaveQueueRequest: data => ({
         url: `api/userqueue/leave`,
-        method: 'post',
+        method: "post",
         data
     }),
-}
 
-export default queueRequests
+    createSwapRequestRequest: data => ({
+        url: `api/requests/swap`,
+        method: "post",
+        data
+    }),
+    updateRequestRequest: data => ({
+        url: `api/requests`,
+        method: "put",
+        data
+    }),
+    getRequestsRequest: () => ({
+        url: `api/requests`,
+        method: "get"
+    })
+};
+
+export default queueRequests;

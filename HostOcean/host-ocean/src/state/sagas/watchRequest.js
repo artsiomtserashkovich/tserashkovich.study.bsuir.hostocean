@@ -15,11 +15,11 @@ function* callAPI(action) {
             data
         })
         
-        const newType = action.type.replace('_REQUEST', '_SUCCESS')
+        const newType = action.type.replace(new RegExp('_REQUEST$'), '_SUCCESS')
         yield put({ type: newType, response, payload: action.payload })
     } catch (e) {
         const errorModel = {
-            type: action.type.replace('_REQUEST', '_FAILED'),
+            type: action.type.replace(new RegExp('_REQUEST$'), '_FAILED'),
             payload: action.payload,
             message: e.statusText,
             status: e.status,

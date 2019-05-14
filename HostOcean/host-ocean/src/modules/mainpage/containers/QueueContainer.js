@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import Queue from "./../components/Queue";
 
@@ -9,7 +9,7 @@ class QueueContainer extends React.Component {
 
         const props = {
             queue
-        }
+        };
 
         return <Queue {...props} />;
     }
@@ -18,14 +18,16 @@ class QueueContainer extends React.Component {
 const mapStateToProps = (state, props) => {
     const queue = state.mainpage.queues[props.queueId];
 
-    return ({
+    return {
         queue
-    });
-}
+    };
+};
 
-const mapDispatchToProps = () => {
-    return ({
-    });
-}
+const mapDispatchToProps = dispatch => {
+    return {};
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(QueueContainer);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(QueueContainer);

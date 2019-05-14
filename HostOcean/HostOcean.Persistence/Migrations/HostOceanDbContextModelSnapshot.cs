@@ -101,6 +101,32 @@ namespace HostOcean.Persistence.Migrations
                     b.ToTable("Queues");
                 });
 
+            modelBuilder.Entity("HostOcean.Domain.Entities.Request", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<string>("CreatorUserId");
+
+                    b.Property<string>("QueueId");
+
+                    b.Property<string>("ReceiverUserId");
+
+                    b.Property<int>("State");
+
+                    b.Property<int>("Type");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorUserId");
+
+                    b.HasIndex("ReceiverUserId");
+
+                    b.ToTable("Requests");
+                });
+
             modelBuilder.Entity("HostOcean.Domain.Entities.User", b =>
                 {
                     b.Property<string>("Id")
@@ -317,6 +343,17 @@ namespace HostOcean.Persistence.Migrations
                         .WithOne("LaboratoryWorkEvent")
                         .HasForeignKey("HostOcean.Domain.Entities.LaboratoryWorkEvent", "QueueId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HostOcean.Domain.Entities.Request", b =>
+                {
+                    b.HasOne("HostOcean.Domain.Entities.User", "CreatorUser")
+                        .WithMany()
+                        .HasForeignKey("CreatorUserId");
+
+                    b.HasOne("HostOcean.Domain.Entities.User", "ReceiverUser")
+                        .WithMany()
+                        .HasForeignKey("ReceiverUserId");
                 });
 
             modelBuilder.Entity("HostOcean.Domain.Entities.User", b =>

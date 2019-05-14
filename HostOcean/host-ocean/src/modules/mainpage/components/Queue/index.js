@@ -1,8 +1,8 @@
 import { withStyles, CircularProgress } from '@material-ui/core';
 import * as React from 'react';
-import User from "./../User"
 
 import styles from "./styles";
+import UserContainer from '../../containers/UserContainer';
 
 const Queue = ({ classes, queue }) => {
     return (
@@ -10,7 +10,7 @@ const Queue = ({ classes, queue }) => {
             <div className={classes.queueContainer}>
                 {
                     queue.userQueues.map((userQueue, index) => (
-                        <User key={index} order={index + 1} user={userQueue.user} />
+                        <UserContainer queueId={queue.id} key={index} order={index + 1} user={userQueue.user} isLoading={userQueue.isLoading} />
                     ))
                 }
             </div> :
