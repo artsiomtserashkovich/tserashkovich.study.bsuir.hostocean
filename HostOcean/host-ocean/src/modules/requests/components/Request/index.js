@@ -43,7 +43,7 @@ const Request = ({
                                   } to swap places in queue ${queueId}`
                                 : `User ${
                                       creatorUser.userName
-                                  } offered you to swap places in queue ${queueId}`}
+                                  } offered you to swap places in queue`}
                         </Typography>
                     </div>
                 </div>
