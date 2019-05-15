@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 
 import styles from "./styles";
-import CircularProgressbar from "react-circular-progressbar";
+import {CircularProgressbar} from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 function CustomContentProgressbar(props) {

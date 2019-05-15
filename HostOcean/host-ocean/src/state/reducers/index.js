@@ -15,6 +15,7 @@ import registerFormReducer from "../../modules/account/reducers/registerFormRedu
 import loginFormReducer from "../../modules/account/reducers/loginFormReducer";
 import userInfoReducer from "../../modules/account/reducers/userInfoReducer";
 import ui from "../../modules/ui/reducers";
+import requests from "../../modules/requests/reducers";
 import app from "../../modules/notifications/reducers";
 
 export default history =>
@@ -35,5 +36,6 @@ export default history =>
         mainpage,
         app,
         ui,
+        requests,
         statistic
     });

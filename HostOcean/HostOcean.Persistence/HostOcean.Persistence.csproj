@@ -29,6 +29,8 @@
     <Compile Include="Migrations\20190327164030_RegistrationStartedAt.Designer.cs" />
     <Compile Include="Migrations\20190506133020_User_First_Last_Names.cs" />
     <Compile Include="Migrations\20190506133020_User_First_Last_Names.Designer.cs" />
+    <Compile Include="Migrations\20190514080337_Add_Requests.cs" />
+    <Compile Include="Migrations\20190514080337_Add_Requests.Designer.cs" />
     <Compile Include="Migrations\HostOceanDbContextModelSnapshot.cs" />
   </ItemGroup>
 

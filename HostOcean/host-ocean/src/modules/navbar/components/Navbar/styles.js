@@ -36,7 +36,7 @@ export default theme => {
             },
         },
         items: {
-            display: "block",
+            display: "flex",
             "@media (max-width: 768px)": {
                 display: "none"
             },

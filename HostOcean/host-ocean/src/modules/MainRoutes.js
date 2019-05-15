@@ -2,6 +2,7 @@ import MainPageContainer from './mainpage/containers/MainPageContainer';
 import { AccountModule } from './account/AccountModule';
 import { QueueModule } from './queue/QueueModules';
 import StatisticsContainer from './statistics/containers/StatisticsContainer';
+import RequestsListContainer from './requests/containers/RequestsListContainer';
 
 export const MainRoutes = [
     {
@@ -23,6 +24,12 @@ export const MainRoutes = [
     {
         path: "statistics",
         component: StatisticsContainer,
+        requireAuth: true,
+        exact: false,
+    },
+    {
+        path: "requests",
+        component: RequestsListContainer,
         requireAuth: true,
         exact: false,
     }

@@ -11,6 +11,7 @@ namespace HostOcean.Application.Interfaces.Persistence
         SignInManager<User> SignInManager { get; }
         IRepository<Group> Groups { get; }
         IRepository<LaboratoryWorkEvent> Events { get; }
+        IRepository<Request> Requests { get; }
         ILaboratoryWorkRepository LaboratoryWorks { get; }
         IQueueRepository Queues { get; }
         IUserQueueRepository UserQueues { get; }

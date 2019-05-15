@@ -15,6 +15,7 @@ namespace HostOcean.Persistence
         public DbSet<LaboratoryWorkEvent> LaboratoryWorkEvents { get; set; }
         public DbSet<UserQueue> UserQueues { get; set; }
         public DbSet<Queue> Queues { get; set; }
+        public DbSet<Request> Requests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
