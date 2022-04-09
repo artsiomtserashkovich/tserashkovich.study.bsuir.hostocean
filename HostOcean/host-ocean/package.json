@@ -22,7 +22,7 @@
     "connected-react-router": "^6.3.2",
     "i": "^0.3.6",
     "material-ui-pickers": "^2.2.4",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "notistack": "^0.5.1",
     "npm": "^6.9.0",
     "react": "^16.8.3",
